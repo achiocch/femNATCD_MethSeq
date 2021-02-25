@@ -1,0 +1,480 @@
+---
+title: "The Methylome in Female Adolescent Conduct Disorder: Neural Pathomechanisms and Environmental Risk Factors"
+subtitle: 'Post-hoc Analyses'
+author: "AG Chiocchetti"
+date: "29 Dezember 2020"
+output: html_document
+code_folding: hide
+---
+
+```{r setup, echo=F, include=FALSE}
+library(RColorBrewer)
+library(corrplot)
+library(gplots)
+library(ggplot2)
+library(lavaan)
+library(semPlot)
+library(tidyverse)
+library(DESeq2)
+library(GenomicRanges)
+library(knitr)
+library(glmpca)
+library(kableExtra)
+library(BiocParallel)
+library(gprofiler2)
+library(xlsx)
+library(org.Hs.eg.db)
+library(visNetwork)
+library(webshot); #webshot::install_phantomjs() #in case phantomjs was not installed 
+
+Home = getwd()
+
+thresholdp = 10e-3
+thresholdLFC = 0.5
+
+
+source(paste0(Home, "/code/custom_functions.R"))
+
+options(stringsAsFactors = F)
+opts_chunk$set(echo = TRUE, 
+               fig.height = 7, 
+               fig.width = 9, 
+               message = TRUE,
+               warning = TRUE,
+               fig.align='center',
+               dev = c("png", "svg"))
+
+
+Dark8 = brewer.pal(8, "Dark2")
+Dark8_50 = paste0(brewer.pal(8, "Dark2"), "7D")
+jetcolors = colorRampPalette(c("darkblue", "skyblue", "green", "yellow", "orange", "red", "darkred"))
+OBcolors = colorRampPalette(c("darkblue", "skyblue", "white",  "orange", "darkorange3"))
+load(paste0(Home,"/output/dds_filt_analyzed.RData"))
+load(paste0(Home,"/output/resdmr.RData"))
+load(paste0(Home,"/output/resultsdmr_table.RData"))
+
+results_Deseq = results(dds_filt)
+log2_cpm = log2(counts(dds_filt, normalized=T)+1)
+
+
+
+```
+
+## Genomic location enrichment
+
+Significant loci with a p-value <= `r thresholdp` and a absolute log2 fold-change lager `r thresholdLFC` were tested for enrichment in annotated genomic feature using fisher exact test.  
+
+
+```{r genomiclocation, fig.width=15, fig.height=5}
+
+Ranges=rowData(dds_filt)
+
+TotTagsofInterest=sum(Ranges$WaldPvalue_groupCD<=thresholdp & abs(Ranges$groupCD)>thresholdLFC)
+
+Resall=data.frame()
+index = Ranges$WaldPvalue_groupCD<=thresholdp& abs(Ranges$groupCD)>thresholdLFC
+for (feat in unique(Ranges$feature)){
+  tmp=table(Ranges$feature == feat, signif=index)
+  resfish=fisher.test(tmp)
+  res = c(resfish$estimate, unlist(resfish$conf.int), resfish$p.value)
+  Resall = rbind(Resall, res)
+}
+tmp=table(Ranges$tf_binding!="", signif=index)
+resfish=fisher.test(tmp)
+res = c(resfish$estimate, unlist(resfish$conf.int), resfish$p.value)
+Resall = rbind(Resall, res)
+tmp=table(Ranges$cpg=="cpg", signif=index)
+resfish=fisher.test(tmp)
+res = c(resfish$estimate, unlist(resfish$conf.int), resfish$p.value)
+Resall = rbind(Resall, res)
+colnames(Resall)=c("OR", "CI95L", "CI95U", "P")
+rownames(Resall)=c(unique(Ranges$feature), "TF-binding", "CpG-island")
+Resall$Beta = log(Resall$OR)
+Resall$SE = (log(Resall$OR)-log(Resall$CI95L))/1.96
+Resall$Padj=p.adjust(Resall$P, method = "bonferroni")
+
+Resdown=data.frame()
+index = Ranges$WaldPvalue_groupCD<=thresholdp & Ranges$groupCD<thresholdLFC
+for (feat in unique(Ranges$feature)){
+  tmp=table(Ranges$feature == feat, signif=index)
+  resfish=fisher.test(tmp)
+  res = c(resfish$estimate, unlist(resfish$conf.int), resfish$p.value)
+  Resdown = rbind(Resdown, res)
+}
+tmp=table(Ranges$tf_binding!="", signif=index)
+resfish=fisher.test(tmp)
+res = c(resfish$estimate, unlist(resfish$conf.int), resfish$p.value)
+Resdown = rbind(Resdown, res)
+tmp=table(Ranges$cpg=="cpg", signif=index)
+resfish=fisher.test(tmp)
+res = c(resfish$estimate, unlist(resfish$conf.int), resfish$p.value)
+Resdown = rbind(Resdown, res)
+colnames(Resdown)=c("OR", "CI95L", "CI95U", "P")
+rownames(Resdown)=c(unique(Ranges$feature), "TF-binding", "CpG-island")
+Resdown$Beta = log(Resdown$OR)
+Resdown$SE = (log(Resdown$OR)-log(Resdown$CI95L))/1.96
+Resdown$Padj=p.adjust(Resdown$P, method = "bonferroni")
+
+Resup=data.frame()
+index = Ranges$WaldPvalue_groupCD<=thresholdp & Ranges$groupCD>thresholdLFC
+for (feat in unique(Ranges$feature)){
+  tmp=table(Ranges$feature == feat, signif=index)
+  resfish=fisher.test(tmp)
+  res = c(resfish$estimate, unlist(resfish$conf.int), resfish$p.value)
+  Resup = rbind(Resup, res)
+}
+tmp=table(Ranges$tf_binding!="", signif=index)
+resfish=fisher.test(tmp)
+res = c(resfish$estimate, unlist(resfish$conf.int), resfish$p.value)
+Resup = rbind(Resup, res)
+tmp=table(Ranges$cpg=="cpg", signif=index)
+resfish=fisher.test(tmp)
+res = c(resfish$estimate, unlist(resfish$conf.int), resfish$p.value)
+Resup = rbind(Resup, res)
+colnames(Resup)=c("OR", "CI95L", "CI95U", "P")
+rownames(Resup)=c(unique(Ranges$feature), "TF-binding", "CpG-island")
+Resup$Beta = log(Resup$OR)
+Resup$SE = (log(Resup$OR)-log(Resup$CI95L))/1.96
+Resup$Padj=p.adjust(Resup$P, method = "bonferroni")
+
+par(mfrow=c(1,3))
+
+multiORplot(Resall, Pval = "P", Padj = "Padj", beta="Beta",SE = "SE", pheno="All diff. methylated loci")
+multiORplot(Resup, Pval = "P", Padj = "Padj", beta="Beta",SE = "SE", pheno="hypomethylated loci")
+multiORplot(Resdown, Pval = "P", Padj = "Padj", beta="Beta",SE = "SE", pheno="Hypermethylated loci")
+
+
+
+
+```
+
+
+## GO-term Enrichment
+
+Significant loci and differentially methylated regions with a p-value <= `r thresholdp` and an absolute log2 fold-change lager `r thresholdLFC` were tested for enrichment among  GO-terms Molecular Function, Cellular Compartment and Biological Processes, 
+KEGG pathways, Transcription factor Binding sites, Human Protein Atlas Tissue Expression, Human Phenotypes.  
+
+
+
+```{r go_term, fig.height=15, fig.width=9}
+
+getGOresults = function(geneset, genereference){
+  resgo = gost(geneset, organism = "hsapiens",
+               correction_method = "fdr",
+               domain_scope = "custom",
+               sources = c("GO:BP", "GO:MF", "GO:CC", "KEGG", "TF", "HP", "HPA"),
+               custom_bg = genereference)
+  if(length(resgo) != 0){
+    return(resgo)
+  } else {
+    print("no significant results")
+    return(NULL)
+  }  
+}
+
+gene_univers = getuniquegenes(as.data.frame(rowRanges(dds_filt))$gene)
+
+# idx = (results_Deseq$pvalue <= thresholdp) & (results_Deseq$log2FoldChange > thresholdLFC)
+# genes_pos_beta = getuniquegenes(as.data.frame(rowRanges(dds_filt))$gene[idx])
+# 
+# idx = (results_Deseq$pvalue <= thresholdp) & (results_Deseq$log2FoldChange <= -thresholdLFC)
+# genes_neg_beta = getuniquegenes(as.data.frame(rowRanges(dds_filt))$gene[idx])
+
+idx = (results_Deseq$pvalue <= thresholdp & 
+         (abs(results_Deseq$log2FoldChange) > thresholdLFC))
+
+genes_reg = getuniquegenes(as.data.frame(rowRanges(dds_filt))$gene[idx])
+
+
+dmr_genes = unique(resultsdmr_table$name[resultsdmr_table$p.value<=thresholdp & 
+                   abs(resultsdmr_table$value)>=thresholdLFC])
+
+
+Genes_of_interset = list("01_dmregions" = dmr_genes,  
+                         "02_dmtag" = genes_reg
+                         # , 
+                         # "03_hypermethlated" = genes_neg_beta, 
+                         # "04_hypomethlated" = genes_pos_beta
+                         )
+
+gostres = getGOresults(Genes_of_interset, gene_univers)
+
+gostplot(gostres, capped = TRUE, interactive = T)
+p = gostplot(gostres, capped = TRUE, interactive = F)
+
+toptab = gostres$result
+
+pp = publish_gostplot(p, filename = paste0(Home,"/output/gostres.pdf"))
+write.xlsx2(toptab, file = paste0(Home,"/output/GOres.xlsx"), sheetName = "GO_enrichment")
+
+
+```
+
+## Kang Brain Module Enrichments 
+
+Gene sets identified to be deferentially methylated with a p-value <= `r thresholdp` and an absolute log2 fold-change larger `r thresholdLFC` were tested for enrichment among gene-modules coregulated during Brain expression. 
+
+
+```{r brainModules, fig.height=12, fig.width=8}
+
+# define Reference Universe 
+
+KangUnivers<- read.table(paste0(Home,"/data/KangUnivers.txt"), sep="\t", header=T)
+colnames(KangUnivers)<-c("EntrezId","Symbol")
+
+Kang_genes<-read.table(paste0(Home,"/data/Kang_dataset_genesMod_version2.txt"),sep="\t",header=TRUE)
+
+#3)Generate Gene universe to be used for single gene lists
+tmp=merge(KangUnivers,Kang_genes,by.y="EntrezGene",by.x="EntrezId",all=TRUE) #18826
+KangUni_Final<-tmp[duplicated(tmp$EntrezId)==FALSE,] #18675
+
+
+# Local analysis gene universe
+Annotation_list<-data.frame(Symbol = gene_univers)
+
+# match modules 
+Annotation_list$Module = Kang_genes$Module[match(Annotation_list$Symbol,Kang_genes$symbol)]
+
+# check if overlapping in gene universes
+Annotation_list$univers = Annotation_list$Symbol %in% KangUni_Final$Symbol
+
+# drop duplicates 
+Annotation_list = Annotation_list[duplicated(Annotation_list$Symbol)==FALSE,]
+
+# selct only genes that have been detected on both datasets
+Annotation_list = Annotation_list[Annotation_list$univers==T,] 
+
+# final reference 
+UniversalGeneset=Annotation_list$Symbol
+
+# define Gene lists to test 
+# sort and order Modules to be teste 
+
+Modules=unique(Annotation_list$Module)
+Modules = Modules[! Modules %in% c(NA, "")]
+Modules = Modules[order(as.numeric(gsub("M","",Modules)))]
+
+GL_all=list()
+
+for(i in Modules){
+  GL_all[[i]]=Annotation_list$Symbol[Annotation_list$Module%in%i]
+}
+GL_all[["M_all"]]=Kang_genes$symbol[Kang_genes$Module %in% Modules]
+
+
+GOI1 = Genes_of_interset
+
+Resultsall=list()
+for(j in names(GOI1)){
+  Res = data.frame()
+  for(i in names(GL_all)){
+    Modulegene=GL_all[[i]]
+    Factorgene=GOI1[[j]]
+    Testframe<-fisher.test(table(factor(UniversalGeneset %in% Factorgene,levels=c("TRUE","FALSE")),
+                                 factor(UniversalGeneset %in% Modulegene,levels=c("TRUE","FALSE"))))
+    beta=log(Testframe$estimate)
+    Res[i, "beta"] =beta
+    Res[i, "SE"]=abs(beta-log(Testframe$conf.int[1]))/1.96
+    Res[i, "Pval"]=Testframe$p.value
+    Res[i, "OR"]=(Testframe$estimate)
+    Res[i, "ORL"]=(Testframe$conf.int[1])
+    Res[i, "ORU"]=(Testframe$conf.int[2])
+  }
+  Res$Padj = p.adjust(Res$Pval, method = "bonferroni")
+  Resultsall[[j]] = Res
+  
+}
+par(mfrow = c(2,2))
+for (i in names(Resultsall)){ 
+  multiORplot(datatoplot = Resultsall[[i]], pheno=i)
+}
+
+Modsig = c()
+
+for(r in names(Resultsall)){
+  a=rownames(Resultsall[[r]])[Resultsall[[r]]$Padj<=0.05]
+  Modsig = c(Modsig,a)
+}
+
+# show brains TODO
+Modisg=unique(Modsig)
+load(paste0(Home,"/data/Kang_DataPreprocessing.RData")) #Load the Kang expression data of all genes 
+datExprPlot=matriz #Expression data of Kang loaded as Rdata object DataPreprocessing.RData
+
+
+
+```
+
+
+## SEM
+
+```{r SEM, , fig.width=15, fig.height=8, results = 'asis'}
+
+dropfact=c("site")
+
+
+Patdata=as.data.frame(colData(dds_filt))
+
+load(paste0(Home, "/output/envFact.RData"))
+load(paste0(Home, "/output/modelFact.RData"))
+
+envFact=envFact[!envFact %in% dropfact] 
+modelFact=modelFact[!modelFact %in% dropfact] 
+
+EpiMarker = c()
+
+# TopHit
+Patdata$Epi_TopHit=log2_cpm[base::which.min(results_Deseq$pvalue),]
+
+# 1PC of all diff met
+tmp=glmpca(log2_cpm[base::which(results_Deseq$pvalue<=thresholdp),], 1)
+
+Patdata$Epi_all= tmp$factors$dim1
+  
+EpiMarker = c(EpiMarker, "Epi_TopHit", "Epi_all")
+
+#Brain Modules
+
+Epitestset=GL_all[Modisg]
+
+for(n in names(Epitestset)){
+  index=gettaglistforgenelist(genelist = Epitestset[[n]], dds_filt)
+  index = base::intersect(index, base::which(results_Deseq$pvalue<=thresholdp))
+  # get eigenvalue
+  epiname=paste0("Epi_",n)
+  tmp=glmpca(log2_cpm[index,], 1)
+  Patdata[,epiname]= tmp$factors$dim1
+  EpiMarker = c(EpiMarker, epiname)
+}
+
+cormat = cor(apply(Patdata[,c("group", envFact, modelFact, EpiMarker)] %>% mutate_all(as.numeric), 2, minmax_scaling),
+             use = "pairwise.complete.obs")
+
+par(mfrow=c(1,2))
+corrplot(cormat, main="correlations")
+corrplot(cormat, order = "hclust", main="scaled correlations")
+
+fullmodEnv=paste(envFact,modelFact, sep = "+", collapse = "+")
+
+Dataset = Patdata[,c("group", envFact,modelFact,EpiMarker)]
+
+model = paste0("group ~ Epi+", fullmodEnv,"
+Epi ~" , fullmodEnv,"
+Epi~~Epi
+group~~group
+")
+
+Netlist = list()
+
+for (marker in EpiMarker) {
+  Dataset$Epi = Dataset[,marker]
+  Datasetscaled = Dataset %>% mutate_if(is.numeric, minmax_scaling)
+  Datasetscaled = Datasetscaled %>% mutate_if(is.factor, ~ as.numeric(.)-1)
+  
+  fit<-lavaan(model,data=Datasetscaled)
+  
+  sink(paste0(Home,"/output/SEM_summary_group",marker,".txt"))
+  summary(fit)
+  fitMeasures(fit)
+  sink()
+  
+  #SOURCE FOR PLOT https://stackoverflow.com/questions/51270032/how-can-i-display-only-significant-path-lines-on-a-path-diagram-r-lavaan-sem
+  restab=lavaan::standardizedSolution(fit) %>% dplyr::filter(!is.na(pvalue)) %>% 
+    arrange(desc(pvalue)) %>% mutate_if("is.numeric","round",3) %>% 
+    dplyr::select(-ci.lower,-ci.upper,-z)
+  
+  pvalue_cutoff <- 0.05
+  
+  obj <- semPlot:::semPlotModel(fit)
+  original_Pars <- obj@Pars
+  check_Pars <- obj@Pars %>% dplyr:::filter(!(edge %in% c("int","<->") | lhs == rhs)) # this is the list of parameter to sift thru
+  keep_Pars <- obj@Pars %>% dplyr:::filter(edge %in% c("int","<->") | lhs == rhs) # this is the list of parameter to keep asis
+  
+  test_against <- lavaan::standardizedSolution(fit) %>% dplyr::filter(pvalue < pvalue_cutoff, rhs != lhs)
+  
+  # for some reason, the rhs and lhs are reversed in the standardizedSolution() output, for some of the values
+  # I'll have to reverse it myself, and test against both orders
+  
+  test_against_rev <- test_against %>% dplyr::rename(rhs2 = lhs, lhs = rhs) %>% dplyr::rename(rhs = rhs2)
+  
+  checked_Pars <-
+    check_Pars %>% semi_join(test_against, by = c("lhs", "rhs")) %>% bind_rows(
+      check_Pars %>% semi_join(test_against_rev, by = c("lhs", "rhs"))
+    )
+  
+  obj@Pars <- keep_Pars %>% bind_rows(checked_Pars) %>% 
+    mutate_if("is.numeric","round",3) %>% 
+    mutate_at(c("lhs","rhs"),~gsub("Epi", marker,.))
+  
+  obj@Vars = obj@Vars %>% mutate_at(c("name"),~gsub("Epi", marker,.))
+  
+  DF = obj@Pars
+  DF = DF[DF$lhs!=DF$rhs,]
+  DF = DF[abs(DF$std)>0.1,]
+  
+  DF = DF[DF$edge == "~>",] # only include directly modelled effects in figure 
+  
+  nodes <- data.frame(id=obj@Vars$name, label = obj@Vars$name)
+  nodes$color<-Dark8[8]
+  nodes$color[nodes$label == "group"] = Dark8[3]
+  nodes$color[nodes$label == marker] = Dark8[4]
+  nodes$color[nodes$label %in% envFact] = Dark8[5]
+  
+  edges <- data.frame(from = DF$lhs, 
+                      to = DF$rhs, 
+                      width=abs(DF$std), 
+                      arrows ="to")
+  
+  edges$dashes = F
+  edges$label =  DF$std
+  edges$color=Dark8[1:2][factor(sign(DF$std), levels=c(-1,0,1),labels=c(1,2,2))]
+  plotnet<- visNetwork(nodes, edges,
+                       main=list(text=marker,
+                                 style="font-family:arial;font-size:20px;text-align:center"),
+                       submain=list(text="significant paths", style="font-family:arial;text-align:center")) %>% 
+    visEdges(arrows =list(to = list(enabled = TRUE, scaleFactor = 0.7))) %>%
+    visPhysics(enabled = T, solver = "forceAtlas2Based")
+  
+  Netlist[[marker]] = plotnet
+  htmlfile = paste0(Home,"/output/SEMplot_",marker,".html")
+  visSave(plotnet, htmlfile)
+  webshot(paste0(Home,"/output/SEMplot_",marker,".html"), zoom = 1, 
+          file = paste0(Home,"/output/SEMplot_",marker,".png"))
+}
+
+```
+
+```{r plotsems_prep, results="asis"}
+
+rmd_paths <-paste0(tempfile(c(names(Netlist))),".Rmd")
+names(rmd_paths) <- names(Netlist)
+
+for (n in names(rmd_paths)) {
+    sink(file = rmd_paths[n])
+    cat("  \n",
+        "```{r, echo = FALSE}",
+            "Netlist[[n]]",
+        "```",
+        sep = "  \n")
+    sink()
+}
+
+```
+
+## Interactive results SEM analysis 
+
+only direct effects with a significant standardized effect of p<0.05 are shown. 
+
+
+```{r plotsems_show_interactive, results='asis'}
+    for (n in names(rmd_paths)) {
+        cat(knitr::knit_child(rmd_paths[[n]],
+                              quiet= TRUE))
+        file.remove(rmd_paths[[n]])
+    }
+```
+
+
+
+
+

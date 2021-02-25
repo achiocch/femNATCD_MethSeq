@@ -1,0 +1,150 @@
+---
+title: "The Methylome in Female Adolescent Conduct Disorder: Neural Pathomechanisms and Environmental Risk Factors"
+subtitle: 'Differential Methylation Analysis'
+author: "AG Chiocchetti"
+date: "29 Dezember 2020"
+
+output: html_document
+---
+
+```{r setup, echo=F,include=FALSE}
+library(knitr)
+
+library(RColorBrewer)
+library(tidyverse)
+library(DESeq2)
+library(doParallel)
+library(RCircos)
+library(EnhancedVolcano)
+library(qqman)
+
+Home = getwd()
+
+reanalyze=T
+
+no_cores = detectCores()
+registerDoParallel(cores = no_cores-2)
+
+options(stringsAsFactors = F)
+
+opts_chunk$set(echo = TRUE, 
+               fig.height = 7, 
+               fig.width = 9, 
+               message = TRUE,
+               warning = TRUE,
+               fig.align='center',
+               dev = c("png"),
+               dpi=500
+)
+
+Dark8 = brewer.pal(8, "Dark2")
+Dark8_50 = paste0(brewer.pal(8, "Dark2"), "7D")
+jetcolors = colorRampPalette(c("darkblue", "skyblue", "green", "yellow", "orange", "red", "darkred"))
+OBcolors = colorRampPalette(c("darkblue", "skyblue", "white",  "orange", "darkorange3"))
+
+set.seed(157434538)
+```
+
+
+```{r functions, include = FALSE}
+
+source(paste0(Home,"/code/custom_functions.R"))
+
+```
+
+```{r dataload}
+
+## load Data  ####
+load(paste0(Home,"/output/ProcessedData.RData"))
+
+```
+
+# define model 
+```{r model_definition}
+
+# test SVAs for significant difference between groups
+
+svas = names(colData(dds_filt))[str_detect(names(colData(dds_filt)), "^V")]
+
+testframe = as.data.frame(colData(dds_filt)) %>% dplyr::select(group, all_of(svas))
+
+svas_sig = c()
+
+for (s in svas){
+  tmp = t.test(testframe[,s]~testframe[,"group"])$p.value
+  if(tmp <= 0.05){
+    svas_sig=c(svas_sig,s) 
+  }
+}
+
+sva = paste0(svas_sig, collapse = "+")
+
+dds_filt$group <- relevel(dds_filt$group, ref = "CTRL")
+
+tmpdes=gsub(" group", paste0(sva,"+group"), as.character(design(dds_filt))[2])
+
+design(dds_filt) = formula(paste0("~",tmpdes))
+
+designmatrix = model.matrix(design(dds_filt), colData(dds_filt))
+
+```
+model formula: `r paste0("Epi ~ " , as.character(design(dds_filt))[2])`
+random effects: site
+
+# analyze
+```{r analyze}
+
+if (reanalyze){
+  dds_filt = DESeq(dds_filt)
+  savefile=TRUE
+} else 
+{
+  if(file.exists(paste0(Home,"/output/dds_filt_analyzed.RData"))){
+    load(paste0(Home,"/output/dds_filt_analyzed.RData"))
+    savefile=FALSE
+    
+  }else {
+    print("no preprocessed file found data is reanalyzed")
+    dds_filt = DESeq(dds_filt)
+    savefile=TRUE
+  }
+}
+
+res = results(dds_filt)
+summary(res)
+
+res <- res %>% cbind(as.data.frame(rowRanges(dds_filt)))
+res$ID = paste0("tag_",1:nrow(res), "_",res$gene)
+rownames(res)=res$ID
+res$CHR = as.numeric(res$seqnames)
+
+if(savefile){
+  save(dds_filt, file=paste0(Home,"/output/dds_filt_analyzed.RData"))}
+
+```
+# sumarize results linear model 
+
+```{r show_results, fig.height = 4, fig.width = 6}
+
+topN = 10
+DESeq2::plotDispEsts(dds_filt)
+
+EnhancedVolcano(res,
+                lab = rownames(res),
+                x = 'log2FoldChange',
+                y = 'pvalue',
+                pCutoff = 10e-4,
+                FCcutoff = 0.5)
+
+lp <- -log10(res$pvalue)
+ord <- order(lp, decreasing = TRUE)[1:topN]
+
+qqman::qq(res$pvalue, main="uncorrected p-value")
+qqman::manhattan(res, chr="CHR", bp="start", p="pvalue", snp="ID", col = c("#366697", "#BB8300"))
+
+ressum= res[ord,]
+display_tab(ressum)
+
+write.csv(res, file = paste0(Home,"/output/LME_Results.csv"), row.names = T)
+
+```

@@ -1,0 +1,363 @@
+---
+title: "PlotResults"
+author: "AG Chiocchetti"
+date: "29 Januar 2021"
+output: html_document
+---
+
+```{r setup, echo=F, include=FALSE}
+
+library(DESeq2)
+library(GenomicRanges)
+library(RCircos)
+library(beeswarm)
+library(RColorBrewer)
+library(Gviz)
+library(GenomicRanges)
+library(rtracklayer)
+library(ggplotify)
+
+cutoff = 1e-3
+
+mySession = browserSession("UCSC")
+genome(mySession) <- "hg19"
+
+
+knitr::opts_chunk$set(echo = TRUE, 
+               fig.height = 7, 
+               fig.width = 9, 
+               message = TRUE,
+               warning = TRUE,
+               fig.align='center',
+               dev = c("png", "svg"),
+               dpi=500
+)
+
+```
+
+```{r setreferencefolder}
+Home = getwd()
+
+```
+
+
+```{r load_data}
+
+Dark8 = brewer.pal(8, "Dark2")
+
+source(paste0(Home,"/code/custom_functions.R"))
+load(paste0(Home,"/output/dds_filt_analyzed.RData"))
+load(paste0(Home,"/output/resultsdmr_table.RData"))
+
+
+Patdata=colData(dds_filt)
+cpm=counts(dds_filt, normalized=T)
+log2_cpm=log2(cpm+1)
+res=results(dds_filt)
+
+
+```
+
+## Plot significant LME hits 
+```{r plot_results_LME, warning=FALSE, fig.height=8, fig.width=15}
+
+GRresultslme_table = rowRanges(dds_filt)
+
+DFtoplotall=as.data.frame(GRresultslme_table)
+colnames(DFtoplotall)[1:3] = c("Chromosome", "chromStart", "chromEnd")
+DFtoplotall = DFtoplotall[order(DFtoplotall$Chromosome, DFtoplotall$chromStart),] 
+DFtoplotall$Chromosome = as.factor(DFtoplotall$Chromosome)
+
+countspergroup <- data.frame(cases=rowSums(cpm[,dds_filt$group =="CD"])/sum(dds_filt$group =="CD"),
+                             controls=rowSums(cpm[,dds_filt$group =="CTRL"])/sum(dds_filt$group =="CTRL"))
+
+DFtoplotall$MeanCD = log2(countspergroup[,"cases"]+1)
+DFtoplotall$MeanCTRL = log2(countspergroup[,"controls"]+1)
+
+DFtoplot = DFtoplotall[DFtoplotall$WaldPvalue_groupCD <= cutoff,]
+
+colnames(DFtoplot) = gsub("WaldPvalue", "-log10_P", colnames(DFtoplot))
+
+targetlist=list(inner=c("-log10_P_contraceptivesyes",
+                        "-log10_P_cigday_1","-log10_P_Age"), 
+                outer=c("MeanCD", "MeanCTRL","-log10_P_groupCD"))
+
+svgfile = paste0(Home,"/output/circos_LME_tags.svg")
+
+topindex=rownames(DFtoplotall)[which(res$pvalue %in% sort(res$pvalue, decreasing = F)[1:10])]
+
+plotcircos(plotdata =DFtoplot, targets = targetlist, 
+           labcol="gene", 
+           title="Differentially Methylated Tag",
+           pvalident = "log10_P", #collabel for pval identification
+           pvallog=FALSE, # is log transfromed
+           cutoffpval = 8, #after this cutoff will be black
+           labelsidx=topindex,
+           filename = svgfile)
+```
+
+<img src="`r svgfile`"/>
+
+
+```{r plot_region, fig.width=15, fig.height=8}
+#plot best hit 
+
+
+# settings Genomic annotation 
+
+scheme <- getScheme()
+scheme$GdObject$background.panel = "white"
+scheme$GdObject$background.title = "white"
+scheme$GdObject$fontcolor.title = "black"
+
+scheme$AnnotationTrack$featureAnnotation = NULL
+scheme$AnnotationTrack$fill = "gray"
+scheme$AnnotationTrack$fontcolor.item = "black"
+scheme$AnnotationTrack$cex = 0.5
+
+scheme$DataTrack$col = Dark8
+scheme$GeneRegionTrack$fill <- "dodgerblue3"
+scheme$GeneRegionTrack$col <- NULL
+scheme$GeneRegionTrack$transcriptAnnotation <- NULL
+
+window=2000
+
+
+index = which(res$pvalue == min(res$pvalue))
+subtitel=paste0(DFtoplotall$Chromosome[index],": ", DFtoplotall$chromStart[index])
+
+
+chr=DFtoplotall$Chromosome[index]
+from = DFtoplotall$chromStart[index]-window
+to = DFtoplotall$chromEnd[index]+window
+
+targetrange = GRanges(seqnames = chr, 
+                      IRanges(from,
+                              to))
+
+tbl.gene = NULL
+attempt = 0
+while(is.null(tbl.gene) & attempt<10){
+  print(paste("tbl.gene attempt:", attempt+1))
+  if (attempt != 0){
+    Sys.sleep(60)}
+  
+  try(tbl.gene <- getTable(ucscTableQuery(mySession, 
+                                          track="refSeqComposite", 
+                                          range=targetrange, 
+                                          table="ncbiRefSeq")))
+  attempt = attempt+1
+}
+
+
+tbl.cpg = NULL
+attempt = 0
+while(is.null(tbl.cpg) & attempt<10){
+  print(paste("tbl.cpg attempt:", attempt+1))
+  if (attempt != 0){
+    Sys.sleep(60)}
+  try(tbl.cpg <- getTable(ucscTableQuery(mySession, 
+                                         track="cpgIslandExt",
+                                         range=targetrange, 
+                                         table="cpgIslandExt")))
+  attempt = attempt+1
+}
+
+
+tbl.TFBdg = NULL
+attempt = 0
+while(is.null(tbl.TFBdg) & attempt<10){
+  print(paste("tbl.TFBdg attempt:", attempt+1))
+  if (attempt != 0){
+    Sys.sleep(60)}
+  
+  try(tbl.TFBdg <- getTable(ucscTableQuery(mySession, 
+                                           track="tfbsConsSites",
+                                           range=targetrange, 
+                                           table="tfbsConsSites")))
+  attempt = attempt+1
+}
+
+
+tbl.gene_GR <- convertUCSCtoGR(tbl.gene, col.start = "txStart",col.end = "txEnd", col.strand = "strand")
+tbl.cpg_GR <- convertUCSCtoGR(tbl.cpg)
+tbl.TFBdg_GR <- convertUCSCtoGR(tbl.TFBdg)
+
+itrack <- IdeogramTrack(genome = "hg19", chromosome = as.character(DFtoplotall$Chromosome[index]))
+atrack <- GenomeAxisTrack()
+
+
+dataplot=subsetByOverlaps(GRresultslme_table, targetrange)
+
+indexreads=findOverlaps(GRresultslme_table, targetrange)
+
+if(length(indexreads)>1){
+  targetcpm=log2_cpm[indexreads@from,]
+  tmp = dataplot
+  values(tmp)=targetcpm} else {
+    targetcpm=t(as.dataframe(log2_cpm[indexreads@from,]))
+    tmp = dataplot
+    values(tmp)=targetcpm
+  }
+
+
+
+addScheme(scheme, "myScheme")
+options(Gviz.scheme = "myScheme")
+
+ptrack <- DataTrack(dataplot, data = -log10(dataplot$WaldPvalue_groupCD), baseline=0,
+                    name = "P_group", type=c("histogram"), fill="black", col = "black", 
+                    col.baseline = "grey")
+
+dtrack <- DataTrack(tmp, groups=Patdata$group,
+                    name = "mean log2(cpm) [SD])", c("heatmap"))
+displayPars(dtrack) <- list(type=c("a","confint"))
+
+
+tbl.gene_GR$symbol = tbl.gene_GR$name2
+genotrack <- GeneRegionTrack(tbl.gene_GR, name = "genes", transcriptAnnotation="symbol")
+
+tbl.cpg_GR$symbol = tbl.cpg_GR$name
+cpgtrack <- GeneRegionTrack(tbl.cpg_GR, name = "GpG", transcriptAnnotation = "symbol")
+displayPars(cpgtrack)<- list(col="white", fill =Dark8[5])
+
+values(tbl.TFBdg_GR)$symbol = tbl.TFBdg_GR$name
+tfbtrack <- GeneRegionTrack(tbl.TFBdg_GR, name = "TF-Sites", transcriptAnnotation = "symbol")
+displayPars(tfbtrack)<- list(col="white", fill =Dark8[6])
+
+
+ncols <- 2
+nrows <- 1
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(nrows, ncols, widths=c(1,2))))
+pushViewport(viewport(layout.pos.col = 2,layout.pos.row = 1))
+p2 = plotTracks(list(itrack,atrack, genotrack, dtrack, ptrack, cpgtrack, tfbtrack), from = from, to = to, sizes=c(1,1,1,4,2,1,4), add=TRUE)
+upViewport()
+pushViewport(viewport(layout.pos.col = 1,layout.pos.row = 1))
+
+
+tmp = data.frame(log2_cpm = log2_cpm[index, ], group=Patdata$group)
+
+p1 = ggplot(tmp, aes(x=group, y=log2_cpm, fill=group)) + geom_boxplot(show.legend=T, aes(fill=group)) +
+  geom_point(position=position_jitterdodge(jitter.width=0.5, dodge.width = 0.3))+scale_fill_manual(values = c("CTRL" = Dark8[1],"CD"=Dark8[2]))
+grid.draw(as.grob(p1))
+upViewport()
+
+
+```
+
+
+
+
+## Plot DMR results
+
+```{r plot_results_DMR, warning=FALSE}
+
+DFtoplotall = resultsdmr_table
+colnames(DFtoplotall)[1:3] = c("Chromosome", "chromStart", "chromEnd")
+DFtoplotall = DFtoplotall[order(DFtoplotall$Chromosome, DFtoplotall$chromStart),] 
+DFtoplotall$Chromosome = as.factor(DFtoplotall$Chromosome)
+
+
+DFtoplot = DFtoplotall[(DFtoplotall$p.value<=cutoff | DFtoplotall$p.valueArea<cutoff), ]
+
+targetlist=list(inner=c("p.value",
+                        "p.valueArea"), 
+                outer=c("clusterL"))
+
+svgfile = paste0(Home,"/output/circos_DMR_tags.svg")
+
+topindex=rownames(DFtoplot)[which(DFtoplot$p.value %in% sort(DFtoplot$p.value, decreasing = F)[1:10])]
+plotcircos(plotdata =DFtoplot, targets = targetlist, 
+           labcol="name", 
+           title="Differentially Methylated Regions",
+           pvalident = "p.value", #collabel for pval identification
+           pvallog=FALSE, # is log transfromed
+           cutoffpval = 8, #after this cutoff will be black
+           labelsidx=topindex,
+           filename = svgfile)
+
+
+
+window=2000
+index = which.min(resultsdmr_table$p.value)
+
+chr=resultsdmr_table$chr[index]
+from = resultsdmr_table$start[index]-window
+to = resultsdmr_table$end[index]+window
+
+targetrange = GRanges(seqnames = chr, 
+                      IRanges(from,
+                              to))
+
+tbl.gene <- getTable(ucscTableQuery(mySession, track="refSeqComposite",range=targetrange, table="ncbiRefSeq"))
+tbl.cpg <- getTable(ucscTableQuery(mySession, track="cpgIslandExt",range=targetrange, table="cpgIslandExt"))
+tbl.TFBdg <- getTable(ucscTableQuery(mySession, track="tfbsConsSites",range=targetrange, table="tfbsConsSites"))
+
+tbl.gene_GR <- convertUCSCtoGR(tbl.gene, col.start = "txStart",col.end = "txEnd", col.strand = "strand")
+tbl.cpg_GR <- convertUCSCtoGR(tbl.cpg)
+tbl.TFBdg_GR <- convertUCSCtoGR(tbl.TFBdg)
+
+itrack <- IdeogramTrack(genome = "hg19", chromosome = as.character(chr))
+atrack <- GenomeAxisTrack()
+
+
+dataplot=subsetByOverlaps(GRresultslme_table, targetrange)
+indexreads=findOverlaps(GRresultslme_table, targetrange)
+selected = which.min(as.data.frame(GRresultslme_table)[indexreads@from, "WaldPvalue_groupCD"])
+
+
+if(length(indexreads)>1){
+  targetcpm=log2_cpm[indexreads@from,]
+  tmp = dataplot
+  values(tmp)=targetcpm} else {
+    targetcpm=t(as.dataframe(log2_cpm[indexreads@from,]))
+    tmp = dataplot
+    values(tmp)=targetcpm
+  }
+
+
+ptrack <- DataTrack(dataplot, data = -log10(dataplot$WaldPvalue_groupCD), baseline=0,
+                    name = "P_group", type=c("histogram"), fill="black", col = "black", 
+                    col.baseline = "grey")
+
+dtrack <- DataTrack(tmp, groups=Patdata$group,
+                    name = "mean log2(cpm) [SD])", c("heatmap"))
+displayPars(dtrack) <- list(type=c("a","confint"))
+
+
+tbl.gene_GR$symbol = tbl.gene_GR$name2
+genotrack <- GeneRegionTrack(tbl.gene_GR, name = "genes", transcriptAnnotation="symbol")
+
+tbl.cpg_GR$symbol = tbl.cpg_GR$name
+cpgtrack <- GeneRegionTrack(tbl.cpg_GR, name = "GpG", transcriptAnnotation = "symbol")
+displayPars(cpgtrack)<- list(col="white", fill =Dark8[5])
+
+values(tbl.TFBdg_GR)$symbol = tbl.TFBdg_GR$name
+tfbtrack <- GeneRegionTrack(tbl.TFBdg_GR, name = "TF-Sites", transcriptAnnotation = "symbol")
+displayPars(tfbtrack)<- list(col="white", fill =Dark8[6])
+
+
+
+ncols <- 2
+nrows <- 1
+
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(nrows, ncols, widths=c(1,2))))
+pushViewport(viewport(layout.pos.col = 2,layout.pos.row = 1))
+p2 = plotTracks(list(itrack,atrack, genotrack, dtrack, ptrack, cpgtrack, tfbtrack), 
+                from = from, to = to, sizes=c(1,2,2,4,2,1,4), add=T)
+upViewport()
+pushViewport(viewport(layout.pos.col = 1,layout.pos.row = 1))
+
+tmp = data.frame(log2_cpm = log2_cpm[indexreads@from[selected],], group=Patdata$group)
+
+p1 = ggplot(tmp, aes(x=group, y=log2_cpm, fill=group)) + geom_boxplot(show.legend=T, aes(fill=group)) +
+  geom_point(position=position_jitterdodge(jitter.width=0.5, dodge.width = 0.3))+scale_fill_manual(values = c("CTRL" = Dark8[1],"CD"=Dark8[2]))
+grid.draw(as.grob(p1))
+upViewport()
+
+```
+
+
+<img src="`r svgfile`"/>

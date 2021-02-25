@@ -1,0 +1,123 @@
+---
+title: "The Methylome in Female Adolescent Conduct Disorder: Neural Pathomechanisms and Environmental Risk Factors"
+subtitle: 'Differential Methylation Analysis'
+author: "AG Chiocchetti"
+date: "29 Dezember 2020"
+
+output: html_document
+---
+
+```{r setup, echo=F, include = FALSE}
+library(knitr)
+library(RColorBrewer)
+library(DESeq2)
+library(tidyverse)
+library(GenomicRanges)
+library(kableExtra)
+library(doParallel)
+library(bumphunter)
+library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+library(GenomicRanges)
+
+
+Home = getwd()
+
+no_cores = detectCores()
+
+registerDoParallel(cores = no_cores-2)
+reanalyze =T
+
+options(stringsAsFactors = F)
+
+opts_chunk$set(echo = TRUE, 
+               fig.height = 7, 
+               fig.width = 9, 
+               message = TRUE,
+               warning = TRUE,
+               fig.align='center',
+               dev = c("png", "svg"),
+               dpi=500
+)
+
+Dark8 = brewer.pal(8, "Dark2")
+Dark8_50 = paste0(brewer.pal(8, "Dark2"), "7D")
+jetcolors = colorRampPalette(c("darkblue", "skyblue", "green", "yellow", "orange", "red", "darkred"))
+OBcolors = colorRampPalette(c("darkblue", "skyblue", "white",  "orange", "darkorange3"))
+
+set.seed(157434538)
+```
+
+```{r functions, include = FALSE}
+source(paste0(Home,"/code/custom_functions.R"))
+```
+
+```{r dataload}
+
+## load Data  ####
+load(paste0(Home,"/output/dds_filt_analyzed.RData"))
+
+```
+
+# bumphunting 
+
+```{r bumphunting}
+ranges=as.data.frame(rowRanges(dds_filt))
+log_cpm = log2(counts(dds_filt, normalized=T)+1)
+
+BootN = 250
+GapSize = 500 
+
+
+if (reanalyze){
+    cl <- clusterMaker(ranges$seqnames, ranges$start, maxGap = GapSize)
+    tab=table(cl)
+    designmatrix = model.matrix(design(dds_filt), colData(dds_filt))
+    resdmr = bumphunter(log_cpm, 
+                        design=designmatrix,
+                        pos=ranges$start,
+                        chr=ranges$seqnames,
+                        coef=ncol(designmatrix), cluster=cl, cutoff=0.5, nullMethod = "bootstrap", B=BootN)
+    
+    bumphunter:::foreachCleanup()
+    
+    save(resdmr, file=paste0(Home,"/output/resdmr.RData")) 
+} else {
+  if(file.exists(paste0(Home,"/output/resdmr.RData"))){
+    load(paste0(Home,"/output/resdmr.RData"))
+  } else {
+    cl <- clusterMaker(ranges$seqnames, ranges$start, maxGap = GapSize)
+    tab=table(cl)
+    designmatrix = model.matrix(design(dds_filt), colData(dds_filt))
+    resdmr = bumphunter(log_cpm, 
+                        design=designmatrix,
+                        pos=ranges$start,
+                        chr=ranges$seqnames,
+                        coef=ncol(designmatrix), cluster=cl, cutoff=0.5, nullMethod = "bootstrap", B=BootN)
+    
+  }
+}
+
+subject = annotateTranscripts(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene, 
+                              by="gene")
+
+resultsdmr_table = resdmr$table
+
+subject = subject[subject@seqnames %in% unique(resultsdmr_table$chr),]
+
+chck = matchGenes(resultsdmr_table, subject, type ="any", promoterDist = 2000)
+resultsdmr_table = cbind(resultsdmr_table, chck)
+
+display_tab_simple(head(resultsdmr_table, n=10))
+
+Nsig_region = sum(resultsdmr_table$fwer<=0.2)
+
+Sighits = resultsdmr_table[resultsdmr_table$fwer<=0.2,]
+
+save(resultsdmr_table, file=paste0(Home,"/output/resultsdmr_table.RData"))
+save(resdmr, file=paste0(Home,"/output/resdmr.RData"))
+
+res_dmr_filtered = resultsdmr_table %>% dplyr::select(-annotation)
+write.csv(resultsdmr_table, file = paste0(Home,"/output/DMR_Results.csv"), row.names = T)
+```
+
+

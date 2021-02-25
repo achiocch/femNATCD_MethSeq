@@ -1,0 +1,562 @@
+---
+title: "The Methylome in Female Adolescent Conduct Disorder: Neural Pathomechanisms and Environmental Risk Factors"
+subtitle: 'Preprocessing'
+author: "AG Chiocchetti"
+date: "29 Dezember 2020"
+output: html_document
+---
+
+```{r setup, echo=F,include=FALSE}
+library(data.table)
+library(RColorBrewer)
+library(gplots)
+library(ggplot2)
+library(corrplot)
+library(tidyverse)
+library(DESeq2)
+library(vsn)
+library(pheatmap)
+library(sva)
+library(glmpca)
+library(GenomicRanges)
+library(knitr)
+library(kableExtra)
+library(cluster)
+library(compareGroups)
+Home = getwd()
+
+opts_chunk$set(echo = TRUE, 
+               fig.height = 7, 
+               fig.width = 9, 
+               message = TRUE,
+               warning = TRUE,
+               fig.align='center',
+               dev = c("png", "svg"),
+               dpi=500
+)
+
+options(stringsAsFactors = F)
+
+
+Dark8 = brewer.pal(8, "Dark2")
+Dark8_50 = paste0(brewer.pal(8, "Dark2"), "7D")
+jetcolors = colorRampPalette(c("darkblue", "skyblue", "green", "yellow", "orange", "red", "darkred"))
+OBcolors = colorRampPalette(c("darkblue", "skyb lue", "white",  "orange", "darkorange3"))
+set.seed(157434538)
+
+```
+
+```{r functions}
+source(paste0(Home,"/code/custom_functions.R"))
+```
+
+# Initializing rawdata
+```{r dataload}
+## load Data  ####
+EpiData = fread(paste0(Home,"/data/Epicounts.csv"), header = T, data.table=F)
+EpiData = EpiData %>% column_to_rownames("ID")
+
+EpiMeta = fread(paste0(Home,"/data/Epimeta.csv"), header = T, data.table=F)
+EpiMeta = EpiMeta %>% column_to_rownames("ID")
+
+Patdata = fread(paste0(Home,"/data/PatMeta.csv"), header = T, data.table=F)
+Patdata = Patdata %>% column_to_rownames("V1")
+
+SNPdata = fread(paste0(Home,"/data/SNPCommonFilt.csv"), header = T, data.table=F)
+SNPdata = SNPdata %>% column_to_rownames("V1")
+
+
+Patdata$group = factor(Patdata$group, c(0,1), c("CTRL", "CD"))
+Patdata$group = relevel(Patdata$group, "CTRL")
+
+Patdata$Age = Patdata$Alter
+
+Patdata$site = factor(substr(Patdata$ID_femNAT, 1,2), 
+                      c("01","02", "10", "11", "12"), c("FRA", "AAC", "BCN", "BLB", "SZG"))
+
+Patdata$Pubstat = as.factor(gsub(" ", "", Patdata$Pubstat))
+
+Patdata$contraceptives = yesnofac(Patdata$contraceptives)
+Patdata$Ever_smoked = factor(Patdata$Ever_smoked, c(0, 1,2), c(NA, "no", "yes"))
+
+
+allowedvalues=as.character(c(0,1,8, NA))
+
+
+
+for (i in 1:ncol(Patdata)) {
+  if(sum(Patdata[,i] %in% allowedvalues)==nrow(Patdata)){
+    Patdata[,i] = yesnofac(Patdata[,i])
+    print(colnames(Patdata)[i])
+  }
+  
+}
+
+SNPdatafilt = SNPdata[complete.cases(SNPdata),]
+
+display_tab(head(EpiMeta))
+display_tab(head(EpiData))
+display_tab(head(Patdata))
+
+```
+
+* Total number of samples: `r nrow(Patdata)`
+
+* Total number of Tags: `r format(nrow(EpiMeta), big.mark=" ", scientific=F)`
+
+* Tags in TFbinding sites: `r format(sum(EpiMeta$tf_binding != ""), big.mark=" ", scientific=F)`
+
+* Tags in CpGs: `r display_tab_simple(table(EpiMeta$cpg))`
+
+* Tags per feature `r display_tab_simple(table(EpiMeta$feature))`
+
+
+## Sample descriptives
+
+```{r plot_counts}
+index = sample(1:nrow(EpiData), 10000)
+
+Sampleddata = EpiData[index,]
+
+boxplot_counts = function(plotsubset, maintitle, colorcode) {
+  boxplot(log2(plotsubset+1), main = maintitle, col = Dark8[as.factor(Patdata[,colorcode])], names=NA,
+          ylab = "log2 transformed", xlab="samples")
+  legend("topleft", legend = levels(Patdata[,colorcode]), pch = 16, col = Dark8[1:length(unique(Patdata[,colorcode]))])
+}
+
+
+barplot_counts = function(DF, maintitle, colorcode) {
+  barplot(log2(DF[,"reads_per_sample"]), main = maintitle, col = Dark8[as.factor(DF[,colorcode])], names="",
+          ylab = "log2 transformed",xlab="samples")
+  legend("bottomleft", legend = levels(DF[,colorcode]), pch = 16, col = Dark8[1:length(unique(DF[,colorcode]))])
+}
+
+
+boxplot_counts(Sampleddata, "raw counts", "group")
+boxplot_counts(Sampleddata, "raw counts", "site")
+barplot_counts(Patdata, "total reads", "group")
+barplot_counts(Patdata, "total reads", "site")
+
+```
+
+* Average Reads per Sample `r format(mean(Patdata$reads_per_sample), big.mark=" ", scientific=F)`
+
+* Average Targets detected per sample `r format(mean(Patdata$targets_per_sample),big.mark=" ", scientific=F)`
+
+* N Targets detected in at least 50% of samples `r format(sum(EpiMeta$samples_per_target>=(nrow(Patdata)/2)),big.mark=" ", scientific=F)`
+
+
+## Sample stats
+
+```{r cov_factors}
+
+# Patient specific covariates ####
+
+clinFact = c("site", "Age", "Pubstat")
+modelFact = c("Age")
+
+Patdata$int_dis = with(Patdata, (Dep_life=="yes" | 
+                                   Anx_life=="yes" |
+                                   OCD_life=="yes" |
+                                   #PTSD_life=="yes" |
+                                   #Eat_life=="yes" |
+                                   DMDD_life=="yes")*1)
+Patdata$int_dis = yesnofac(Patdata$int_dis)
+clinFact = c(clinFact, "int_dis")
+modelFact = c(modelFact,"int_dis")
+
+# Patdata$ext_dis = with(Patdata, (ADHD_life=="yes" | 
+#                                   ODD_life=="yes" |
+#                                   anp_life=="yes") * 1)
+# Patdata$ext_dis = yesnofac(Patdata$ext_dis)
+# clinFact  = c(clinFact, "ext_dis")
+
+# Patdata$add_dis = with(Patdata, (Alk_life=="yes" | 
+#                                    SUD_life=="yes") * 1)
+# 
+# Patdata$add_dis = yesnofac(Patdata$add_dis)
+# clinFact  = c(clinFact, "add_dis")
+
+clinFact = c(clinFact, "medication", "contraceptives", "cigday_1")
+modelFact = c(modelFact,"medication", "contraceptives", "cigday_1")
+
+
+# Environmental Factors ####
+envFact = c()
+
+#maternal smoking,
+Patdata$Matsmk = with(Patdata, (smoke=="yes")*1)
+Patdata$Matsmk = factor(Patdata$Matsmk,levels = c(0,1), labels = c("no", "yes"))
+envFact = c(envFact, "Matsmk")
+
+#violence exposure 
+Patdata$Matagg = with(Patdata, (aggress=="yes")*1)
+Patdata$Matagg = factor(Patdata$Matagg,levels = c(0,1), labels = c("no", "yes"))
+envFact = c(envFact, "Matagg")
+
+# # self-reported maternal stress experience during pregnancy
+# Patdata$Matstr = with(Patdata, (stress=="yes")*1)
+# Patdata$Matstr = factor(Patdata$Matstr,levels = c(0,1), labels = c("no", "yes"))
+# envFact = c(envFact, "Matstr")
+
+# # psychiatric disorders in the family
+# Patdata$PsychScore = with(Patdata, rowSums(cbind(mpsych_4_12=="yes", mpsych_gt12=="yes", ppsych_le12=="yes", psych_fam=="yes"), na.rm=T))
+# envFact = c(envFact, "PsychScore")
+
+#adverse family situation
+Patdata$FamScore = with(Patdata, rowSums(cbind(#single=="yes", 
+  disharm=="yes", 
+  isolation=="yes"), 
+  na.rm=T))
+envFact = c(envFact, "FamScore")
+
+#parental education status 
+Patdata$EduPar = with(Patdata, 
+                      apply(cbind(apply(cbind(mother_school, mother_prof), 1, max, na.rm=T), 
+                                  apply(cbind(father_school, father_prof), 1, max, na.rm=T)), 
+                            1, mean, na.rm=T))
+
+Patdata$EduPar[is.infinite(Patdata$EduPar)]=NA
+envFact = c(envFact, "EduPar")
+
+# number of trauma
+envFact = c(envFact, "n_trauma")
+
+
+cormat = cor(apply(Patdata[,c("group", unique(c(modelFact, clinFact)))] %>% mutate_all(as.numeric), 2, minmax_scaling),
+             use = "pairwise.complete.obs")
+
+corrplot(cormat, order = "hclust", main="clustered and scaled correlations")
+
+save(clinFact, file=paste0(Home,"/output/clinFact.RData"))
+save(modelFact, file=paste0(Home,"/output/modelFact.RData"))
+save(envFact, file=paste0(Home,"/output/envFact.RData"))
+
+
+```
+
+```{r test_samples_diff}
+# test differences between site  ####
+
+## add IQ and Anx here 
+
+tablevariates = c("site","Age","tsympt", "Pubstat", "cigday_1","contraceptives")
+genomicvariates = c("X260_280","ng_per_ul", "Timediff_ExtrPurification","reads_per_sample" ) 
+
+res = table_sumstat(Patdata, 
+                    columns=unique(c(tablevariates, clinFact,modelFact, envFact, genomicvariates) ), 
+                    groupfactor = "group")
+
+res
+export2word(res, file = paste0(Home,"/output/table1_unfiltered.docx"))
+
+```
+
+# QC Filter and Normalize 
+## filter SNPs
+```{r filter_SNPS}
+
+designh0 = formula(paste0("~0+",paste0(modelFact, collapse="+")))
+designh1 = formula(paste("~0+",designh0," + group")[2])
+
+
+save(designh0, file=paste0(Home,"/output/designh0.RData"))
+save(designh1, file=paste0(Home,"/output/designh1.RData"))
+
+ddsMat <- DESeqDataSetFromMatrix(countData = EpiData,
+                                 colData = Patdata,
+                                 rowData = EpiMeta,
+                                 design = designh1)
+
+
+# drop overlapping with common SNPs ####
+
+gs = with(rowData(ddsMat), GRanges(chrtochar(CHR), IRanges(start, stop)))
+values(gs) = EpiMeta[,c("raw_gene","gene", "distance", "feature", "cpg", "tf_binding", "samples_per_target", "mean","std")]
+rowRanges(ddsMat) = gs
+genome(ddsMat) = "hg19"
+
+GRSNP = with(SNPdatafilt, GRanges(chrtochar(CHR), IRanges(start, stop)))
+genome(GRSNP) = "hg19"
+
+hits = findOverlaps(GRSNP, ddsMat)
+
+
+ddsMat = ddsMat[-c(hits@to),]
+
+
+# drop non autosomal and X locus
+autosomal_X = chrtonum(seqnames(rowRanges(ddsMat)))<=23
+ddsMat = ddsMat[autosomal_X,]
+
+#Focus on 
+#CpG-island, intergenic region, 2kb upstream of transcriptional start, intronic, exonic, 2kb # # downstream of transcription stop, 3’UTR, 5’UTR, splicing site
+
+#Check annotated features 
+table(rowRanges(ddsMat)$feature)
+
+idxkeep = rowRanges(ddsMat)$feature %in% c("downstream", "exonic", "intronic", "splicing", "upstream", "UTR3", "UTR5")
+
+# drop intergenic 
+# rowRanges(ddsMat)$distance_min = get_min_distance(rowRanges(ddsMat)$distance)
+
+Nintergenig=sum(idxkeep)
+ddsMat = ddsMat[idxkeep,]
+
+```
+
+Tags excluded based on SNP location: `r format(length(hits@to), big.mark=" ")`
+Tags excluded Sex or M chrom location: `r format(sum(!autosomal_X), big.mark=" ")`
+Tags excluded intergenic: `r format(Nintergenig, big.mark=" ")`
+
+## filter reads
+```{r filter_reads}
+# define keep Rows based on reads ####
+
+ddsMat = estimateSizeFactors(ddsMat)
+
+Ntot = length(ddsMat)
+reads = as.data.frame(counts(ddsMat, normalized=T))
+
+SDs = apply(reads, 1, sd)
+keepvar = SDs>0
+
+# count number of identified reads > 1 per group
+countspergroup <- data.frame(cases=rowSums(reads[,ddsMat$group =="CD"]>=5),
+                             controls=rowSums(reads[,ddsMat$group =="CTRL"]>=5))
+
+# keep if tag was detected 5 times in one group in at leat 25 samples 
+keepidx = apply(countspergroup, 1, max) >= 25
+
+ddsMat <- ddsMat[keepvar&keepidx,]
+
+Nfilt = length(ddsMat)
+
+```
+
+Tags removed due to low reads: `r format(Ntot-Nfilt, big.mark = " ")` 
+Total tags included after filtering: `r format(Nfilt, big.mark=" ")`
+
+## final tag characteristics
+
+```{r tagchar}
+
+barplot(table(droplevels(as.data.frame(rowRanges(ddsMat))$seqnames)), main="tags per chromosome")
+
+reads = counts(ddsMat) # not normalized here to see batch effects
+logreads=log2(reads+1)
+
+patsum = colSums(reads)
+
+barplot(log2(patsum), main = "total reads per sample", ylab = "log2(sum(reads)", xlab = "Samples", col=Dark8[as.numeric(ddsMat$group)], ylim = c(0, max(log2(patsum))*1.2))
+legend("topleft", legend=levels(ddsMat$group), pch=15, col = Dark8[1:nlevels(ddsMat$group)])
+
+barplot(log2(patsum), main = "total reads per sample", ylab = "log2(sum(reads)", xlab = "Samples", col=Dark8[as.numeric(ddsMat$site)], ylim = c(0, max(log2(patsum))*1.2))
+legend("topleft", legend=levels(ddsMat$site), pch=15, col = Dark8[1:nlevels(ddsMat$site)],ncol = 2)
+
+dds = ddsMat
+dds = estimateSizeFactors(dds)
+
+cpm = counts(dds)
+log2_cpm = log2(cpm+1)
+
+idx = sample(1:nrow(log2_cpm), 1000)
+log2_cpm_scaled = apply(log2_cpm, 2, minmax_scaling)
+plot(density(log2_cpm_scaled[idx,], bw = 0.02), main = "minmaxscaled 1000 random tags, min-max-scaled")
+
+```
+
+
+## filter samples
+```{r filter_samples, fig.height=15, fig.width=15}
+# sample based filter ####
+
+# calculate distance plot heatmaps based on top 20000 tags by variance####
+
+variances = apply(log2_cpm,1, var)
+set = order(variances, decreasing = T)[1:2000]
+
+cpm.sel.trans = t(log2_cpm[set,])
+
+distance = dist(cpm.sel.trans)
+sampleDistMatrix <- as.matrix(distance)
+
+rownames(sampleDistMatrix) <- rownames(Patdata)
+colnames(sampleDistMatrix) <- rownames(Patdata)
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+
+groupcol = Dark8[1:nlevels(dds$group)]
+names(groupcol) = levels(dds$group)
+
+sitecol = Dark8[1:nlevels(dds$site)]
+names(sitecol) = levels(dds$site)
+
+ccptcol = brewer.pal(3,"Set1")[1:nlevels(dds$contraceptives)]
+names(ccptcol) = levels(dds$contraceptives)
+
+ann_colors = list(
+  group = groupcol, 
+  contraceptives = ccptcol,
+  site = sitecol)
+
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows = distance,
+         clustering_distance_cols = distance,
+         clustering_method = "ward.D2",
+         border_color = NA, 
+         annotation_row = Patdata[,c("Age", "site", "X260_280", "Timediff_ExtrPurification")],
+         annotation_col = Patdata[,c("group", "scrsympt","contraceptives", clinFact)],
+         col = colors, 
+         annotation_colors = ann_colors,
+         main = "Distances not normalized log2 counts")
+
+```
+
+```{r filter_samples2, fig.height=7, fig.width=7}
+#PCA filter 
+
+gpca <- glmpca(t(cpm.sel.trans), L = 2)
+gpca.dat <- gpca$factors
+gpca.dat$site <- dds$site
+gpca.dat$group <- dds$group
+gpca.dat$ID_femNAT <- dds$ID_femNAT
+rownames(gpca.dat) = colnames(dds)
+
+mds = as.data.frame(colData(dds)) %>% cbind(cmdscale(distance))
+
+# filter samples outside of 4 sd ####
+
+idx1 = abs(gpca.dat$dim1)>4*sd(gpca.dat$dim1)
+idx2 = abs(gpca.dat$dim2)>4*sd(gpca.dat$dim2)
+
+exclGPCA = rownames(gpca.dat)[idx1|idx2]
+
+idx3 = abs(mds$"1")>4*sd(mds$"1")
+idx4 = abs(mds$"2")>4*sd(mds$"2")
+exclMDS = rownames(mds)[idx3|idx4]
+
+excl = unique(c(exclGPCA, exclMDS))
+
+gpca.dat$drop = factor(rownames(gpca.dat) %in% excl, c(T,F), c("excluded", "keep"))
+mds$drop  = factor(rownames(mds) %in% excl, c(T,F), c("excluded", "keep"))
+
+ggplot(gpca.dat, aes(x = dim1, y = dim2, color = group, shape = drop)) +
+  geom_point(size = 2)  + ggtitle("glmpca - Generalized PCA") 
+
+ggplot(mds, aes(x = `1`, y = `2`, color = group, shape = drop)) +
+  geom_point(size = 2)  + ggtitle("MDS with log2 counts") 
+
+keepSamples = row.names(mds)[! row.names(mds) %in% excl]
+
+ddsMat = ddsMat[,keepSamples]
+
+ddsMat = estimateSizeFactors(ddsMat)
+
+distance=dist(log2(t(counts(ddsMat)+1)))
+
+# hierarchical clustering ####
+
+HC = hclust(distance, method = "ward.D2")
+plot(HC, main = "clustered samples log2(counts + 1)", cex = 0.4)
+
+# visual inspection no obvious cluster detectable
+n = 2 # check outlier cluster
+clusters = cutree(HC,k = n)
+tab=table(clusters)
+
+# drop if a cluster hols only 5 percent of the cohort
+keeper=as.numeric(names(tab)[tab>0.05*length(clusters)])
+
+keepSamples = names(clusters[clusters %in% keeper])
+dds_filt = ddsMat[,keepSamples]
+dds_filt = estimateSizeFactors(dds_filt)
+```
+
+
+## replot cleaned samples
+```{r rplot_cleaned, fig.height=15, fig.width=15}
+
+# replot with normalized and cleaned data
+cpm = counts(dds_filt, normalized = T)
+log2_cpm = log2(cpm+1)
+
+distance = dist(t(log2_cpm))
+sampleDistMatrix <- as.matrix(distance)
+
+rownames(sampleDistMatrix) <- rownames(colData(dds_filt))
+colnames(sampleDistMatrix) <- rownames(colData(dds_filt))
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+
+
+ann_colors = list(
+  group = groupcol, 
+  contraceptives = ccptcol,
+  site = sitecol)
+
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows = distance,
+         clustering_distance_cols = distance,
+         clustering_method = "ward.D2",
+         border_color = NA, 
+         annotation_row = Patdata[,c("Age", "site", "X260_280", "Timediff_ExtrPurification")],
+         annotation_col = Patdata[,c("group", "scrsympt","contraceptives", clinFact)],
+         col = colors, 
+         annotation_colors = ann_colors,
+         main = "Distances normalized log2 counts, after filtering")
+
+```
+
+Samples Excluded: `r Patdata$ID_femNAT[! Patdata$ID_femNAT %in% colData(dds_filt)$ID_femNAT]`
+
+# Surrogate variable analysis
+
+```{r sva_analysis}
+
+# only tags with enough reads
+idx1  <- rowMeans(cpm) > 1
+sd = apply(log2_cpm, 1, sd)
+
+# only tags with some variance 
+idx2 = sd> 0.5
+
+cpm_subset = cpm[idx1 & idx2,]
+
+mod  <- model.matrix(designh1, colData(dds_filt))
+mod0 <- model.matrix(designh0, colData(dds_filt))
+
+nsv = num.sv(cpm_subset, mod, method = "be")
+
+svaset <- svaseq(cpm_subset, mod, mod0, n.sv = nsv)
+
+Patdata = cbind(colData(dds_filt), as.data.frame(svaset$sv))
+
+colData(dds_filt) <- Patdata
+
+save(dds_filt, file= paste0(Home,"/output/ProcessedData.RData"))
+
+```
+
+Total Number of Surrogate Variables extracted: `r nsv`
+
+# Sample statistics after cleaning
+```{r test_diff_postclean}
+Patreads = colSums(cpm)
+
+dds_filt$reads_per_sample_cleaned = Patreads
+
+clPatdata = as.data.frame(colData(dds_filt))
+
+res = table_sumstat(clPatdata, 
+                    columns=unique(c(tablevariates, clinFact,modelFact, envFact, genomicvariates)), 
+                    groupfactor = "group")
+res
+export2word(res, file = paste0(Home,"/output/table1_filtered.docx"))
+
+```
+
+* Total number of samples: `r nrow(clPatdata)`
+* Total number of Tags: `r format(length(rowRanges(dds_filt)), scientific=F, big.mark = " ")`
+* Tags in TFbinding sites: `r format(sum(rowRanges(dds_filt)$tf_binding != ""), scientific=F, big.mark = " ")`
+* Tags in CpGs: `r display_tab_simple(table(rowRanges(dds_filt)$cpg))`
+* Tags per feature `r display_tab_simple(table(rowRanges(dds_filt)$feature))`
+
