@@ -1,0 +1,21 @@
+name: femNATCD_MethSeq
+output_dir: ../docs
+navbar:
+  title: femNATCD_MethSeq
+  left:
+  - text: Home
+    href: index.html
+  - text: About
+    href: about.html
+  - text: License
+    href: license.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/achiocch/femNATCD_MethSeq
+output:
+  workflowr::wflow_html:
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+    highlight: textmate

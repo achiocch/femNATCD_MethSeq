@@ -1,0 +1,41 @@
+---
+title: "About"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+## The methylome in female adolescent Conduct Disorder: Neural pathomechanisms and Environmental Risk Factors
+
+AG Chiocchetti1, A Yousaf1, R Waltes1, A Bernhard1, A Martinelli1, K Ackermann1, D Haslinger1, B Rotter2, N Krezdorn2, K Konrad3,4, G Kohls3, A Vetro5, A Hervas6, A Fernández-Rivas7, CM Freitag1
+
+1) University Hospital Frankfurt; Department of Child and Adolescent Psychiatry, Psychosomatics and Psychotherapy; Frankfurt am Main, Germany
+2) GenXPro GmbH, Frankfurt am Main, Germany
+3) Child Neuropsychology Section, University Hospital, RWTH Aachen, Department of Child and Adolescent Psychiatry, Psychosomatics and Psychotherapy, Aachen, Germany
+4) JARA BRAIN Institute II, Molecular Neuroscience and Neuroimaging, Institute of Neuroscience and Medicine (INM-11), Research Center Juelich
+5) Szeged University, Department of Pediatrics and Pediatrics health center, Child and Adolescent Psychiatry, Szeged, Hungary
+6) Hospital Universitario Mutua de Terrassa, Child and Adolescent Mental Health Service, Barcelona, Spain
+7) Basurto University Hospital, Psychiatric Service, Osakidetza, Bilbao, Spain
+
+**Corresponding author:** 
+Dr. Andreas G. Chiocchetti 
+Department of Child and Adolescent 
+Psychiatry, Psychosomatics and Psychotherapy 
+JW Goethe University Frankfurt
+Deutschordenstr. 50
+60528 Frankfurt am Main
+Germany 
+mail: andreas.chiocchetti@kgu.de 
+
+**Keywords**: CD, epigenetics, girls, SLITRK5, epigenetic x environment interaction, data integrative analysis
+
+## Abstract
+**Background**: Conduct Disorder (CD) is an impairing psychiatric disorder of childhood and adolescence characterized by aggressive and dissocial behavior. Environmental factors such as maternal smoking during pregnancy, socio-economic status, trauma, or early life stress are associated with CD. Although, the number of female-CD is rising in Western societies, female CD is under-researched. We aimed at exploring the epigenetic signature of female-CD and its relation to psychosocial and environmental risk factors. 
+**Methods**: We performed HpaII sensitive methylation sequencing of 50 CD girls and 50 matched controls and mixed linear regression models. Identified tags of interest were mapped to brain developmental processes and epigenetic signatures were tested as mediators for risk factors. 
+**Results**: We identified a 48% increased methylation 5’ of the neurite modulator SLITRK5 (P  = 5.47e-07, FDR = 0.142) in cases within a glucocorticoid receptor binding site. Functionally, methylation positively correlated with gene expression in-vitro. At systems-level, hyper-methylated genes (P < 0.05) were associated with development of neocortical regions, thalamus and striatum, whereas hypo-methylated (P < 0.05) genes were enriched with regulators of the steroid hormone system and expressed in amygdala and hippocampus. Mediation of environmental risk, such as adverse parenting conditions and history of trauma on CD status, was specifically observed for differentially methylated genes expressed in the brain developmental networks. 
+**Discussion**: The differential methylation patterns identified at nominal level of significance in female CD are likely to affect genes that are expressed in brain regions previously indicated in CD. We provide suggestive evidence that the long-term effects of adverse parenting conditions and trauma exposure are likely to be mediated by epigenetic mechanisms impairing specific brain developmental networks and therefore exerting a long-term effect on neural functions in CD. Our results are exploratory and might be biased by false negative and false positive findings. Thus, further replication is needed. 
+
+[Github Repository](https://github.com/achiocch/femNATCD-MethSeq) 
+

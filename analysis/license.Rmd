@@ -1,0 +1,13 @@
+---
+title: "License"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+As a scientific contribution these results are available under
+Creative commons License [BY-4.0](https://creativecommons.org/licenses/by/4.0/)
+
