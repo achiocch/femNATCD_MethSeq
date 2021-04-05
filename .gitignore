@@ -12,3 +12,4 @@ analysis/site_libs
 *.RData
 data/*
 output/*
+setup_built.R
