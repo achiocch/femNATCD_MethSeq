@@ -252,7 +252,7 @@ res = table_sumstat(Patdata,
                     groupfactor = "group")
 
 res
-#export2word(res, file = paste0(Home,"/output/table1_unfiltered.docx"))
+export2word(res, file = paste0(Home,"/output/table1_unfiltered.docx"))
 
 ```
 
@@ -554,7 +554,7 @@ res = table_sumstat(clPatdata,
                     columns=unique(c(tablevariates, clinFact,modelFact, envFact, genomicvariates)), 
                     groupfactor = "group")
 res
-#export2word(res, file = paste0(Home,"/output/table1_filtered.docx"))
+export2word(res, file = paste0(Home,"/output/table1_filtered.docx"))
 
 ```
 
