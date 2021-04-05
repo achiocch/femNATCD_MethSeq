@@ -7,6 +7,10 @@ output: html_document
 ---
 
 ```{r setup, echo=F,include=FALSE}
+
+myloc=Sys.getlocale("LC_ALL")
+Sys.setlocale("LC_ALL",myloc)
+
 library(data.table)
 library(RColorBrewer)
 library(gplots)
@@ -235,7 +239,7 @@ save(envFact, file=paste0(Home,"/output/envFact.RData"))
 
 ```
 
-```{r test_samples_diff}
+```{r test_samples_diff, warning=FALSE, message=FALSE}
 # test differences between site  ####
 
 ## add IQ and Anx here 
@@ -248,16 +252,16 @@ res = table_sumstat(Patdata,
                     groupfactor = "group")
 
 res
-export2word(res, file = paste0(Home,"/output/table1_unfiltered.docx"))
+#export2word(res, file = paste0(Home,"/output/table1_unfiltered.docx"))
 
 ```
 
 # QC Filter and Normalize 
 ## filter SNPs
 ```{r filter_SNPS}
-
-designh0 = formula(paste0("~0+",paste0(modelFact, collapse="+")))
-designh1 = formula(paste("~0+",designh0," + group")[2])
+form0=paste0("~0+",paste0(modelFact, collapse="+"))
+designh0 = as.formula(form0)
+designh1 = as.formula(paste(form0," + group"))
 
 
 save(designh0, file=paste0(Home,"/output/designh0.RData"))
@@ -550,7 +554,7 @@ res = table_sumstat(clPatdata,
                     columns=unique(c(tablevariates, clinFact,modelFact, envFact, genomicvariates)), 
                     groupfactor = "group")
 res
-export2word(res, file = paste0(Home,"/output/table1_filtered.docx"))
+#export2word(res, file = paste0(Home,"/output/table1_filtered.docx"))
 
 ```
 

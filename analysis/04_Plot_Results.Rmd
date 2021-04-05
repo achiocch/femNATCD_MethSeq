@@ -90,7 +90,7 @@ plotcircos(plotdata =DFtoplot, targets = targetlist,
            labcol="gene", 
            title="Differentially Methylated Tag",
            pvalident = "log10_P", #collabel for pval identification
-           pvallog=FALSE, # is log transfromed
+           pvallog=FALSE, # is log transformed
            cutoffpval = 8, #after this cutoff will be black
            labelsidx=topindex,
            filename = svgfile)

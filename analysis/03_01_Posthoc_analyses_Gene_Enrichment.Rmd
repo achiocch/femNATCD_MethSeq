@@ -160,7 +160,7 @@ KEGG pathways, Transcription factor Binding sites, Human Protein Atlas Tissue Ex
 
 getGOresults = function(geneset, genereference){
   resgo = gost(geneset, organism = "hsapiens",
-               correction_method = "fdr",
+               correction_method = "g_SCS",
                domain_scope = "custom",
                sources = c("GO:BP", "GO:MF", "GO:CC", "KEGG", "TF", "HP", "HPA"),
                custom_bg = genereference)
