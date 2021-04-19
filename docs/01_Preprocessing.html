@@ -428,7 +428,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-04-10
+<strong>Last updated:</strong> 2021-04-19
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -519,16 +519,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree4dee231f75db4afbace8606bf75213f739dd24adtargetblank4dee231a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/4dee231f75db4afbace8606bf75213f739dd24ad" target="_blank">4dee231</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtreedc9e069fc26e9867005f94c140185f870dca8306targetblankdc9e069a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/dc9e069fc26e9867005f94c140185f870dca8306" target="_blank">dc9e069</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree4dee231f75db4afbace8606bf75213f739dd24adtargetblank4dee231a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtreedc9e069fc26e9867005f94c140185f870dca8306targetblankdc9e069a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/4dee231f75db4afbace8606bf75213f739dd24ad" target="_blank">4dee231</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/dc9e069fc26e9867005f94c140185f870dca8306" target="_blank">dc9e069</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -549,12 +549,19 @@ Ignored files:
     Ignored:    data/ProcessedData.RData
     Ignored:    data/SNPCommonFilt.csv
     Ignored:    output/4A76FA10
+    Ignored:    output/BrainMod_Enrichemnt.pdf
+    Ignored:    output/Brain_Module_Heatmap.pdf
     Ignored:    output/DMR_Results.csv
     Ignored:    output/GOres.xlsx
+    Ignored:    output/LME_GOplot.pdf
+    Ignored:    output/LME_GOplot.svg
     Ignored:    output/LME_Results.csv
     Ignored:    output/LME_Results_Sig.csv
     Ignored:    output/LME_Results_Sig_mod.csv
+    Ignored:    output/LME_tophit.svg
     Ignored:    output/ProcessedData.RData
+    Ignored:    output/Regions_GOplot.pdf
+    Ignored:    output/Regions_GOplot.svg
     Ignored:    output/SEM_summary_groupEpi_M15.txt
     Ignored:    output/SEM_summary_groupEpi_M2.txt
     Ignored:    output/SEM_summary_groupEpi_M_all.txt
@@ -582,6 +589,7 @@ Ignored files:
     Ignored:    output/designh0.RData
     Ignored:    output/designh1.RData
     Ignored:    output/envFact.RData
+    Ignored:    output/functional_Enrichemnt.pdf
     Ignored:    output/gostres.pdf
     Ignored:    output/modelFact.RData
     Ignored:    output/resdmr.RData
@@ -629,6 +637,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/17f1eec7fe797b93bcf724547cf86ce90c52e37f/docs/01_Preprocessing.html" target="_blank">17f1eec</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-04-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -740,6 +765,15 @@ wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"), update = F)
 </div>
 <pre class="r"><code>source(paste0(Home,&quot;/code/custom_functions.R&quot;))</code></pre>
 <pre><code>Lade nötiges Paket: RCircos</code></pre>
+<pre><code>Lade nötiges Paket: scales</code></pre>
+<pre><code>
+Attache Paket: &#39;scales&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:purrr&#39;:
+
+    discard</code></pre>
+<pre><code>The following object is masked from &#39;package:readr&#39;:
+
+    col_factor</code></pre>
 <div id="initializing-rawdata" class="section level1">
 <h1>Initializing rawdata</h1>
 <pre class="r"><code>## load Data  ####
@@ -5450,25 +5484,25 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] RCircos_1.2.1               compareGroups_4.4.6        
- [3] cluster_2.1.0               kableExtra_1.3.1           
- [5] knitr_1.30                  glmpca_0.2.0               
- [7] sva_3.38.0                  BiocParallel_1.24.1        
- [9] genefilter_1.72.0           mgcv_1.8-33                
-[11] nlme_3.1-151                pheatmap_1.0.12            
-[13] vsn_3.58.0                  DESeq2_1.30.0              
-[15] SummarizedExperiment_1.20.0 Biobase_2.50.0             
-[17] MatrixGenerics_1.2.0        matrixStats_0.57.0         
-[19] GenomicRanges_1.42.0        GenomeInfoDb_1.26.2        
-[21] IRanges_2.24.1              S4Vectors_0.28.1           
-[23] BiocGenerics_0.36.0         forcats_0.5.0              
-[25] stringr_1.4.0               dplyr_1.0.2                
-[27] purrr_0.3.4                 readr_1.4.0                
-[29] tidyr_1.1.2                 tibble_3.0.4               
-[31] tidyverse_1.3.0             corrplot_0.84              
-[33] ggplot2_3.3.3               gplots_3.1.1               
-[35] RColorBrewer_1.1-2          data.table_1.13.6          
-[37] workflowr_1.6.2            
+ [1] scales_1.1.1                RCircos_1.2.1              
+ [3] compareGroups_4.4.6         cluster_2.1.0              
+ [5] kableExtra_1.3.1            knitr_1.30                 
+ [7] glmpca_0.2.0                sva_3.38.0                 
+ [9] BiocParallel_1.24.1         genefilter_1.72.0          
+[11] mgcv_1.8-33                 nlme_3.1-151               
+[13] pheatmap_1.0.12             vsn_3.58.0                 
+[15] DESeq2_1.30.0               SummarizedExperiment_1.20.0
+[17] Biobase_2.50.0              MatrixGenerics_1.2.0       
+[19] matrixStats_0.57.0          GenomicRanges_1.42.0       
+[21] GenomeInfoDb_1.26.2         IRanges_2.24.1             
+[23] S4Vectors_0.28.1            BiocGenerics_0.36.0        
+[25] forcats_0.5.0               stringr_1.4.0              
+[27] dplyr_1.0.2                 purrr_0.3.4                
+[29] readr_1.4.0                 tidyr_1.1.2                
+[31] tibble_3.0.4                tidyverse_1.3.0            
+[33] corrplot_0.84               ggplot2_3.3.3              
+[35] gplots_3.1.1                RColorBrewer_1.1-2         
+[37] data.table_1.13.6           workflowr_1.6.2            
 
 loaded via a namespace (and not attached):
   [1] uuid_0.1-4             readxl_1.3.1           backports_1.2.0       
@@ -5481,32 +5515,31 @@ loaded via a namespace (and not attached):
  [22] RCurl_1.98-1.2         jsonlite_1.7.2         survival_3.2-7        
  [25] glue_1.4.2             gtable_0.3.0           zlibbioc_1.36.0       
  [28] XVector_0.30.0         webshot_0.5.2          DelayedArray_0.16.0   
- [31] scales_1.1.1           DBI_1.1.1              edgeR_3.32.1          
- [34] Rcpp_1.0.5             viridisLite_0.3.0      xtable_1.8-4          
- [37] bit_4.0.4              preprocessCore_1.52.1  truncnorm_1.0-8       
- [40] httr_1.4.2             ellipsis_0.3.1         mice_3.12.0           
- [43] farver_2.0.3           pkgconfig_2.0.3        XML_3.99-0.5          
- [46] dbplyr_2.0.0           locfit_1.5-9.4         labeling_0.4.2        
- [49] tidyselect_1.1.0       rlang_0.4.10           later_1.1.0.1         
- [52] AnnotationDbi_1.52.0   munsell_0.5.0          cellranger_1.1.0      
- [55] tools_4.0.3            cachem_1.0.1           cli_2.2.0             
- [58] generics_0.1.0         RSQLite_2.2.2          broom_0.7.3           
- [61] evaluate_0.14          fastmap_1.1.0          yaml_2.2.1            
- [64] bit64_4.0.5            fs_1.5.0               zip_2.1.1             
- [67] caTools_1.18.1         whisker_0.4            xml2_1.3.2            
- [70] compiler_4.0.3         rstudioapi_0.13        affyio_1.60.0         
- [73] reprex_1.0.0           geneplotter_1.68.0     stringi_1.5.3         
- [76] HardyWeinberg_1.7.1    highr_0.8              ps_1.5.0              
- [79] gdtools_0.2.3          lattice_0.20-41        Matrix_1.2-18         
- [82] vctrs_0.3.6            pillar_1.4.7           lifecycle_0.2.0       
- [85] BiocManager_1.30.10    flextable_0.6.2        bitops_1.0-6          
- [88] httpuv_1.5.5           R6_2.5.0               affy_1.68.0           
- [91] promises_1.1.1         KernSmooth_2.23-18     writexl_1.3.1         
- [94] MASS_7.3-53            gtools_3.8.2           assertthat_0.2.1      
- [97] chron_2.3-56           rprojroot_2.0.2        withr_2.4.1           
-[100] GenomeInfoDbData_1.2.4 hms_1.0.0              grid_4.0.3            
-[103] rmarkdown_2.6          git2r_0.28.0           base64enc_0.1-3       
-[106] lubridate_1.7.9.2     </code></pre>
+ [31] DBI_1.1.1              edgeR_3.32.1           Rcpp_1.0.5            
+ [34] viridisLite_0.3.0      xtable_1.8-4           bit_4.0.4             
+ [37] preprocessCore_1.52.1  truncnorm_1.0-8        httr_1.4.2            
+ [40] ellipsis_0.3.1         mice_3.12.0            farver_2.0.3          
+ [43] pkgconfig_2.0.3        XML_3.99-0.5           dbplyr_2.0.0          
+ [46] locfit_1.5-9.4         labeling_0.4.2         tidyselect_1.1.0      
+ [49] rlang_0.4.10           later_1.1.0.1          AnnotationDbi_1.52.0  
+ [52] munsell_0.5.0          cellranger_1.1.0       tools_4.0.3           
+ [55] cachem_1.0.1           cli_2.2.0              generics_0.1.0        
+ [58] RSQLite_2.2.2          broom_0.7.3            evaluate_0.14         
+ [61] fastmap_1.1.0          yaml_2.2.1             bit64_4.0.5           
+ [64] fs_1.5.0               zip_2.1.1              caTools_1.18.1        
+ [67] whisker_0.4            xml2_1.3.2             compiler_4.0.3        
+ [70] rstudioapi_0.13        affyio_1.60.0          reprex_1.0.0          
+ [73] geneplotter_1.68.0     stringi_1.5.3          HardyWeinberg_1.7.1   
+ [76] highr_0.8              ps_1.5.0               gdtools_0.2.3         
+ [79] lattice_0.20-41        Matrix_1.2-18          vctrs_0.3.6           
+ [82] pillar_1.4.7           lifecycle_0.2.0        BiocManager_1.30.10   
+ [85] flextable_0.6.2        bitops_1.0-6           httpuv_1.5.5          
+ [88] R6_2.5.0               affy_1.68.0            promises_1.1.1        
+ [91] KernSmooth_2.23-18     writexl_1.3.1          MASS_7.3-53           
+ [94] gtools_3.8.2           assertthat_0.2.1       chron_2.3-56          
+ [97] rprojroot_2.0.2        withr_2.4.1            GenomeInfoDbData_1.2.4
+[100] hms_1.0.0              grid_4.0.3             rmarkdown_2.6         
+[103] git2r_0.28.0           base64enc_0.1-3        lubridate_1.7.9.2     </code></pre>
 </div>
 </div>
 
