@@ -2,6 +2,7 @@ require("kableExtra")
 require("tidyverse")
 require("compareGroups")
 require("RCircos")
+require("scales")
 
 # preprocessing fucntions ####
 yesnofac= function(x){factor(x, c(0,1), c("no", "yes"))}
@@ -134,7 +135,7 @@ plotcircos= function(plotdata, title = "CircosPlot",
         min.value = min(tmp2[,target1], na.rm=T)
         max.value = max(tmp2[,target1], na.rm=T)
         RC.param <- RCircos.Get.Plot.Parameters()
-        RC.param['heatmap.color'] <- "BlueWhiteRed"
+        RC.param['heatmap.color'] <- "YellowToRed"
         RCircos.Reset.Plot.Parameters(RC.param)
       }
 
@@ -269,3 +270,115 @@ display_tab_simple = function(df){
 }
 
 
+
+merge.with.order <- function(x,y, ..., sort = T, keep_order)
+{
+  # this function works just like merge, only that it adds the option to return the merged data.frame ordered by x (1) or by y (2)
+  add.id.column.to.data <- function(DATA)
+  {
+    data.frame(DATA, id... = seq_len(nrow(DATA)))
+  }
+  # add.id.column.to.data(data.frame(x = rnorm(5), x2 = rnorm(5)))
+  order.by.id...and.remove.it <- function(DATA)
+  {
+    # gets in a data.frame with the "id..." column.  Orders by it and returns it
+    if(!any(colnames(DATA)=="id...")) stop("The function order.by.id...and.remove.it only works with data.frame objects which includes the 'id...' order column")
+
+    ss_r <- order(DATA$id...)
+    ss_c <- colnames(DATA) != "id..."
+    DATA[ss_r, ss_c]
+  }
+
+  # tmp <- function(x) x==1; 1	# why we must check what to do if it is missing or not...
+  # tmp()
+
+  if(!missing(keep_order))
+  {
+    if(keep_order == 1) return(order.by.id...and.remove.it(merge(x=add.id.column.to.data(x),y=y,..., sort = FALSE)))
+    if(keep_order == 2) return(order.by.id...and.remove.it(merge(x=x,y=add.id.column.to.data(y),..., sort = FALSE)))
+    # if you didn't get "return" by now - issue a warning.
+    warning("The function merge.with.order only accepts NULL/1/2 values for the keep_order variable")
+  } else {return(merge(x=x,y=y,..., sort = sort))}
+}
+
+
+
+cerebroScale2<-
+  function (x, clamp, divData, center_zero)
+  {
+    xmed <- median(x, na.rm = TRUE)
+    xmad <- mad(x, constant = 1, na.rm = TRUE)
+    xmin <- min(x, na.rm = TRUE)
+    xmax <- max(x, na.rm = TRUE)
+    avoidClamp <- max(abs(xmed - xmin), abs(xmed - xmax))/xmad
+    fillMatrix <- x
+    if (is.null(clamp)) {
+      clamp <- avoidClamp + 1
+    }
+    outlrs <- clamp * xmad
+    if (clamp <= 0)
+      stop("clamp must be >0")
+    pctOL <- round(length(which(x[!is.na(x)] <= (xmed - (outlrs)) |
+                                  x[!is.na(x)] >= (xmed + (outlrs))))/length(x[!is.na(x)]) *
+                     100, 2)
+    if (pctOL > 0) {
+      warning(paste("The clamp value of ", clamp, " will clamp ",
+                    pctOL, "% of input values (outliers) to the min or max of the scaled range.",
+                    sep = ""))
+    }
+    if (divData == TRUE & center_zero == FALSE) {
+      abvMed <- x[x >= xmed & x <= (xmed + outlrs) & !is.na(x)]
+      belMed <- x[x <= xmed & x >= (xmed - outlrs) & !is.na(x)]
+      if (length(which(!is.na(x)))%%2 == 0) {
+        rightsc <- rescale(c(xmed, abvMed), c(0.5, 1))[-1]
+        fillMatrix[x >= xmed & x <= (xmed + outlrs) & !is.na(x)] <- rightsc
+        leftsc <- rescale(c(xmed, belMed), c(-1, 0))[-1]
+        fillMatrix[x <= xmed & x >= (xmed - outlrs) & !is.na(x)] <- leftsc
+        fillMatrix[x < (xmed - outlrs) & !is.na(x)] <- -1
+        fillMatrix[x > (xmed + outlrs) & !is.na(x)] <- 1
+        xScaled <- fillMatrix
+      }
+      if ((length(which(!is.na(x))))%%2 == 1) {
+        rightsc <- rescale(abvMed, c(-1, 1))
+        fillMatrix[x >= xmed & x <= (xmed + outlrs) & !is.na(x)] <- rightsc
+        leftsc <- rescale(belMed, c(-1, 0))
+        fillMatrix[x <= xmed & x >= (xmed - outlrs) & !is.na(x)] <- leftsc
+        fillMatrix[x < (xmed - outlrs) & !is.na(x)] <- -1
+        fillMatrix[x > (xmed + outlrs) & !is.na(x)] <- 1
+        xScaled <- fillMatrix
+      }
+    }
+    if (divData == TRUE & center_zero == TRUE) {
+      abvMed <- x[x >= -1 & x <= (-1 + outlrs) & !is.na(x)]
+      belMed <- x[x <= -1 & x >= (-1 - outlrs) & !is.na(x)]
+      if (length(which(!is.na(x)))%%2 == 0) {
+        rightsc <- rescale(c(-1, abvMed), c(-1, 1))[-1]
+        fillMatrix[x >= -1 & x <= (-1 + outlrs) & !is.na(x)] <- rightsc
+        leftsc <- rescale(c(-1, belMed), c(-1, 0))[-1]
+        fillMatrix[x <= -1 & x >= (-1 - outlrs) & !is.na(x)] <- leftsc
+        fillMatrix[x < (-1 - outlrs) & !is.na(x)] <- -1
+        fillMatrix[x > (-1 + outlrs) & !is.na(x)] <- 1
+        xScaled <- fillMatrix
+      }
+      if ((length(which(!is.na(x))))%%2 == 1) {
+        rightsc <- rescale(abvMed, c(-1, 1))
+        fillMatrix[x >= -1 & x <= (-1 + outlrs) & !is.na(x)] <- rightsc
+        leftsc <- rescale(belMed, c(-1, 1))
+        fillMatrix[x <= -1 & x >= (-1 - outlrs) & !is.na(x)] <- leftsc
+        fillMatrix[x < (-1 - outlrs) & !is.na(x)] <- -1
+        fillMatrix[x > (-1 + outlrs) & !is.na(x)] <- 1
+        xScaled <- fillMatrix
+      }
+    }
+    if (divData == FALSE) {
+      nonoutlrs <- x[x >= (xmed - outlrs) & x <= (xmed + outlrs) &
+                       !is.na(x)]
+      xsc <- rescale(nonoutlrs, c(-1, 1))
+      fillMatrix[x >= (xmed - outlrs) & x <= (xmed + outlrs) &
+                   !is.na(x)] <- xsc
+      fillMatrix[x < (xmed - outlrs) & !is.na(x)] <- -1
+      fillMatrix[x > (xmed + outlrs) & !is.na(x)] <- 1
+      xScaled <- fillMatrix
+    }
+    return(xScaled)
+  }

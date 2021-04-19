@@ -418,7 +418,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -427,7 +427,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -436,10 +436,10 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-04-10
+<strong>Last updated:</strong> 2021-04-11
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>femNATCD_MethSeq/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -455,12 +455,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -527,16 +527,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree4dee231f75db4afbace8606bf75213f739dd24adtargetblank4dee231a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/4dee231f75db4afbace8606bf75213f739dd24ad" target="_blank">4dee231</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree17f1eec7fe797b93bcf724547cf86ce90c52e37ftargetblank17f1eeca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/17f1eec7fe797b93bcf724547cf86ce90c52e37f" target="_blank">17f1eec</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree4dee231f75db4afbace8606bf75213f739dd24adtargetblank4dee231a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree17f1eec7fe797b93bcf724547cf86ce90c52e37ftargetblank17f1eeca" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/4dee231f75db4afbace8606bf75213f739dd24ad" target="_blank">4dee231</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/17f1eec7fe797b93bcf724547cf86ce90c52e37f" target="_blank">17f1eec</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -546,6 +546,7 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/.Rhistory
+    Ignored:    analysis/figure/
     Ignored:    code/.Rhistory
     Ignored:    data/Epicounts.csv
     Ignored:    data/Epimeta.csv
@@ -557,12 +558,19 @@ Ignored files:
     Ignored:    data/ProcessedData.RData
     Ignored:    data/SNPCommonFilt.csv
     Ignored:    output/4A76FA10
+    Ignored:    output/BrainMod_Enrichemnt.pdf
+    Ignored:    output/Brain_Module_Heatmap.pdf
     Ignored:    output/DMR_Results.csv
     Ignored:    output/GOres.xlsx
+    Ignored:    output/LME_GOplot.pdf
+    Ignored:    output/LME_GOplot.svg
     Ignored:    output/LME_Results.csv
     Ignored:    output/LME_Results_Sig.csv
     Ignored:    output/LME_Results_Sig_mod.csv
+    Ignored:    output/LME_tophit.svg
     Ignored:    output/ProcessedData.RData
+    Ignored:    output/Regions_GOplot.pdf
+    Ignored:    output/Regions_GOplot.svg
     Ignored:    output/SEM_summary_groupEpi_M15.txt
     Ignored:    output/SEM_summary_groupEpi_M2.txt
     Ignored:    output/SEM_summary_groupEpi_M_all.txt
@@ -590,6 +598,7 @@ Ignored files:
     Ignored:    output/designh0.RData
     Ignored:    output/designh1.RData
     Ignored:    output/envFact.RData
+    Ignored:    output/functional_Enrichemnt.pdf
     Ignored:    output/gostres.pdf
     Ignored:    output/modelFact.RData
     Ignored:    output/resdmr.RData
@@ -599,6 +608,14 @@ Ignored files:
     Ignored:    output/table1_unfiltered.Rmd
     Ignored:    output/table1_unfiltered.docx
     Ignored:    setup_built.R
+
+Untracked files:
+    Untracked:  analysis/99_helperforPaper.Rmd
+
+Unstaged changes:
+    Modified:   analysis/03_01_Posthoc_analyses_Gene_Enrichment.Rmd
+    Modified:   analysis/04_Plot_Results.Rmd
+    Modified:   code/custom_functions.R
 
 </code></pre>
 <p>
@@ -637,6 +654,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/17f1eec7fe797b93bcf724547cf86ce90c52e37f/docs/03_01_Posthoc_analyses_Gene_Enrichment.html" target="_blank">17f1eec</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-04-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -820,12 +854,20 @@ Resup$SE = (log(Resup$OR)-log(Resup$CI95L))/1.96
 Resup$Padj=p.adjust(Resup$P, method = &quot;bonferroni&quot;)
 
 
+
 multiORplot(Resall, Pval = &quot;P&quot;, Padj = &quot;Padj&quot;, beta=&quot;Beta&quot;,SE = &quot;SE&quot;, pheno=&quot;All diff. methylated loci&quot;)</code></pre>
 <p><img src="figure/03_01_Posthoc_analyses_Gene_Enrichment.Rmd/genomiclocation-1.png" width="480" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>multiORplot(Resup, Pval = &quot;P&quot;, Padj = &quot;Padj&quot;, beta=&quot;Beta&quot;,SE = &quot;SE&quot;, pheno=&quot;hypomethylated loci&quot;)</code></pre>
 <p><img src="figure/03_01_Posthoc_analyses_Gene_Enrichment.Rmd/genomiclocation-2.png" width="480" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>multiORplot(Resdown, Pval = &quot;P&quot;, Padj = &quot;Padj&quot;, beta=&quot;Beta&quot;,SE = &quot;SE&quot;, pheno=&quot;Hypermethylated loci&quot;)</code></pre>
 <p><img src="figure/03_01_Posthoc_analyses_Gene_Enrichment.Rmd/genomiclocation-3.png" width="480" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>pdf(paste0(Home, &quot;/output/functional_Enrichemnt.pdf&quot;))
+multiORplot(Resall, Pval = &quot;P&quot;, Padj = &quot;Padj&quot;, beta=&quot;Beta&quot;,SE = &quot;SE&quot;, pheno=&quot;All diff. methylated loci&quot;)
+multiORplot(Resup, Pval = &quot;P&quot;, Padj = &quot;Padj&quot;, beta=&quot;Beta&quot;,SE = &quot;SE&quot;, pheno=&quot;hypomethylated loci&quot;)
+multiORplot(Resdown, Pval = &quot;P&quot;, Padj = &quot;Padj&quot;, beta=&quot;Beta&quot;,SE = &quot;SE&quot;, pheno=&quot;Hypermethylated loci&quot;)
+dev.off()</code></pre>
+<pre><code>png 
+  2 </code></pre>
 </div>
 <div id="go-term-enrichment" class="section level2">
 <h2>GO-term Enrichment</h2>
@@ -865,7 +907,7 @@ gostres = getGOresults(Genes_of_interset, gene_univers)
 
 gostplot(gostres, capped = TRUE, interactive = T)</code></pre>
 <div id="htmlwidget-44c81c46de429b626eeb" style="width:864px;height:1440px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-44c81c46de429b626eeb">{"x":{"data":[{"x":[138.048528957126,112.903378156773,90.1323094451067],"y":[1.95748969304861,1.72565267093432,1.55010535951713],"text":["GO:0048731 (4485) <br> system development <br> 1.103e-02","GO:0032502 (5832) <br> developmental process <br> 1.881e-02","GO:0007275 (4979) <br> multicellular organism development <br> 2.818e-02"],"key":["GO:0048731","GO:0032502","GO:0007275"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,153,0,1)","opacity":0.8,"size":[19.5758941341224,20.2834738706832,19.8611522440285],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,153,0,1)"}},"hoveron":"points","set":"SharedData0905215c","name":"GO:BP","legendgroup":"GO:BP","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[138.048528957126,90.1323094451067,138.519321506917,112.903378156773,90.5749349192688,108.501266622833,138.56760792228,112.899354288826,137.259850839528,137.139134801121,107.809161335962,93.5727165397302,108.042545676884,137.919765182825,89.6856601029977,78.5677129656354,114.40025703303,138.527369242811,78.5596652297416,114.396233165083,108.55760077409,169.366293188068,138.346295185199,110.513200596297,137.791001408523,137.300089518998,152.506286490439,139.275808680939,167.515313932481,88.9211251930814,137.79502527647,139.227522265576,139.239593869417,139.243617737364,108.223619734495,96.6751187268118,100.143692897064,111.221401354957,90.6071258628442,151.073789501332,91.5969973777885,157.157877837088,131.17978637172,167.636029970888,137.28399404721,117.092224689525,123.614914631495,94.590755130303,90.6111497307912,165.716644960204,94.3372514496466,166.573728832899,140.342133686875],"y":[15.8212766194542,14.8181555232519,14.8083539738639,12.399406002158,11.3765599562734,8.53337428207588,8.40328755963963,8.21183844091698,6.88853181434644,6.579017499839,6.40585894369051,6.20934241999706,6.05914386195867,5.95743214487855,5.90298023101714,5.08512053443142,5.03070930297541,4.8768719216216,4.81614057580042,4.51104999952688,4.30981353372881,4.27144318793558,3.95885347037758,3.88824195334204,3.67774496275059,3.55003939430007,3.08249143494643,3.04022332955148,3.0031671751305,2.64036818941977,2.61632778562479,2.58368551909798,2.45557257585831,2.41844052468302,2.20463436601065,2.10836988548014,2.08539655451198,2.02762281337495,2.00595522765749,1.98173574411155,1.93457099795823,1.88956319818929,1.83603271751971,1.75194586148043,1.6473711154284,1.63906026810209,1.58576766071595,1.49429598204887,1.4452140164225,1.40367223540814,1.39105576271713,1.38651376024617,1.37383925677281],"text":["GO:0048731 (4485) <br> system development <br> 1.509e-16","GO:0007275 (4979) <br> multicellular organism development <br> 1.520e-15","GO:0048856 (5398) <br> anatomical structure development <br> 1.555e-15","GO:0032502 (5832) <br> developmental process <br> 3.987e-13","GO:0007399 (2281) <br> nervous system development <br> 4.202e-12","GO:0030154 (3827) <br> cell differentiation <br> 2.928e-09","GO:0048869 (3893) <br> cellular developmental process <br> 3.951e-09","GO:0032501 (6652) <br> multicellular organismal process <br> 6.140e-09","GO:0048513 (3284) <br> animal organ development <br> 1.293e-07","GO:0048468 (1938) <br> cell development <br> 2.636e-07","GO:0022008 (1568) <br> neurogenesis <br> 3.928e-07","GO:0009653 (2567) <br> anatomical structure morphogenesis <br> 6.175e-07","GO:0022610 (1329) <br> biological adhesion <br> 8.727e-07","GO:0048699 (1460) <br> generation of neurons <br> 1.103e-06","GO:0007155 (1323) <br> cell adhesion <br> 1.250e-06","GO:0000904 (713) <br> cell morphogenesis involved in differentiation <br> 8.220e-06","GO:0032990 (669) <br> cell part morphogenesis <br> 9.317e-06","GO:0048858 (651) <br> cell projection morphogenesis <br> 1.328e-05","GO:0000902 (983) <br> cell morphogenesis <br> 1.527e-05","GO:0032989 (755) <br> cellular component morphogenesis <br> 3.083e-05","GO:0030182 (1330) <br> neuron differentiation <br> 4.900e-05","GO:0120039 (647) <br> plasma membrane bounded cell projection morphogenesis <br> 5.353e-05","GO:0048812 (634) <br> neuron projection morphogenesis <br> 1.099e-04","GO:0031175 (946) <br> neuron projection development <br> 1.293e-04","GO:0048666 (1079) <br> neuron development <br> 2.100e-04","GO:0048523 (4514) <br> negative regulation of cellular process <br> 2.818e-04","GO:0065007 (10600) <br> biological regulation <br> 8.270e-04","GO:0050804 (415) <br> modulation of chemical synaptic transmission <br> 9.115e-04","GO:0099177 (416) <br> regulation of trans-synaptic signaling <br> 9.927e-04","GO:0006928 (1955) <br> movement of cell or subcellular component <br> 2.289e-03","GO:0048667 (574) <br> cell morphogenesis involved in neuron differentiation <br> 2.419e-03","GO:0050789 (10038) <br> regulation of biological process <br> 2.608e-03","GO:0050793 (2302) <br> regulation of developmental process <br> 3.503e-03","GO:0050794 (9533) <br> regulation of cellular process <br> 3.816e-03","GO:0023051 (3228) <br> regulation of signaling <br> 6.243e-03","GO:0010646 (3192) <br> regulation of cell communication <br> 7.792e-03","GO:0016043 (5667) <br> cellular component organization <br> 8.215e-03","GO:0031589 (334) <br> cell-substrate adhesion <br> 9.384e-03","GO:0007409 (456) <br> axonogenesis <br> 9.864e-03","GO:0061564 (491) <br> axon development <br> 1.043e-02","GO:0008150 (14730) <br> biological_process <br> 1.163e-02","GO:0071840 (5844) <br> cellular component organization or biogenesis <br> 1.290e-02","GO:0045595 (1486) <br> regulation of cell differentiation <br> 1.459e-02","GO:0099536 (689) <br> synaptic signaling <br> 1.770e-02","GO:0048519 (5029) <br> negative regulation of biological process <br> 2.252e-02","GO:0034330 (657) <br> cell junction organization <br> 2.296e-02","GO:0040011 (1706) <br> locomotion <br> 2.596e-02","GO:0009987 (14121) <br> cellular process <br> 3.204e-02","GO:0007411 (264) <br> axon guidance <br> 3.587e-02","GO:0097485 (265) <br> neuron projection guidance <br> 3.948e-02","GO:0009890 (1554) <br> negative regulation of biosynthetic process <br> 4.064e-02","GO:0098742 (255) <br> cell-cell adhesion via plasma-membrane adhesion molecules <br> 4.107e-02","GO:0051128 (2168) <br> regulation of cellular component organization <br> 4.228e-02"],"key":["GO:0048731","GO:0007275","GO:0048856","GO:0032502","GO:0007399","GO:0030154","GO:0048869","GO:0032501","GO:0048513","GO:0048468","GO:0022008","GO:0009653","GO:0022610","GO:0048699","GO:0007155","GO:0000904","GO:0032990","GO:0048858","GO:0000902","GO:0032989","GO:0030182","GO:0120039","GO:0048812","GO:0031175","GO:0048666","GO:0048523","GO:0065007","GO:0050804","GO:0099177","GO:0006928","GO:0048667","GO:0050789","GO:0050793","GO:0050794","GO:0023051","GO:0010646","GO:0016043","GO:0031589","GO:0007409","GO:0061564","GO:0008150","GO:0071840","GO:0045595","GO:0099536","GO:0048519","GO:0034330","GO:0040011","GO:0009987","GO:0007411","GO:0097485","GO:0009890","GO:0098742","GO:0051128"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,153,0,1)","opacity":0.8,"size":[19.5758941341224,19.8611522440285,20.078311280619,20.2834738706832,17.5883797889428,19.1326314194053,19.1810162332835,20.626760178587,18.6926452396403,17.0649622377237,16.3519461912638,17.9557161239612,15.7659268008216,16.1024778628364,15.7494891609419,13.2390343863009,12.9413454447443,12.8108789571373,14.6159896174254,13.4987533763442,15.768657006254,12.7811348098622,12.6824779307086,14.4608196532955,14.9839070057472,19.5936383180896,21.7900271258463,10.2897687391395,10.3058351322376,17.093536600879,12.1825259951041,21.6579286605391,17.6172276311056,21.5318528013254,18.6423762319929,18.6095060347189,20.2076306517387,8.62581553700735,10.8916570686993,11.3305616170243,22.5681581433113,20.2888923829846,16.1646498643072,13.0801977950447,19.8881659165945,12.8549736927681,16.6405713296293,22.470116126036,5.51692934198019,5.60916912942722,16.3208671097275,3.77952755905512,17.4273361520225],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,153,0,1)"}},"hoveron":"points","set":"SharedData0905215c","name":"GO:BP","legendgroup":"GO:BP","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[68.0041795129014,57.4395043406847,56.3327288464525,70.9180175413528,59.5041437171979,65.2271791819187,70.2821247119394,70.3062725409044],"y":[8.54903748145989,8.19452158340533,5.89497037255775,5.39533305177899,3.57237140496771,2.02317868957931,1.6891324229477,1.36640823572873],"text":["GO:0071944 (4588) <br> cell periphery <br> 2.825e-09","GO:0005886 (4493) <br> plasma membrane <br> 6.390e-09","GO:0005575 (15330) <br> cellular_component <br> 1.274e-06","GO:0110165 (15209) <br> cellular anatomical entity <br> 4.024e-06","GO:0030054 (1939) <br> cell junction <br> 2.677e-04","GO:0045202 (1262) <br> synapse <br> 9.480e-03","GO:0098978 (343) <br> glutamatergic synapse <br> 2.046e-02","GO:0098984 (341) <br> neuron to neuron synapse <br> 4.301e-02"],"key":["GO:0071944","GO:0005886","GO:0005575","GO:0110165","GO:0030054","GO:0045202","GO:0098978","GO:0098984"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(16,150,24,1)","opacity":0.8,"size":[19.6383168057224,19.580802508373,22.6603965821678,22.6421251377601,17.0666517162154,15.5766445060297,8.85894642539759,8.80859976877743],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(16,150,24,1)"}},"hoveron":"points","set":"SharedData0905215c","name":"GO:CC","legendgroup":"GO:CC","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[3.62974603555833,9.53707240642164,9.60548149927223],"y":[6.25401366290396,2.47985337217644,1.38557546739225],"text":["GO:0003674 (15442) <br> molecular_function <br> 5.572e-07","GO:0005488 (14393) <br> binding <br> 3.312e-03","GO:0005515 (12761) <br> protein binding <br> 4.116e-02"],"key":["GO:0003674","GO:0005488","GO:0005515"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(220,57,18,1)","opacity":0.8,"size":[22.6771653543307,22.5144808385363,22.2328462969065],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(220,57,18,1)"}},"hoveron":"points","set":"SharedData0905215c","name":"GO:MF","legendgroup":"GO:MF","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[2,51.318931880995],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(220,57,18,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2,51.318931880995],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(220,57,18,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[55.3426678588847,73.292554056251],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(16,150,24,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[55.3426678588847,73.292554056251],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(16,150,24,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[77.3162900341408,200.004023735978],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(255,153,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[77.3162900341408,200.004023735978],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(255,153,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[180],"y":[16.2],"text":"values above this threshold are capped","hovertext":"","textfont":{"size":7.55905511811024,"color":"rgba(190,190,190,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[180],"y":[16.2],"text":"values above this threshold are capped","hovertext":"","textfont":{"size":7.55905511811024,"color":"rgba(190,190,190,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0,210],"y":[16,16],"text":"","type":"scatter","mode":"lines","line":{"width":0.755905511811024,"color":"rgba(190,190,190,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,210],"y":[16,16],"text":"","type":"scatter","mode":"lines","line":{"width":0.755905511811024,"color":"rgba(190,190,190,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":29.2835201328352,"r":6.6417600664176,"b":34.6245339262839,"l":61.0377750103778},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0,210],"tickmode":"array","ticktext":["GO:MF","GO:CC","GO:BP"],"tickvals":[26.6594659404975,64.3176109575679,138.660156885059],"categoryorder":"array","categoryarray":["GO:MF","GO:CC","GO:BP"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.6268161062682},"tickangle":-45,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.132835201328352,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"yaxis":{"domain":[0.524736665233504,1],"automargin":true,"type":"linear","autorange":false,"range":[-1,18.5],"tickmode":"array","ticktext":["0","2","4","6","8","10","12","14",">16"],"tickvals":[0,2,4,6,8,10,12,14,16],"categoryorder":"array","categoryarray":["0","2","4","6","8","10","12","14",">16"],"nticks":null,"ticks":"outside","tickcolor":"rgba(190,190,190,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"annotations":[{"text":"-log10(p-adj)","x":-0.0322094614332057,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis"},{"text":"01_dmregions","x":0.5,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(169,169,169,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"02_dmtag","x":0.5,"y":0.475263334766495,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(169,169,169,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0.524736665233504,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":24.9730178497302,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":0.475263334766495},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":24.9730178497302,"yanchor":0.475263334766495,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[0,210],"tickmode":"array","ticktext":["GO:MF","GO:CC","GO:BP"],"tickvals":[26.6594659404975,64.3176109575679,138.660156885059],"categoryorder":"array","categoryarray":["GO:MF","GO:CC","GO:BP"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.6268161062682},"tickangle":-45,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.132835201328352,"showgrid":false,"domain":[0,1],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y2","title":"","hoverformat":".2f"},"yaxis2":{"type":"linear","autorange":false,"range":[-1,18.5],"tickmode":"array","ticktext":["0","2","4","6","8","10","12","14",">16"],"tickvals":[0,2,4,6,8,10,12,14,16],"categoryorder":"array","categoryarray":["0","2","4","6","8","10","12","14",">16"],"nticks":null,"ticks":"outside","tickcolor":"rgba(190,190,190,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.66417600664176,"showgrid":false,"domain":[0,0.475263334766495],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative","dragmode":"zoom"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"27a828a62a63":{"colour":{},"size":{},"alpha":{},"key":{},"x":{},"y":{},"text":{},"type":"scatter"},"27a8704f2956":{"x":{},"xend":{},"y":{},"yend":{}},"27a8341b4dfc":{"x":{},"xend":{},"y":{},"yend":{}},"27a872837f7e":{"x":{},"xend":{},"y":{},"yend":{}},"27a83ccc6e9b":{"x":{},"y":{}},"27a865884fe":{"yintercept":{}}},"cur_data":"27a828a62a63","visdat":{"27a828a62a63":["function (y) ","x"],"27a8704f2956":["function (y) ","x"],"27a8341b4dfc":["function (y) ","x"],"27a872837f7e":["function (y) ","x"],"27a83ccc6e9b":["function (y) ","x"],"27a865884fe":["function (y) ","x"]},"highlight":{"on":"plotly_click","off":"plotly_doubleclick","persistent":false,"dynamic":false,"color":null,"selectize":false,"defaultValues":null,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0,"ctGroups":["SharedData0905215c"]},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-44c81c46de429b626eeb">{"x":{"data":[{"x":[138.048528957126,112.903378156773,90.1323094451067],"y":[1.95748969304861,1.72565267093432,1.55010535951713],"text":["GO:0048731 (4485) <br> system development <br> 1.103e-02","GO:0032502 (5832) <br> developmental process <br> 1.881e-02","GO:0007275 (4979) <br> multicellular organism development <br> 2.818e-02"],"key":["GO:0048731","GO:0032502","GO:0007275"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,153,0,1)","opacity":0.8,"size":[19.5758941341224,20.2834738706832,19.8611522440285],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,153,0,1)"}},"hoveron":"points","set":"SharedData0905215c","name":"GO:BP","legendgroup":"GO:BP","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[138.048528957126,90.1323094451067,138.519321506917,112.903378156773,90.5749349192688,108.501266622833,138.56760792228,112.899354288826,137.259850839528,137.139134801121,107.809161335962,93.5727165397302,108.042545676884,137.919765182825,89.6856601029977,78.5677129656354,114.40025703303,138.527369242811,78.5596652297416,114.396233165083,108.55760077409,169.366293188068,138.346295185199,110.513200596297,137.791001408523,137.300089518998,152.506286490439,139.275808680939,167.515313932481,88.9211251930814,137.79502527647,139.227522265576,139.239593869417,139.243617737364,108.223619734495,96.6751187268118,100.143692897064,111.221401354957,90.6071258628442,151.073789501332,91.5969973777885,157.157877837088,131.17978637172,167.636029970888,137.28399404721,117.092224689525,123.614914631495,94.590755130303,90.6111497307912,165.716644960204,94.3372514496466,166.573728832899,140.342133686875],"y":[15.8212766194542,14.8181555232519,14.8083539738639,12.399406002158,11.3765599562734,8.53337428207588,8.40328755963963,8.21183844091698,6.88853181434644,6.579017499839,6.40585894369051,6.20934241999706,6.05914386195867,5.95743214487855,5.90298023101714,5.08512053443142,5.03070930297541,4.8768719216216,4.81614057580042,4.51104999952688,4.30981353372881,4.27144318793558,3.95885347037758,3.88824195334204,3.67774496275059,3.55003939430007,3.08249143494643,3.04022332955148,3.0031671751305,2.64036818941977,2.61632778562479,2.58368551909798,2.45557257585831,2.41844052468302,2.20463436601065,2.10836988548014,2.08539655451198,2.02762281337495,2.00595522765749,1.98173574411155,1.93457099795823,1.88956319818929,1.83603271751971,1.75194586148043,1.6473711154284,1.63906026810209,1.58576766071595,1.49429598204887,1.4452140164225,1.40367223540814,1.39105576271713,1.38651376024617,1.37383925677281],"text":["GO:0048731 (4485) <br> system development <br> 1.509e-16","GO:0007275 (4979) <br> multicellular organism development <br> 1.520e-15","GO:0048856 (5398) <br> anatomical structure development <br> 1.555e-15","GO:0032502 (5832) <br> developmental process <br> 3.987e-13","GO:0007399 (2281) <br> nervous system development <br> 4.202e-12","GO:0030154 (3827) <br> cell differentiation <br> 2.928e-09","GO:0048869 (3893) <br> cellular developmental process <br> 3.951e-09","GO:0032501 (6652) <br> multicellular organismal process <br> 6.140e-09","GO:0048513 (3284) <br> animal organ development <br> 1.293e-07","GO:0048468 (1938) <br> cell development <br> 2.636e-07","GO:0022008 (1568) <br> neurogenesis <br> 3.928e-07","GO:0009653 (2567) <br> anatomical structure morphogenesis <br> 6.175e-07","GO:0022610 (1329) <br> biological adhesion <br> 8.727e-07","GO:0048699 (1460) <br> generation of neurons <br> 1.103e-06","GO:0007155 (1323) <br> cell adhesion <br> 1.250e-06","GO:0000904 (713) <br> cell morphogenesis involved in differentiation <br> 8.220e-06","GO:0032990 (669) <br> cell part morphogenesis <br> 9.317e-06","GO:0048858 (651) <br> cell projection morphogenesis <br> 1.328e-05","GO:0000902 (983) <br> cell morphogenesis <br> 1.527e-05","GO:0032989 (755) <br> cellular component morphogenesis <br> 3.083e-05","GO:0030182 (1330) <br> neuron differentiation <br> 4.900e-05","GO:0120039 (647) <br> plasma membrane bounded cell projection morphogenesis <br> 5.353e-05","GO:0048812 (634) <br> neuron projection morphogenesis <br> 1.099e-04","GO:0031175 (946) <br> neuron projection development <br> 1.293e-04","GO:0048666 (1079) <br> neuron development <br> 2.100e-04","GO:0048523 (4514) <br> negative regulation of cellular process <br> 2.818e-04","GO:0065007 (10600) <br> biological regulation <br> 8.270e-04","GO:0050804 (415) <br> modulation of chemical synaptic transmission <br> 9.115e-04","GO:0099177 (416) <br> regulation of trans-synaptic signaling <br> 9.927e-04","GO:0006928 (1955) <br> movement of cell or subcellular component <br> 2.289e-03","GO:0048667 (574) <br> cell morphogenesis involved in neuron differentiation <br> 2.419e-03","GO:0050789 (10038) <br> regulation of biological process <br> 2.608e-03","GO:0050793 (2302) <br> regulation of developmental process <br> 3.503e-03","GO:0050794 (9533) <br> regulation of cellular process <br> 3.816e-03","GO:0023051 (3228) <br> regulation of signaling <br> 6.243e-03","GO:0010646 (3192) <br> regulation of cell communication <br> 7.792e-03","GO:0016043 (5667) <br> cellular component organization <br> 8.215e-03","GO:0031589 (334) <br> cell-substrate adhesion <br> 9.384e-03","GO:0007409 (456) <br> axonogenesis <br> 9.864e-03","GO:0061564 (491) <br> axon development <br> 1.043e-02","GO:0008150 (14730) <br> biological_process <br> 1.163e-02","GO:0071840 (5844) <br> cellular component organization or biogenesis <br> 1.290e-02","GO:0045595 (1486) <br> regulation of cell differentiation <br> 1.459e-02","GO:0099536 (689) <br> synaptic signaling <br> 1.770e-02","GO:0048519 (5029) <br> negative regulation of biological process <br> 2.252e-02","GO:0034330 (657) <br> cell junction organization <br> 2.296e-02","GO:0040011 (1706) <br> locomotion <br> 2.596e-02","GO:0009987 (14121) <br> cellular process <br> 3.204e-02","GO:0007411 (264) <br> axon guidance <br> 3.587e-02","GO:0097485 (265) <br> neuron projection guidance <br> 3.948e-02","GO:0009890 (1554) <br> negative regulation of biosynthetic process <br> 4.064e-02","GO:0098742 (255) <br> cell-cell adhesion via plasma-membrane adhesion molecules <br> 4.107e-02","GO:0051128 (2168) <br> regulation of cellular component organization <br> 4.228e-02"],"key":["GO:0048731","GO:0007275","GO:0048856","GO:0032502","GO:0007399","GO:0030154","GO:0048869","GO:0032501","GO:0048513","GO:0048468","GO:0022008","GO:0009653","GO:0022610","GO:0048699","GO:0007155","GO:0000904","GO:0032990","GO:0048858","GO:0000902","GO:0032989","GO:0030182","GO:0120039","GO:0048812","GO:0031175","GO:0048666","GO:0048523","GO:0065007","GO:0050804","GO:0099177","GO:0006928","GO:0048667","GO:0050789","GO:0050793","GO:0050794","GO:0023051","GO:0010646","GO:0016043","GO:0031589","GO:0007409","GO:0061564","GO:0008150","GO:0071840","GO:0045595","GO:0099536","GO:0048519","GO:0034330","GO:0040011","GO:0009987","GO:0007411","GO:0097485","GO:0009890","GO:0098742","GO:0051128"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,153,0,1)","opacity":0.8,"size":[19.5758941341224,19.8611522440285,20.078311280619,20.2834738706832,17.5883797889428,19.1326314194053,19.1810162332835,20.626760178587,18.6926452396403,17.0649622377237,16.3519461912638,17.9557161239612,15.7659268008216,16.1024778628364,15.7494891609419,13.2390343863009,12.9413454447443,12.8108789571373,14.6159896174254,13.4987533763442,15.768657006254,12.7811348098622,12.6824779307086,14.4608196532955,14.9839070057472,19.5936383180896,21.7900271258463,10.2897687391395,10.3058351322376,17.093536600879,12.1825259951041,21.6579286605391,17.6172276311056,21.5318528013254,18.6423762319929,18.6095060347189,20.2076306517387,8.62581553700735,10.8916570686993,11.3305616170243,22.5681581433113,20.2888923829846,16.1646498643072,13.0801977950447,19.8881659165945,12.8549736927681,16.6405713296293,22.470116126036,5.51692934198019,5.60916912942722,16.3208671097275,3.77952755905512,17.4273361520225],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,153,0,1)"}},"hoveron":"points","set":"SharedData0905215c","name":"GO:BP","legendgroup":"GO:BP","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[68.0041795129014,57.4395043406847,56.3327288464525,70.9180175413528,59.5041437171979,65.2271791819187,70.2821247119394,70.3062725409044],"y":[8.54903748145989,8.19452158340533,5.89497037255775,5.39533305177899,3.57237140496771,2.02317868957931,1.6891324229477,1.36640823572873],"text":["GO:0071944 (4588) <br> cell periphery <br> 2.825e-09","GO:0005886 (4493) <br> plasma membrane <br> 6.390e-09","GO:0005575 (15330) <br> cellular_component <br> 1.274e-06","GO:0110165 (15209) <br> cellular anatomical entity <br> 4.024e-06","GO:0030054 (1939) <br> cell junction <br> 2.677e-04","GO:0045202 (1262) <br> synapse <br> 9.480e-03","GO:0098978 (343) <br> glutamatergic synapse <br> 2.046e-02","GO:0098984 (341) <br> neuron to neuron synapse <br> 4.301e-02"],"key":["GO:0071944","GO:0005886","GO:0005575","GO:0110165","GO:0030054","GO:0045202","GO:0098978","GO:0098984"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(16,150,24,1)","opacity":0.8,"size":[19.6383168057224,19.580802508373,22.6603965821678,22.6421251377601,17.0666517162154,15.5766445060297,8.85894642539759,8.80859976877743],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(16,150,24,1)"}},"hoveron":"points","set":"SharedData0905215c","name":"GO:CC","legendgroup":"GO:CC","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[3.62974603555833,9.53707240642164,9.60548149927223],"y":[6.25401366290396,2.47985337217644,1.38557546739225],"text":["GO:0003674 (15442) <br> molecular_function <br> 5.572e-07","GO:0005488 (14393) <br> binding <br> 3.312e-03","GO:0005515 (12761) <br> protein binding <br> 4.116e-02"],"key":["GO:0003674","GO:0005488","GO:0005515"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(220,57,18,1)","opacity":0.8,"size":[22.6771653543307,22.5144808385363,22.2328462969065],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(220,57,18,1)"}},"hoveron":"points","set":"SharedData0905215c","name":"GO:MF","legendgroup":"GO:MF","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[2,51.318931880995],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(220,57,18,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2,51.318931880995],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(220,57,18,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[55.3426678588847,73.292554056251],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(16,150,24,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[55.3426678588847,73.292554056251],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(16,150,24,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[77.3162900341408,200.004023735978],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(255,153,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[77.3162900341408,200.004023735978],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(255,153,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[180],"y":[16.2],"text":"values above this threshold are capped","hovertext":"","textfont":{"size":7.55905511811024,"color":"rgba(190,190,190,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[180],"y":[16.2],"text":"values above this threshold are capped","hovertext":"","textfont":{"size":7.55905511811024,"color":"rgba(190,190,190,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0,210],"y":[16,16],"text":"","type":"scatter","mode":"lines","line":{"width":0.755905511811024,"color":"rgba(190,190,190,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,210],"y":[16,16],"text":"","type":"scatter","mode":"lines","line":{"width":0.755905511811024,"color":"rgba(190,190,190,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":29.2835201328352,"r":6.6417600664176,"b":34.6245339262839,"l":61.0377750103778},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0,210],"tickmode":"array","ticktext":["GO:MF","GO:CC","GO:BP"],"tickvals":[26.6594659404975,64.3176109575679,138.660156885059],"categoryorder":"array","categoryarray":["GO:MF","GO:CC","GO:BP"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.6268161062682},"tickangle":-45,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.132835201328352,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"yaxis":{"domain":[0.509276249462564,1],"automargin":true,"type":"linear","autorange":false,"range":[-1,18.5],"tickmode":"array","ticktext":["0","2","4","6","8","10","12","14",">16"],"tickvals":[0,2,4,6,8,10,12,14,16],"categoryorder":"array","categoryarray":["0","2","4","6","8","10","12","14",">16"],"nticks":null,"ticks":"outside","tickcolor":"rgba(190,190,190,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"annotations":[{"text":"-log10(p-adj)","x":-0.0120785480374521,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis"},{"text":"01_dmregions","x":0.5,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(169,169,169,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"02_dmtag","x":0.5,"y":0.490723750537436,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(169,169,169,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0.509276249462564,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":24.9730178497302,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":0.490723750537436},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":24.9730178497302,"yanchor":0.490723750537436,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[0,210],"tickmode":"array","ticktext":["GO:MF","GO:CC","GO:BP"],"tickvals":[26.6594659404975,64.3176109575679,138.660156885059],"categoryorder":"array","categoryarray":["GO:MF","GO:CC","GO:BP"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.6268161062682},"tickangle":-45,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.132835201328352,"showgrid":false,"domain":[0,1],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y2","title":"","hoverformat":".2f"},"yaxis2":{"type":"linear","autorange":false,"range":[-1,18.5],"tickmode":"array","ticktext":["0","2","4","6","8","10","12","14",">16"],"tickvals":[0,2,4,6,8,10,12,14,16],"categoryorder":"array","categoryarray":["0","2","4","6","8","10","12","14",">16"],"nticks":null,"ticks":"outside","tickcolor":"rgba(190,190,190,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.66417600664176,"showgrid":false,"domain":[0,0.490723750537436],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative","dragmode":"zoom"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"28481ca450b8":{"colour":{},"size":{},"alpha":{},"key":{},"x":{},"y":{},"text":{},"type":"scatter"},"28486d2a1ab7":{"x":{},"xend":{},"y":{},"yend":{}},"28484e6f793c":{"x":{},"xend":{},"y":{},"yend":{}},"284833f178d":{"x":{},"xend":{},"y":{},"yend":{}},"2848fa24775":{"x":{},"y":{}},"28483955389d":{"yintercept":{}}},"cur_data":"28481ca450b8","visdat":{"28481ca450b8":["function (y) ","x"],"28486d2a1ab7":["function (y) ","x"],"28484e6f793c":["function (y) ","x"],"284833f178d":["function (y) ","x"],"2848fa24775":["function (y) ","x"],"28483955389d":["function (y) ","x"]},"highlight":{"on":"plotly_click","off":"plotly_doubleclick","persistent":false,"dynamic":false,"color":null,"selectize":false,"defaultValues":null,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0,"ctGroups":["SharedData0905215c"]},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>p = gostplot(gostres, capped = TRUE, interactive = F)
 
 toptab = gostres$result
@@ -908,7 +950,7 @@ Annotation_list = Annotation_list[Annotation_list$univers==T,]
 UniversalGeneset=Annotation_list$Symbol
 
 # define Gene lists to test 
-# sort and order Modules to be teste 
+# sort and order Modules to be tested
 
 Modules=unique(Annotation_list$Module)
 Modules = Modules[! Modules %in% c(NA, &quot;&quot;)]
@@ -949,17 +991,183 @@ for (i in names(Resultsall)){
   multiORplot(datatoplot = Resultsall[[i]], pheno=i)
 }</code></pre>
 <p><img src="figure/03_01_Posthoc_analyses_Gene_Enrichment.Rmd/brainModules-1.png" width="480" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>par(mfrow = c(1,1))
+pdf(paste0(Home, &quot;/output/BrainMod_Enrichemnt.pdf&quot;))
+for (i in names(Resultsall)){
+  multiORplot(datatoplot = Resultsall[[i]], pheno=i)
+}
+dev.off()</code></pre>
+<pre><code>png 
+  2 </code></pre>
 <pre class="r"><code>Modsig = c()
 
 for(r in names(Resultsall)){
   a=rownames(Resultsall[[r]])[Resultsall[[r]]$Padj&lt;=0.05]
   Modsig = c(Modsig,a)
+}</code></pre>
+<pre class="r"><code># show brains and expression
+Modsig2=unique(Modsig[Modsig!=&quot;M_all&quot;])
+
+load(paste0(Home,&quot;/data/Kang_DataPreprocessing.RData&quot;)) #Load the Kang expression data of all genes 
+datExprPlot=matriz #Expression data of Kang loaded as Rdata object DataPreprocessing.RData
+
+
+Genes = GL_all[names(GL_all)!=&quot;M_all&quot;]
+
+Genes_expression&lt;-list()
+
+pcatest&lt;-list()
+for (i in names(Genes)){
+  Genes_expression[[i]]&lt;-matriz[,which(colnames(matriz) %in% Genes[[i]])]
+  pcatest[[i]]=prcomp(t(as.matrix(Genes_expression[[i]])),retx=TRUE)
 }
 
-# show brains TODO
-Modisg=unique(Modsig)
-load(paste0(Home,&quot;/data/Kang_DataPreprocessing.RData&quot;)) #Load the Kang expression data of all genes 
-datExprPlot=matriz #Expression data of Kang loaded as Rdata object DataPreprocessing.RData</code></pre>
+# PCA test
+PCA&lt;-data.frame(pcatest[[1]]$rotation)
+PCA$donor_name&lt;-rownames(PCA)
+PC1&lt;-data.frame(PCA[,c(1,ncol(PCA))])
+
+#Combining the age with expression data
+list &lt;- strsplit(sampleInfo$age, &quot; &quot;)
+library(&quot;plyr&quot;)</code></pre>
+<pre><code>------------------------------------------------------------------------------</code></pre>
+<pre><code>You have loaded plyr after dplyr - this is likely to cause problems.
+If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+library(plyr); library(dplyr)</code></pre>
+<pre><code>------------------------------------------------------------------------------</code></pre>
+<pre><code>
+Attaching package: &#39;plyr&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:matrixStats&#39;:
+
+    count</code></pre>
+<pre><code>The following object is masked from &#39;package:IRanges&#39;:
+
+    desc</code></pre>
+<pre><code>The following object is masked from &#39;package:S4Vectors&#39;:
+
+    rename</code></pre>
+<pre><code>The following objects are masked from &#39;package:dplyr&#39;:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize</code></pre>
+<pre><code>The following object is masked from &#39;package:purrr&#39;:
+
+    compact</code></pre>
+<pre class="r"><code>df &lt;- ldply(list)
+colnames(df) &lt;- c(&quot;Age&quot;, &quot;time&quot;)
+
+sampleInfo&lt;-cbind(sampleInfo[,1:9],df)
+sampleInfo$Age&lt;-as.numeric(sampleInfo$Age)
+
+sampleInfo$period&lt;-ifelse(sampleInfo$time==&quot;pcw&quot;,sampleInfo$Age*7,ifelse(sampleInfo$time==&quot;yrs&quot;,sampleInfo$Age*365+270,ifelse(sampleInfo$time==&quot;mos&quot;,sampleInfo$Age*30+270,NA)))
+
+#We need it just for the donor names
+
+PCA_matrix&lt;-merge.with.order(PC1,sampleInfo,by.y=&quot;SampleID&quot;,by.x=&quot;donor_name&quot;,keep_order=1)
+
+#Select which have phenotype info present 
+matriz2&lt;-matriz[which(rownames(matriz) %in% PCA_matrix$donor_name),]
+FactorGenes_expression&lt;-list()
+#Factors here mean modules
+for (i in names(Genes)){
+  FactorGenes_expression[[i]]&lt;-matriz2[,which(colnames(matriz2) %in% Genes[[i]])]
+}
+
+
+FactorseGE&lt;-list()
+for (i in names(Genes)){
+  FactorseGE[[i]]&lt;-FactorGenes_expression[[i]]
+}
+
+allModgenes=NULL
+colors=vector()
+for ( i in names(Genes)){
+  allModgenes=cbind(allModgenes,FactorseGE[[i]])
+  colors=c(colors, rep(i, ncol(FactorseGE[[i]])))
+}
+
+
+lengths=unlist(lapply(FactorGenes_expression, ncol), use.names = F)
+
+MEorig=moduleEigengenes(allModgenes, colors)
+
+PCA_matrixfreeze=PCA_matrix
+
+index=!PCA_matrix$structure_acronym %in% c(&quot;URL&quot;, &quot;DTH&quot;, &quot;CGE&quot;,&quot;LGE&quot;, &quot;MGE&quot;,  &quot;Ocx&quot;, &quot;PCx&quot;, &quot;M1C-S1C&quot;,&quot;DIE&quot;, &quot;TCx&quot;, &quot;CB&quot;)
+PCA_matrix=PCA_matrix[index,]
+ME = MEorig$eigengenes[index,]
+colnames(ME) = gsub(&quot;ME&quot;, &quot;&quot;, colnames(ME))
+
+timepoints=seq(56,15000, length.out=1000)
+matrix(c(&quot;CB&quot;, &quot;THA&quot;, &quot;CBC&quot;, &quot;MD&quot;), ncol=2 ) -&gt; cnm
+
+
+brainheatmap=function(Module){
+  MEmod=ME[,Module]
+  toplot=data.frame(matrix(NA, nrow=length(table(PCA_matrix$structure_acronym)), ncol=998))
+  rownames(toplot)=unique(PCA_matrix$structure_acronym)
+  target &lt;- c(&quot;OFC&quot;, &quot;DFC&quot;, &quot;VFC&quot;, &quot;MFC&quot;,&quot;M1C&quot;,&quot;S1C&quot;,&quot;IPC&quot;,&quot;A1C&quot;,&quot;STC&quot;,&quot;ITC&quot;,&quot;V1C&quot;,&quot;HIP&quot;,&quot;AMY&quot;,&quot;STR&quot;,&quot;MD&quot;,&quot;CBC&quot;)
+  toplot&lt;-toplot[c(6,2,8,5,11,12,10,9,7,4,14,3,1,13,16,15),]
+  
+  
+  for ( i in unique(PCA_matrix$structure_acronym)){
+    index=PCA_matrix$structure_acronym==i
+    LOESS=loess(MEmod[index]~PCA_matrix$period[index])
+    toplot[i,]=predict(LOESS,newdata = round(exp(seq(log(56),log(15000), length.out=998)),2))
+    colnames(toplot)[c(1,77,282,392,640,803,996)]&lt;-
+      c(&quot;1pcw&quot;,&quot;21pcw&quot;,&quot;Birth&quot;,&quot;1.3years&quot;,&quot;5.4years&quot;,&quot;13.6years&quot;,&quot;40.7years&quot;)
+  }
+  
+  
+  
+  cols=viridis(100)
+  labvec &lt;- c(rep(NA, 1000))
+  
+  labvec[c(1,77,282,392,640,803,996)] &lt;- c(&quot;1pcw&quot;,&quot;21pcw&quot;,&quot;Birth&quot;,&quot;1.3years&quot;,&quot;5.4years&quot;,&quot;13.6years&quot;,&quot;40.7years&quot;)
+  
+  
+  toplot&lt;-toplot[,1:998]
+  date&lt;-c(1:998)
+  dateY&lt;-paste0(round(date/365,2),&quot;_Years&quot;)
+  
+  names(toplot)&lt;-dateY
+  
+  par(xpd=FALSE) 
+  heatmap.2(as.matrix(toplot), col = cols, 
+            main=Module,
+            trace = &quot;none&quot;, 
+            na.color = &quot;grey&quot;,
+            Colv = F, Rowv = F,
+            labCol = labvec,
+            #breaks = seq(-0.1,0.1, length.out=101),
+            symkey = T,
+            scale = &quot;row&quot;,
+            key.title = &quot;&quot;,
+            dendrogram = &quot;none&quot;,
+            key.xlab = &quot;eigengene&quot;,
+            density.info = &quot;none&quot;,
+            #main=paste(&quot;Module&quot;,1),
+            srtCol=90,
+            tracecol = &quot;none&quot;, 
+            cexRow = 1,
+            add.expr=eval.parent(abline(v=282),
+                                 axis(1,at=c(1,77,282,392,640,803,996),
+                                      labels =FALSE)),cexCol = 1)
+  
+ 
+}
+
+for(Module in Modsig2){
+  brainheatmap(Module)
+}</code></pre>
+<p><img src="figure/03_01_Posthoc_analyses_Gene_Enrichment.Rmd/modplots-1.png" width="864" style="display: block; margin: auto;" /><img src="figure/03_01_Posthoc_analyses_Gene_Enrichment.Rmd/modplots-2.png" width="864" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>pdf(paste0(Home, &quot;/output/Brain_Module_Heatmap.pdf&quot;))
+for(Module in Modsig2){
+  brainheatmap(Module)
+}
+dev.off()</code></pre>
+<pre><code>png 
+  2 </code></pre>
 </div>
 <div id="sem" class="section level2">
 <h2>SEM</h2>
@@ -988,7 +1196,7 @@ EpiMarker = c(EpiMarker, &quot;Epi_TopHit&quot;, &quot;Epi_all&quot;)
 
 #Brain Modules
 
-Epitestset=GL_all[Modisg]
+Epitestset=GL_all[Modsig]
 
 for(n in names(Epitestset)){
   index=gettaglistforgenelist(genelist = Epitestset[[n]], dds_filt)
@@ -1028,7 +1236,7 @@ for (marker in EpiMarker) {
   
   sink(paste0(Home,&quot;/output/SEM_summary_group&quot;,marker,&quot;.txt&quot;))
   summary(fit)
-  fitMeasures(fit)
+  print(fitMeasures(fit))
   sink()
   
   #SOURCE FOR PLOT https://stackoverflow.com/questions/51270032/how-can-i-display-only-significant-path-lines-on-a-path-diagram-r-lavaan-sem
@@ -1080,13 +1288,20 @@ for (marker in EpiMarker) {
   
   edges$dashes = F
   edges$label =  DF$std
-  edges$color=Dark8[1:2][factor(sign(DF$std), levels=c(-1,0,1),labels=c(1,2,2))]
-  plotnet&lt;- visNetwork(nodes, edges,
+  edges$color=c(&quot;firebrick&quot;, &quot;forestgreen&quot;)[1:2][factor(sign(DF$std), levels=c(-1,0,1),labels=c(1,2,2))]
+  edges$width=2
+  cexlab = 18
+  plotnet&lt;- visNetwork(nodes, edges,  
                        main=list(text=marker,
                                  style=&quot;font-family:arial;font-size:20px;text-align:center&quot;),
-                       submain=list(text=&quot;significant paths&quot;, style=&quot;font-family:arial;text-align:center&quot;)) %&gt;% 
-    visEdges(arrows =list(to = list(enabled = TRUE, scaleFactor = 0.7))) %&gt;%
+                       submain=list(text=&quot;significant paths&quot;, 
+                                    style=&quot;font-family:arial;text-align:center&quot;)) %&gt;% 
+    visEdges(arrows =list(to = list(enabled = TRUE, scaleFactor = 0.7)),
+                       font=list(size=cexlab, style=&quot;font-family:arial;text-align:center&quot;)) %&gt;%
+    visNodes(font=list(size=cexlab, style=&quot;font-family:arial;text-align:center&quot;)) %&gt;%
+    
     visPhysics(enabled = T, solver = &quot;forceAtlas2Based&quot;)
+  
   
   Netlist[[marker]] = plotnet
   htmlfile = paste0(Home,&quot;/output/SEMplot_&quot;,marker,&quot;.html&quot;)
@@ -1116,15 +1331,15 @@ for (n in names(rmd_paths)) {
         file.remove(rmd_paths[[n]])
     }</code></pre>
 <div id="htmlwidget-7965022d8e5ff1ac8673" style="width:864px;height:672px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7965022d8e5ff1ac8673">{"x":{"nodes":{"id":["group","Epi_TopHit","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"label":["group","Epi_TopHit","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"color":["#7570B3","#E7298A","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666"]},"edges":{"from":["Epi_TopHit","Age","int_dis","medication","EduPar","cigday_1"],"to":["group","group","group","group","group","group"],"width":[0.339,0.158,0.167,0.214,0.22,0.334],"arrows":["to","to","to","to","to","to"],"dashes":[false,false,false,false,false,false],"label":[-0.339,-0.158,0.167,0.214,-0.22,0.334],"color":["#1B9E77","#1B9E77","#D95F02","#D95F02","#1B9E77","#D95F02"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.7}}},"physics":{"solver":"forceAtlas2Based","enabled":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":{"text":"Epi_TopHit","style":"font-family:arial;font-size:20px;text-align:center"},"submain":{"text":"significant paths","style":"font-family:arial;text-align:center"},"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-7965022d8e5ff1ac8673">{"x":{"nodes":{"id":["group","Epi_TopHit","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"label":["group","Epi_TopHit","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"color":["#7570B3","#E7298A","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666"]},"edges":{"from":["Epi_TopHit","Age","int_dis","medication","EduPar","cigday_1"],"to":["group","group","group","group","group","group"],"width":[2,2,2,2,2,2],"arrows":["to","to","to","to","to","to"],"dashes":[false,false,false,false,false,false],"label":[-0.339,-0.158,0.167,0.214,-0.22,0.334],"color":["firebrick","firebrick","forestgreen","forestgreen","firebrick","forestgreen"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","font":{"size":18,"style":"font-family:arial;text-align:center"}},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.7}},"font":{"size":18,"style":"font-family:arial;text-align:center"}},"physics":{"solver":"forceAtlas2Based","enabled":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":{"text":"Epi_TopHit","style":"font-family:arial;font-size:20px;text-align:center"},"submain":{"text":"significant paths","style":"font-family:arial;text-align:center"},"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <div id="htmlwidget-8aa746e8983381d3d120" style="width:864px;height:672px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8aa746e8983381d3d120">{"x":{"nodes":{"id":["group","Epi_all","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"label":["group","Epi_all","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"color":["#7570B3","#E7298A","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666"]},"edges":{"from":["Epi_all","Age","int_dis","medication","cigday_1","EduPar"],"to":["group","group","group","group","group","Epi_all"],"width":[0.599,0.168,0.16,0.229,0.351,0.241],"arrows":["to","to","to","to","to","to"],"dashes":[false,false,false,false,false,false],"label":[0.599,-0.168,0.16,0.229,0.351,-0.241],"color":["#D95F02","#1B9E77","#D95F02","#D95F02","#D95F02","#1B9E77"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.7}}},"physics":{"solver":"forceAtlas2Based","enabled":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":{"text":"Epi_all","style":"font-family:arial;font-size:20px;text-align:center"},"submain":{"text":"significant paths","style":"font-family:arial;text-align:center"},"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-8aa746e8983381d3d120">{"x":{"nodes":{"id":["group","Epi_all","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"label":["group","Epi_all","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"color":["#7570B3","#E7298A","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666"]},"edges":{"from":["Epi_all","Age","int_dis","medication","cigday_1","EduPar"],"to":["group","group","group","group","group","Epi_all"],"width":[2,2,2,2,2,2],"arrows":["to","to","to","to","to","to"],"dashes":[false,false,false,false,false,false],"label":[0.599,-0.168,0.16,0.229,0.351,-0.241],"color":["forestgreen","firebrick","forestgreen","forestgreen","forestgreen","firebrick"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","font":{"size":18,"style":"font-family:arial;text-align:center"}},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.7}},"font":{"size":18,"style":"font-family:arial;text-align:center"}},"physics":{"solver":"forceAtlas2Based","enabled":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":{"text":"Epi_all","style":"font-family:arial;font-size:20px;text-align:center"},"submain":{"text":"significant paths","style":"font-family:arial;text-align:center"},"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <div id="htmlwidget-39ad7dbd4b5bb3cff80d" style="width:864px;height:672px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-39ad7dbd4b5bb3cff80d">{"x":{"nodes":{"id":["group","Epi_M2","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"label":["group","Epi_M2","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"color":["#7570B3","#E7298A","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666"]},"edges":{"from":["Epi_M2","int_dis","medication","EduPar","cigday_1"],"to":["group","group","group","group","group"],"width":[0.29,0.212,0.263,0.21,0.352],"arrows":["to","to","to","to","to"],"dashes":[false,false,false,false,false],"label":[-0.29,0.212,0.263,-0.21,0.352],"color":["#1B9E77","#D95F02","#D95F02","#1B9E77","#D95F02"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.7}}},"physics":{"solver":"forceAtlas2Based","enabled":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":{"text":"Epi_M2","style":"font-family:arial;font-size:20px;text-align:center"},"submain":{"text":"significant paths","style":"font-family:arial;text-align:center"},"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-39ad7dbd4b5bb3cff80d">{"x":{"nodes":{"id":["group","Epi_M2","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"label":["group","Epi_M2","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"color":["#7570B3","#E7298A","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666"]},"edges":{"from":["Epi_M2","int_dis","medication","EduPar","cigday_1"],"to":["group","group","group","group","group"],"width":[2,2,2,2,2],"arrows":["to","to","to","to","to"],"dashes":[false,false,false,false,false],"label":[-0.29,0.212,0.263,-0.21,0.352],"color":["firebrick","forestgreen","forestgreen","firebrick","forestgreen"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","font":{"size":18,"style":"font-family:arial;text-align:center"}},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.7}},"font":{"size":18,"style":"font-family:arial;text-align:center"}},"physics":{"solver":"forceAtlas2Based","enabled":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":{"text":"Epi_M2","style":"font-family:arial;font-size:20px;text-align:center"},"submain":{"text":"significant paths","style":"font-family:arial;text-align:center"},"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <div id="htmlwidget-2b4f1e25c7ea71270324" style="width:864px;height:672px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2b4f1e25c7ea71270324">{"x":{"nodes":{"id":["group","Epi_M15","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"label":["group","Epi_M15","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"color":["#7570B3","#E7298A","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666"]},"edges":{"from":["Epi_M15","Age","Matagg","int_dis","medication","cigday_1","EduPar"],"to":["group","group","group","group","group","group","Epi_M15"],"width":[0.545,0.18,0.198,0.147,0.22,0.351,0.303],"arrows":["to","to","to","to","to","to","to"],"dashes":[false,false,false,false,false,false,false],"label":[-0.545,-0.18,0.198,0.147,0.22,0.351,0.303],"color":["#1B9E77","#1B9E77","#D95F02","#D95F02","#D95F02","#D95F02","#D95F02"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.7}}},"physics":{"solver":"forceAtlas2Based","enabled":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":{"text":"Epi_M15","style":"font-family:arial;font-size:20px;text-align:center"},"submain":{"text":"significant paths","style":"font-family:arial;text-align:center"},"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-2b4f1e25c7ea71270324">{"x":{"nodes":{"id":["group","Epi_M15","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"label":["group","Epi_M15","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"color":["#7570B3","#E7298A","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666"]},"edges":{"from":["Epi_M15","Age","Matagg","int_dis","medication","cigday_1","EduPar"],"to":["group","group","group","group","group","group","Epi_M15"],"width":[2,2,2,2,2,2,2],"arrows":["to","to","to","to","to","to","to"],"dashes":[false,false,false,false,false,false,false],"label":[-0.545,-0.18,0.198,0.147,0.22,0.351,0.303],"color":["firebrick","firebrick","forestgreen","forestgreen","forestgreen","forestgreen","forestgreen"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","font":{"size":18,"style":"font-family:arial;text-align:center"}},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.7}},"font":{"size":18,"style":"font-family:arial;text-align:center"}},"physics":{"solver":"forceAtlas2Based","enabled":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":{"text":"Epi_M15","style":"font-family:arial;font-size:20px;text-align:center"},"submain":{"text":"significant paths","style":"font-family:arial;text-align:center"},"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <div id="htmlwidget-9089c5d81d2849e4b34a" style="width:864px;height:672px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9089c5d81d2849e4b34a">{"x":{"nodes":{"id":["group","Epi_M_all","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"label":["group","Epi_M_all","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"color":["#7570B3","#E7298A","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666"]},"edges":{"from":["Epi_M_all","Age","int_dis","medication","cigday_1","EduPar"],"to":["group","group","group","group","group","Epi_M_all"],"width":[0.662,0.176,0.138,0.203,0.29,0.227],"arrows":["to","to","to","to","to","to"],"dashes":[false,false,false,false,false,false],"label":[0.662,-0.176,0.138,0.203,0.29,-0.227],"color":["#D95F02","#1B9E77","#D95F02","#D95F02","#D95F02","#1B9E77"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.7}}},"physics":{"solver":"forceAtlas2Based","enabled":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":{"text":"Epi_M_all","style":"font-family:arial;font-size:20px;text-align:center"},"submain":{"text":"significant paths","style":"font-family:arial;text-align:center"},"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-9089c5d81d2849e4b34a">{"x":{"nodes":{"id":["group","Epi_M_all","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"label":["group","Epi_M_all","Matsmk","Age","Matagg","int_dis","FamScore","medication","EduPar","contraceptives","n_trauma","cigday_1"],"color":["#7570B3","#E7298A","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666","#66A61E","#666666"]},"edges":{"from":["Epi_M_all","Age","int_dis","medication","cigday_1","EduPar"],"to":["group","group","group","group","group","Epi_M_all"],"width":[2,2,2,2,2,2],"arrows":["to","to","to","to","to","to"],"dashes":[false,false,false,false,false,false],"label":[0.662,-0.176,0.138,0.203,0.29,-0.227],"color":["forestgreen","firebrick","forestgreen","forestgreen","forestgreen","firebrick"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","font":{"size":18,"style":"font-family:arial;text-align:center"}},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.7}},"font":{"size":18,"style":"font-family:arial;text-align:center"}},"physics":{"solver":"forceAtlas2Based","enabled":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":{"text":"Epi_M_all","style":"font-family:arial;font-size:20px;text-align:center"},"submain":{"text":"significant paths","style":"font-family:arial;text-align:center"},"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1154,79 +1369,84 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] RCircos_1.2.1               compareGroups_4.4.6        
- [3] webshot_0.5.2               visNetwork_2.0.9           
- [5] org.Hs.eg.db_3.12.0         AnnotationDbi_1.52.0       
- [7] xlsx_0.6.5                  gprofiler2_0.2.0           
- [9] BiocParallel_1.24.1         kableExtra_1.3.1           
-[11] glmpca_0.2.0                knitr_1.30                 
-[13] DESeq2_1.30.0               SummarizedExperiment_1.20.0
-[15] Biobase_2.50.0              MatrixGenerics_1.2.0       
-[17] matrixStats_0.57.0          GenomicRanges_1.42.0       
-[19] GenomeInfoDb_1.26.2         IRanges_2.24.1             
-[21] S4Vectors_0.28.1            BiocGenerics_0.36.0        
-[23] forcats_0.5.0               stringr_1.4.0              
-[25] dplyr_1.0.2                 purrr_0.3.4                
-[27] readr_1.4.0                 tidyr_1.1.2                
-[29] tibble_3.0.4                tidyverse_1.3.0            
-[31] semPlot_1.1.2               lavaan_0.6-7               
-[33] ggplot2_3.3.3               gplots_3.1.1               
-[35] corrplot_0.84               RColorBrewer_1.1-2         
-[37] workflowr_1.6.2            
+ [1] plyr_1.8.6                  scales_1.1.1               
+ [3] RCircos_1.2.1               compareGroups_4.4.6        
+ [5] webshot_0.5.2               visNetwork_2.0.9           
+ [7] org.Hs.eg.db_3.12.0         AnnotationDbi_1.52.0       
+ [9] xlsx_0.6.5                  gprofiler2_0.2.0           
+[11] BiocParallel_1.24.1         kableExtra_1.3.1           
+[13] glmpca_0.2.0                knitr_1.30                 
+[15] DESeq2_1.30.0               SummarizedExperiment_1.20.0
+[17] Biobase_2.50.0              MatrixGenerics_1.2.0       
+[19] matrixStats_0.57.0          GenomicRanges_1.42.0       
+[21] GenomeInfoDb_1.26.2         IRanges_2.24.1             
+[23] S4Vectors_0.28.1            BiocGenerics_0.36.0        
+[25] forcats_0.5.0               stringr_1.4.0              
+[27] dplyr_1.0.2                 purrr_0.3.4                
+[29] readr_1.4.0                 tidyr_1.1.2                
+[31] tibble_3.0.4                tidyverse_1.3.0            
+[33] semPlot_1.1.2               lavaan_0.6-7               
+[35] viridis_0.5.1               viridisLite_0.3.0          
+[37] WGCNA_1.69                  fastcluster_1.1.25         
+[39] dynamicTreeCut_1.63-1       ggplot2_3.3.3              
+[41] gplots_3.1.1                corrplot_0.84              
+[43] RColorBrewer_1.1-2         
 
 loaded via a namespace (and not attached):
-  [1] tidyselect_1.1.0       lme4_1.1-26            RSQLite_2.2.2         
-  [4] htmlwidgets_1.5.3      grid_4.0.3             munsell_0.5.0         
-  [7] chron_2.3-56           statmod_1.4.35         withr_2.4.1           
- [10] colorspace_2.0-0       uuid_0.1-4             OpenMx_2.18.1         
- [13] rstudioapi_0.13        officer_0.3.16         rJava_0.9-13          
- [16] huge_1.3.4.1           mi_1.0                 git2r_0.28.0          
- [19] GenomeInfoDbData_1.2.4 mnormt_2.0.2           farver_2.0.3          
- [22] bit64_4.0.5            rprojroot_2.0.2        coda_0.19-4           
- [25] vctrs_0.3.6            generics_0.1.0         xfun_0.20             
- [28] R6_2.5.0               arm_1.11-2             locfit_1.5-9.4        
- [31] bitops_1.0-6           cachem_1.0.1           DelayedArray_0.16.0   
- [34] assertthat_0.2.1       promises_1.1.1         scales_1.1.1          
- [37] nnet_7.3-15            gtable_0.3.0           processx_3.4.5        
- [40] rlang_0.4.10           genefilter_1.72.0      systemfonts_0.3.2     
- [43] splines_4.0.3          lazyeval_0.2.2         broom_0.7.3           
- [46] checkmate_2.0.0        yaml_2.2.1             reshape2_1.4.4        
- [49] abind_1.4-5            modelr_0.1.8           crosstalk_1.1.1       
- [52] d3Network_0.5.2.1      backports_1.2.0        httpuv_1.5.5          
- [55] HardyWeinberg_1.7.1    Hmisc_4.4-2            tools_4.0.3           
- [58] psych_2.0.12           ellipsis_0.3.1         Rsolnp_1.16           
- [61] Rcpp_1.0.5             plyr_1.8.6             base64enc_0.1-3       
- [64] zlibbioc_1.36.0        RCurl_1.98-1.2         rockchalk_1.8.144     
- [67] ps_1.5.0               rpart_4.1-15           pbapply_1.4-3         
- [70] qgraph_1.6.5           haven_2.3.1            cluster_2.1.0         
- [73] fs_1.5.0               magrittr_2.0.1         data.table_1.13.6     
- [76] openxlsx_4.2.3         flextable_0.6.2        reprex_1.0.0          
- [79] truncnorm_1.0-8        tmvnsim_1.0-2          matrixcalc_1.0-3      
- [82] whisker_0.4            mime_0.9               xlsxjars_0.6.1        
- [85] hms_1.0.0              evaluate_0.14          xtable_1.8-4          
- [88] XML_3.99-0.5           jpeg_0.1-8.1           readxl_1.3.1          
- [91] gridExtra_2.3          compiler_4.0.3         mice_3.12.0           
- [94] writexl_1.3.1          KernSmooth_2.23-18     crayon_1.3.4          
- [97] minqa_1.2.4            htmltools_0.5.1.1      corpcor_1.6.9         
-[100] later_1.1.0.1          Formula_1.2-4          geneplotter_1.68.0    
-[103] lubridate_1.7.9.2      DBI_1.1.1              kutils_1.70           
-[106] dbplyr_2.0.0           MASS_7.3-53            boot_1.3-26           
-[109] Matrix_1.2-18          cli_2.2.0              igraph_1.2.6          
-[112] BDgraph_2.63           pkgconfig_2.0.3        sem_3.1-11            
-[115] foreign_0.8-81         plotly_4.9.3           xml2_1.3.2            
-[118] pbivnorm_0.6.0         annotate_1.68.0        XVector_0.30.0        
-[121] rvest_0.3.6            callr_3.5.1            digest_0.6.27         
-[124] rmarkdown_2.6          cellranger_1.1.0       htmlTable_2.1.0       
-[127] lisrelToR_0.1.4        gdtools_0.2.3          shiny_1.6.0           
-[130] gtools_3.8.2           rjson_0.2.20           nloptr_1.2.2.2        
-[133] lifecycle_0.2.0        nlme_3.1-151           glasso_1.11           
-[136] jsonlite_1.7.2         carData_3.0-4          viridisLite_0.3.0     
-[139] fansi_0.4.1            pillar_1.4.7           lattice_0.20-41       
-[142] fastmap_1.1.0          httr_1.4.2             survival_3.2-7        
-[145] glue_1.4.2             zip_2.1.1              fdrtool_1.2.16        
-[148] png_0.1-7              bit_4.0.4              stringi_1.5.3         
-[151] regsem_1.6.2           blob_1.2.1             latticeExtra_0.6-29   
-[154] caTools_1.18.1         memoise_2.0.0         </code></pre>
+  [1] coda_0.19-4            bit64_4.0.5            DelayedArray_0.16.0   
+  [4] data.table_1.13.6      rpart_4.1-15           RCurl_1.98-1.2        
+  [7] doParallel_1.0.16      generics_0.1.0         preprocessCore_1.52.1 
+ [10] callr_3.5.1            RSQLite_2.2.2          mice_3.12.0           
+ [13] chron_2.3-56           bit_4.0.4              xml2_1.3.2            
+ [16] lubridate_1.7.9.2      httpuv_1.5.5           assertthat_0.2.1      
+ [19] d3Network_0.5.2.1      xfun_0.20              hms_1.0.0             
+ [22] rJava_0.9-13           evaluate_0.14          promises_1.1.1        
+ [25] fansi_0.4.1            caTools_1.18.1         dbplyr_2.0.0          
+ [28] readxl_1.3.1           igraph_1.2.6           DBI_1.1.1             
+ [31] geneplotter_1.68.0     tmvnsim_1.0-2          Rsolnp_1.16           
+ [34] htmlwidgets_1.5.3      ellipsis_0.3.1         crosstalk_1.1.1       
+ [37] backports_1.2.0        pbivnorm_0.6.0         annotate_1.68.0       
+ [40] vctrs_0.3.6            abind_1.4-5            cachem_1.0.1          
+ [43] withr_2.4.1            HardyWeinberg_1.7.1    checkmate_2.0.0       
+ [46] fdrtool_1.2.16         mnormt_2.0.2           cluster_2.1.0         
+ [49] mi_1.0                 lazyeval_0.2.2         crayon_1.3.4          
+ [52] genefilter_1.72.0      pkgconfig_2.0.3        nlme_3.1-151          
+ [55] nnet_7.3-15            rlang_0.4.10           lifecycle_0.2.0       
+ [58] kutils_1.70            modelr_0.1.8           cellranger_1.1.0      
+ [61] rprojroot_2.0.2        flextable_0.6.2        Matrix_1.2-18         
+ [64] regsem_1.6.2           carData_3.0-4          boot_1.3-26           
+ [67] reprex_1.0.0           base64enc_0.1-3        processx_3.4.5        
+ [70] whisker_0.4            png_0.1-7              rjson_0.2.20          
+ [73] bitops_1.0-6           KernSmooth_2.23-18     blob_1.2.1            
+ [76] workflowr_1.6.2        arm_1.11-2             jpeg_0.1-8.1          
+ [79] rockchalk_1.8.144      memoise_2.0.0          magrittr_2.0.1        
+ [82] zlibbioc_1.36.0        compiler_4.0.3         lme4_1.1-26           
+ [85] cli_2.2.0              XVector_0.30.0         ps_1.5.0              
+ [88] pbapply_1.4-3          htmlTable_2.1.0        Formula_1.2-4         
+ [91] MASS_7.3-53            tidyselect_1.1.0       stringi_1.5.3         
+ [94] lisrelToR_0.1.4        sem_3.1-11             yaml_2.2.1            
+ [97] OpenMx_2.18.1          locfit_1.5-9.4         latticeExtra_0.6-29   
+[100] grid_4.0.3             tools_4.0.3            matrixcalc_1.0-3      
+[103] rstudioapi_0.13        uuid_0.1-4             foreach_1.5.1         
+[106] foreign_0.8-81         git2r_0.28.0           gridExtra_2.3         
+[109] farver_2.0.3           BDgraph_2.63           digest_0.6.27         
+[112] shiny_1.6.0            Rcpp_1.0.5             broom_0.7.3           
+[115] later_1.1.0.1          writexl_1.3.1          httr_1.4.2            
+[118] gdtools_0.2.3          psych_2.0.12           colorspace_2.0-0      
+[121] rvest_0.3.6            XML_3.99-0.5           fs_1.5.0              
+[124] truncnorm_1.0-8        splines_4.0.3          statmod_1.4.35        
+[127] xlsxjars_0.6.1         plotly_4.9.3           systemfonts_0.3.2     
+[130] xtable_1.8-4           jsonlite_1.7.2         nloptr_1.2.2.2        
+[133] corpcor_1.6.9          glasso_1.11            R6_2.5.0              
+[136] Hmisc_4.4-2            pillar_1.4.7           htmltools_0.5.1.1     
+[139] mime_0.9               glue_1.4.2             fastmap_1.1.0         
+[142] minqa_1.2.4            codetools_0.2-18       lattice_0.20-41       
+[145] huge_1.3.4.1           gtools_3.8.2           officer_0.3.16        
+[148] zip_2.1.1              GO.db_3.12.1           openxlsx_4.2.3        
+[151] survival_3.2-7         rmarkdown_2.6          qgraph_1.6.5          
+[154] munsell_0.5.0          GenomeInfoDbData_1.2.4 iterators_1.0.13      
+[157] impute_1.64.0          haven_2.3.1            reshape2_1.4.4        
+[160] gtable_0.3.0          </code></pre>
 </div>
 </div>
 

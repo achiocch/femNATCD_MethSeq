@@ -16,6 +16,7 @@ library(Gviz)
 library(GenomicRanges)
 library(rtracklayer)
 library(ggplotify)
+library(gridSVG)
 
 cutoff = 1e-3
 
@@ -228,6 +229,7 @@ displayPars(tfbtrack)<- list(col="white", fill =Dark8[6])
 
 ncols <- 2
 nrows <- 1
+
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(nrows, ncols, widths=c(1,2))))
 pushViewport(viewport(layout.pos.col = 2,layout.pos.row = 1))
@@ -243,6 +245,7 @@ p1 = ggplot(tmp, aes(x=group, y=log2_cpm, fill=group)) + geom_boxplot(show.legen
 grid.draw(as.grob(p1))
 upViewport()
 
+grid.export(paste0(Home,"/output/LME_tophit.svg"))
 
 ```
 
@@ -336,7 +339,6 @@ displayPars(cpgtrack)<- list(col="white", fill =Dark8[5])
 values(tbl.TFBdg_GR)$symbol = tbl.TFBdg_GR$name
 tfbtrack <- GeneRegionTrack(tbl.TFBdg_GR, name = "TF-Sites", transcriptAnnotation = "symbol")
 displayPars(tfbtrack)<- list(col="white", fill =Dark8[6])
-
 
 
 ncols <- 2

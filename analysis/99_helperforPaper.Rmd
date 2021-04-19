@@ -1,0 +1,128 @@
+---
+title: "Prepare Files"
+author: "Andreas Chiocchetti"
+date: "6 4 2021"
+output: html_document
+---
+---
+title: "The Methylome in Female Adolescent Conduct Disorder: Neural Pathomechanisms and Environmental Risk Factors"
+subtitle: 'Differential Methylation Analysis'
+author: "AG Chiocchetti"
+date: "29 Dezember 2020"
+
+output: html_document
+---
+
+```{r setup, echo=F,include=FALSE}
+library(knitr)
+library(tidyverse)
+library(DESeq2)
+library(data.table)
+library(RColorBrewer)
+Home = getwd()
+
+options(stringsAsFactors = F)
+
+opts_chunk$set(echo = TRUE, 
+               fig.height = 7, 
+               fig.width = 9, 
+               message = TRUE,
+               warning = TRUE,
+               fig.align='center',
+               dev = c("png"),
+               dpi=500
+)
+
+Dark8 = brewer.pal(8, "Dark2")
+Dark8_50 = paste0(brewer.pal(8, "Dark2"), "7D")
+jetcolors = colorRampPalette(c("darkblue", "skyblue", "green", "yellow", "orange", "red", "darkred"))
+OBcolors = colorRampPalette(c("darkblue", "skyblue", "white",  "orange", "darkorange3"))
+
+set.seed(157434538)
+```
+
+
+```{r functions, include = FALSE}
+
+source(paste0(Home,"/code/custom_functions.R"))
+
+```
+
+```{r dataload}
+
+## load Data  ####
+load(paste0(Home,"/output/dds_filt_analyzed.RData"))
+
+```
+
+
+```{r}
+restab=results(dds_filt)
+
+alldiff = sum(restab$pvalue<=0.001)
+neg_LFC = sum(restab$pvalue<=0.001 & restab$log2FoldChange<0)
+pos_LFC = sum(restab$pvalue<=0.001& restab$log2FoldChange>0)
+
+head(restab[order(restab$pvalue, decreasing = F), ])
+
+```
+```{r}
+
+GOtab = readxl::read_xlsx(paste0(Home, "/output/GOres.xlsx"))
+
+GOtab_LME=GOtab[GOtab$query=="02_dmtag",]
+GOtab_Reg=GOtab[GOtab$query=="01_dmregions",]
+
+GOtable = GOtab_LME
+N = 15 
+
+GOplot = function(GOtable, N){
+  if(nrow(GOtable)<N){N=nrow(GOtable)}
+  GOtable = GOtable[GOtable$parents!="character(0)",]
+  Tabtoplot=GOtable[order(GOtable$p_value, decreasing = F)[1:N],]
+  Tabtoplot$"-log10(pvalue)"=-log10(Tabtoplot$p_value)
+  par(mar=c(5,12,5,2))
+  genperc=Tabtoplot$intersection_size/Tabtoplot$effective_domain_size
+  plot(x=Tabtoplot$"-log10(pvalue)", y=N:1, 
+       xlim=c(0, max(Tabtoplot$"-log10(pvalue)")), 
+       ylab="", yaxt="n", xlab="-log10(corr. p-value)", 
+       type="n")
+    for(i in 1:N){
+  lines(y = c(i,i), x=c(-1,rev(Tabtoplot$"-log10(pvalue)")[i]), lty=2, 
+        col="grey")
+  }
+  
+  points(, x=Tabtoplot$"-log10(pvalue)", y=N:1,
+         cex=10*Tabtoplot$precision,
+         pch=16, 
+         col=jetcolors(100)[genperc/max(genperc)*100],)
+  axis(2, at = N:1, labels = Tabtoplot$term_name, las=2, cex.axis=0.6)
+  par(mar=c(5,0.5,5,0.5))
+  
+  lgd_ = rep(NA, 11)
+  labset=c(0,0.5*max(genperc),max(genperc))
+  lgd_[c(1,6,11)] = round(labset*100,2)
+  legend("bottomright",
+       legend = lgd_,
+       title = "genomic covarage",
+       fill = jetcolors(11),
+       border = NA,
+       bty="none",
+       y.intersp = 0.4,
+       cex = 1, 
+       text.font = 1)
+  
+}
+
+pdf(paste0(Home, "/output/LME_GOplot.pdf"))
+GOplot(GOtab_LME[GOtab_LME$source=="GO:BP",], 20)
+dev.off()
+
+
+pdf(paste0(Home, "/output/Regions_GOplot.pdf"))
+GOplot(GOtab_Reg[GOtab_Reg$source=="GO:BP",], 20)
+dev.off()
+
+
+```
+
