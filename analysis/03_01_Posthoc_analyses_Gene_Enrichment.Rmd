@@ -58,8 +58,6 @@ load(paste0(Home,"/output/resultsdmr_table.RData"))
 results_Deseq = results(dds_filt)
 log2_cpm = log2(counts(dds_filt, normalized=T)+1)
 
-
-
 ```
 
 ## Genomic location enrichment
@@ -138,8 +136,6 @@ rownames(Resup)=c(unique(Ranges$feature), "TF-binding", "CpG-island")
 Resup$Beta = log(Resup$OR)
 Resup$SE = (log(Resup$OR)-log(Resup$CI95L))/1.96
 Resup$Padj=p.adjust(Resup$P, method = "bonferroni")
-
-
 
 multiORplot(Resall, Pval = "P", Padj = "Padj", beta="Beta",SE = "SE", pheno="All diff. methylated loci")
 multiORplot(Resup, Pval = "P", Padj = "Padj", beta="Beta",SE = "SE", pheno="hypomethylated loci")
@@ -377,6 +373,8 @@ PCA_matrixfreeze=PCA_matrix
 index=!PCA_matrix$structure_acronym %in% c("URL", "DTH", "CGE","LGE", "MGE",  "Ocx", "PCx", "M1C-S1C","DIE", "TCx", "CB")
 PCA_matrix=PCA_matrix[index,]
 ME = MEorig$eigengenes[index,]
+matsel = matriz2[index,]
+
 colnames(ME) = gsub("ME", "", colnames(ME))
 
 timepoints=seq(56,15000, length.out=1000)
@@ -438,16 +436,73 @@ brainheatmap=function(Module){
  
 }
 
+brainheatmap_gene=function(Genename){
+  MEmod=matsel[,Genename]
+  toplot=data.frame(matrix(NA, nrow=length(table(PCA_matrix$structure_acronym)), ncol=998))
+  rownames(toplot)=unique(PCA_matrix$structure_acronym)
+  target <- c("OFC", "DFC", "VFC", "MFC","M1C","S1C","IPC","A1C","STC","ITC","V1C","HIP","AMY","STR","MD","CBC")
+  toplot<-toplot[c(6,2,8,5,11,12,10,9,7,4,14,3,1,13,16,15),]
+
+
+  for ( i in unique(PCA_matrix$structure_acronym)){
+    index=PCA_matrix$structure_acronym==i
+    LOESS=loess(MEmod[index]~PCA_matrix$period[index])
+    toplot[i,]=predict(LOESS,newdata = round(exp(seq(log(56),log(15000), length.out=998)),2))
+    colnames(toplot)[c(1,77,282,392,640,803,996)]<-
+      c("1pcw","21pcw","Birth","1.3years","5.4years","13.6years","40.7years")
+  }
+
+
+
+  cols=viridis(100)
+  labvec <- c(rep(NA, 1000))
+
+  labvec[c(1,77,282,392,640,803,996)] <- c("1pcw","21pcw","Birth","1.3years","5.4years","13.6years","40.7years")
+
+
+  toplot<-toplot[,1:998]
+  date<-c(1:998)
+  dateY<-paste0(round(date/365,2),"_Years")
+
+  names(toplot)<-dateY
+
+  par(xpd=FALSE)
+  heatmap.2(as.matrix(toplot), col = cols,
+            main=Genename,
+            trace = "none",
+            na.color = "grey",
+            Colv = F, Rowv = F,
+            labCol = labvec,
+            #breaks = seq(-0.1,0.1, length.out=101),
+            symkey = F,
+            scale = "none",
+            key.title = "",
+            dendrogram = "none",
+            key.xlab = "eigengene",
+            density.info = "none",
+            #main=paste("Module",1),
+            #srtCol=90,
+            tracecol = "none",
+            cexRow = 1,
+            add.expr=eval.parent(abline(v=282),
+                                 axis(1,at=c(1,77,282,392,640,803,996),
+                                      labels =FALSE))
+            ,cexCol = 1)
+}
+
+
+brainheatmap_gene("SLITRK5")
 for(Module in Modsig2){
   brainheatmap(Module)
 }
 
 pdf(paste0(Home, "/output/Brain_Module_Heatmap.pdf"))
+
+brainheatmap_gene("SLITRK5")
 for(Module in Modsig2){
   brainheatmap(Module)
 }
 dev.off()
-
 
 
 
