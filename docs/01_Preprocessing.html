@@ -14,13 +14,22 @@
 
 <title>The Methylome in Female Adolescent Conduct Disorder: Neural Pathomechanisms and Environmental Risk Factors</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -52,11 +61,6 @@ div.section {
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -69,32 +73,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -105,10 +83,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -125,40 +99,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -186,7 +133,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -198,7 +145,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -209,10 +156,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -224,7 +184,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -350,13 +309,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -396,7 +355,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -410,7 +369,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -419,7 +378,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -428,10 +387,10 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-02-25
+<strong>Last updated:</strong> 2021-05-06
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>femNATCD_MethSeq/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -447,12 +406,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -519,76 +478,54 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong6c21638"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> 6c21638 </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtreeb6c6b33c63a1e7fcceeb14961390eedf6a45dc19targetblankb6c6b33a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/b6c6b33c63a1e7fcceeb14961390eedf6a45dc19" target="_blank">b6c6b33</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrong6c21638" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtreeb6c6b33c63a1e7fcceeb14961390eedf6a45dc19targetblankb6c6b33a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version 6c21638. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/b6c6b33c63a1e7fcceeb14961390eedf6a45dc19" target="_blank">b6c6b33</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    code/.Rhistory
+    Ignored:    analysis/figure/
+    Ignored:    data/Epicounts.csv
+    Ignored:    data/Epimeta.csv
+    Ignored:    data/Epitpm.csv
+    Ignored:    data/KangUnivers.txt
+    Ignored:    data/Kang_DataPreprocessing.RData
+    Ignored:    data/Kang_dataset_genesMod_version2.txt
+    Ignored:    data/PatMeta.csv
+    Ignored:    data/ProcessedData.RData
+    Ignored:    data/SNPCommonFilt.csv
+    Ignored:    output/DMR_Results.csv
+    Ignored:    output/GOres.xlsx
+    Ignored:    output/LME_Results.csv
+    Ignored:    output/ProcessedData.RData
+    Ignored:    output/SEM_summary_groupEpi_TopHit.txt
+    Ignored:    output/SEMplot_Epi_TopHit.html
+    Ignored:    output/SEMplot_Epi_TopHit_files/
+    Ignored:    output/clinFact.RData
+    Ignored:    output/dds_filt_analyzed.RData
+    Ignored:    output/designh0.RData
+    Ignored:    output/designh1.RData
+    Ignored:    output/envFact.RData
+    Ignored:    output/gostres.pdf
+    Ignored:    output/modelFact.RData
+    Ignored:    output/resdmr.RData
+    Ignored:    output/resultsdmr_table.RData
+    Ignored:    output/table1_unfiltered.Rmd
+    Ignored:    output/table1_unfiltered.docx
 
-Untracked files:
-    Untracked:  data/Epicounts.csv
-    Untracked:  data/Epimeta.csv
-    Untracked:  data/Epitpm.csv
-    Untracked:  data/KangUnivers.txt
-    Untracked:  data/Kang_DataPreprocessing.RData
-    Untracked:  data/Kang_dataset_genesMod_version2.txt
-    Untracked:  data/PatMeta.csv
-    Untracked:  data/ProcessedData.RData
-    Untracked:  data/SNPCommonFilt.csv
-    Untracked:  output/DMR_Results.csv
-    Untracked:  output/GOres.xlsx
-    Untracked:  output/LME_Results.csv
-    Untracked:  output/ProcessedData.RData
-    Untracked:  output/SEM_summary_groupEpi_M15.txt
-    Untracked:  output/SEM_summary_groupEpi_M2.txt
-    Untracked:  output/SEM_summary_groupEpi_M_all.txt
-    Untracked:  output/SEM_summary_groupEpi_TopHit.txt
-    Untracked:  output/SEM_summary_groupEpi_all.txt
-    Untracked:  output/SEMplot_Epi_M15.html
-    Untracked:  output/SEMplot_Epi_M15.png
-    Untracked:  output/SEMplot_Epi_M15_files/
-    Untracked:  output/SEMplot_Epi_M2.html
-    Untracked:  output/SEMplot_Epi_M2.png
-    Untracked:  output/SEMplot_Epi_M2_files/
-    Untracked:  output/SEMplot_Epi_M_all.html
-    Untracked:  output/SEMplot_Epi_M_all.png
-    Untracked:  output/SEMplot_Epi_M_all_files/
-    Untracked:  output/SEMplot_Epi_TopHit.html
-    Untracked:  output/SEMplot_Epi_TopHit.png
-    Untracked:  output/SEMplot_Epi_TopHit_files/
-    Untracked:  output/SEMplot_Epi_all.html
-    Untracked:  output/SEMplot_Epi_all.png
-    Untracked:  output/SEMplot_Epi_all_files/
-    Untracked:  output/circos_DMR_tags.svg
-    Untracked:  output/circos_LME_tags.svg
-    Untracked:  output/clinFact.RData
-    Untracked:  output/dds_filt_analyzed.RData
-    Untracked:  output/designh0.RData
-    Untracked:  output/designh1.RData
-    Untracked:  output/envFact.RData
-    Untracked:  output/gostres.pdf
-    Untracked:  output/modelFact.RData
-    Untracked:  output/resdmr.RData
-    Untracked:  output/resultsdmr_table.RData
-    Untracked:  output/table1_filtered.Rmd
-    Untracked:  output/table1_filtered.docx
-    Untracked:  output/table1_unfiltered.Rmd
-    Untracked:  output/table1_unfiltered.docx
-    Untracked:  setup_built.R
+Unstaged changes:
+    Modified:   analysis/01_Preprocessing.Rmd
 
 </code></pre>
 <p>
@@ -601,69 +538,9 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
-
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/01_Preprocessing.Rmd</code>) and HTML (<code>docs/01_Preprocessing.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
 </p>
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-File
-</th>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-<th>
-Message
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-6c21638
-</td>
-<td>
-achiocch
-</td>
-<td>
-2021-02-25
-</td>
-<td>
-wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"), update = F)
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-6c21638
-</td>
-<td>
-achiocch
-</td>
-<td>
-2021-02-25
-</td>
-<td>
-wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"), update = F)
-</td>
-</tr>
-</tbody>
-</table>
-</div>
 <hr>
 </div>
 </div>
@@ -703,45 +580,14 @@ Patdata$Ever_smoked = factor(Patdata$Ever_smoked, c(0, 1,2), c(NA, &quot;no&quot
 allowedvalues=as.character(c(0,1,8, NA))
 
 
-
 for (i in 1:ncol(Patdata)) {
   if(sum(Patdata[,i] %in% allowedvalues)==nrow(Patdata)){
     Patdata[,i] = yesnofac(Patdata[,i])
-    print(colnames(Patdata)[i])
   }
   
-}</code></pre>
-<pre><code>[1] &quot;smoke&quot;
-[1] &quot;drugs&quot;
-[1] &quot;aggress&quot;
-[1] &quot;stress&quot;
-[1] &quot;mpsych_4_12&quot;
-[1] &quot;mpsych_gt12&quot;
-[1] &quot;ppsych_le12&quot;
-[1] &quot;inconsist&quot;
-[1] &quot;single&quot;
-[1] &quot;disharm&quot;
-[1] &quot;isolation&quot;
-[1] &quot;psych_fam&quot;
-[1] &quot;Dep_life&quot;
-[1] &quot;anp_life&quot;
-[1] &quot;CD_life&quot;
-[1] &quot;ADHD_life&quot;
-[1] &quot;TIC_life&quot;
-[1] &quot;ODD_life&quot;
-[1] &quot;DMDD_life&quot;
-[1] &quot;Alk_life&quot;
-[1] &quot;SUD_life&quot;
-[1] &quot;Anx_life&quot;
-[1] &quot;OCD_life&quot;
-[1] &quot;PTSD_life&quot;
-[1] &quot;Elim_life&quot;
-[1] &quot;Eat_life&quot;
-[1] &quot;Oth_life&quot;
-[1] &quot;Bip_life&quot;
-[1] &quot;Scz_life&quot;
-[1] &quot;medication&quot;</code></pre>
-<pre class="r"><code>SNPdatafilt = SNPdata[complete.cases(SNPdata),]
+}
+
+SNPdatafilt = SNPdata[complete.cases(SNPdata),]
 
 display_tab(head(EpiMeta))</code></pre>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:240px; overflow-x: scroll; width:900px; ">
@@ -4673,16 +4519,25 @@ FRA
 Sampleddata = EpiData[index,]
 
 boxplot_counts = function(plotsubset, maintitle, colorcode) {
-  boxplot(log2(plotsubset+1), main = maintitle, col = Dark8[as.factor(Patdata[,colorcode])], names=NA,
-          ylab = &quot;log2 transformed&quot;, xlab=&quot;samples&quot;)
-  legend(&quot;topleft&quot;, legend = levels(Patdata[,colorcode]), pch = 16, col = Dark8[1:length(unique(Patdata[,colorcode]))])
+  dat=log2(plotsubset+1)
+  par(mar=c(5,5,5,8))
+  a = boxplot(dat, main = maintitle, col = Dark8[as.factor(Patdata[,colorcode])], names=NA,
+              ylab = &quot;log2 transformed&quot;, xlab=&quot;samples&quot;)
+  legend(length(a$n)*1.05, max(dat), legend = levels(Patdata[,colorcode]),
+         pch = 16, col = Dark8[1:length(unique(Patdata[,colorcode]))],
+         xpd=T,bty=&quot;n&quot;)
 }
 
 
 barplot_counts = function(DF, maintitle, colorcode) {
-  barplot(log2(DF[,&quot;reads_per_sample&quot;]), main = maintitle, col = Dark8[as.factor(DF[,colorcode])], names=&quot;&quot;,
+  dat=log2(DF[,&quot;reads_per_sample&quot;])
+  par(mar=c(5,5,5,8))
+  a = barplot(dat, main = maintitle, border=NA,
+          col = Dark8[as.factor(DF[,colorcode])], names=&quot;&quot;,
           ylab = &quot;log2 transformed&quot;,xlab=&quot;samples&quot;)
-  legend(&quot;bottomleft&quot;, legend = levels(DF[,colorcode]), pch = 16, col = Dark8[1:length(unique(DF[,colorcode]))])
+  legend(max(a)*1.05, max(dat), xpd=T,
+         legend = levels(DF[,colorcode]), bty=&quot;n&quot;,
+         pch = 16, col = Dark8[1:length(unique(DF[,colorcode]))])
 }
 
 
@@ -4717,18 +4572,6 @@ Patdata$int_dis = yesnofac(Patdata$int_dis)
 clinFact = c(clinFact, &quot;int_dis&quot;)
 modelFact = c(modelFact,&quot;int_dis&quot;)
 
-# Patdata$ext_dis = with(Patdata, (ADHD_life==&quot;yes&quot; | 
-#                                   ODD_life==&quot;yes&quot; |
-#                                   anp_life==&quot;yes&quot;) * 1)
-# Patdata$ext_dis = yesnofac(Patdata$ext_dis)
-# clinFact  = c(clinFact, &quot;ext_dis&quot;)
-
-# Patdata$add_dis = with(Patdata, (Alk_life==&quot;yes&quot; | 
-#                                    SUD_life==&quot;yes&quot;) * 1)
-# 
-# Patdata$add_dis = yesnofac(Patdata$add_dis)
-# clinFact  = c(clinFact, &quot;add_dis&quot;)
-
 clinFact = c(clinFact, &quot;medication&quot;, &quot;contraceptives&quot;, &quot;cigday_1&quot;)
 modelFact = c(modelFact,&quot;medication&quot;, &quot;contraceptives&quot;, &quot;cigday_1&quot;)
 
@@ -4745,15 +4588,6 @@ envFact = c(envFact, &quot;Matsmk&quot;)
 Patdata$Matagg = with(Patdata, (aggress==&quot;yes&quot;)*1)
 Patdata$Matagg = factor(Patdata$Matagg,levels = c(0,1), labels = c(&quot;no&quot;, &quot;yes&quot;))
 envFact = c(envFact, &quot;Matagg&quot;)
-
-# # self-reported maternal stress experience during pregnancy
-# Patdata$Matstr = with(Patdata, (stress==&quot;yes&quot;)*1)
-# Patdata$Matstr = factor(Patdata$Matstr,levels = c(0,1), labels = c(&quot;no&quot;, &quot;yes&quot;))
-# envFact = c(envFact, &quot;Matstr&quot;)
-
-# # psychiatric disorders in the family
-# Patdata$PsychScore = with(Patdata, rowSums(cbind(mpsych_4_12==&quot;yes&quot;, mpsych_gt12==&quot;yes&quot;, ppsych_le12==&quot;yes&quot;, psych_fam==&quot;yes&quot;), na.rm=T))
-# envFact = c(envFact, &quot;PsychScore&quot;)
 
 #adverse family situation
 Patdata$FamScore = with(Patdata, rowSums(cbind(#single==&quot;yes&quot;, 
@@ -4859,20 +4693,14 @@ save(envFact, file=paste0(Home,&quot;/output/envFact.RData&quot;))</code></pre>
 <pre class="r"><code># test differences between site  ####
 
 ## add IQ and Anx here 
-
 tablevariates = c(&quot;site&quot;,&quot;Age&quot;,&quot;tsympt&quot;, &quot;Pubstat&quot;, &quot;cigday_1&quot;,&quot;contraceptives&quot;)
 genomicvariates = c(&quot;X260_280&quot;,&quot;ng_per_ul&quot;, &quot;Timediff_ExtrPurification&quot;,&quot;reads_per_sample&quot; ) 
 
 res = table_sumstat(Patdata, 
                     columns=unique(c(tablevariates, clinFact,modelFact, envFact, genomicvariates) ), 
-                    groupfactor = &quot;group&quot;)</code></pre>
-<pre><code>Warning in chisq.test(xx, correct = FALSE): Chi-squared approximation may be
-incorrect
+                    groupfactor = &quot;group&quot;)
 
-Warning in chisq.test(xx, correct = FALSE): Chi-squared approximation may be
-incorrect</code></pre>
-<pre><code>Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
-<pre class="r"><code>res</code></pre>
+res</code></pre>
 <pre><code>
 --------Summary descriptives table by &#39;group&#39;---------
 
@@ -4915,15 +4743,15 @@ ng_per_ul                     641 (250)          724 (296)       0.133
 Timediff_ExtrPurification    4.39 (3.00)        4.10 (3.48)      0.648   
 reads_per_sample          10843361 (5589726) 9276447 (4314540)   0.116   
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ </code></pre>
-<pre class="r"><code>export2word(res, file = paste0(Home,&quot;/output/table1_unfiltered.docx&quot;))</code></pre>
 </div>
 </div>
 <div id="qc-filter-and-normalize" class="section level1">
 <h1>QC Filter and Normalize</h1>
 <div id="filter-snps" class="section level2">
 <h2>filter SNPs</h2>
-<pre class="r"><code>designh0 = formula(paste0(&quot;~0+&quot;,paste0(modelFact, collapse=&quot;+&quot;)))
-designh1 = formula(paste(&quot;~0+&quot;,designh0,&quot; + group&quot;)[2])
+<pre class="r"><code>form0=paste0(&quot;~0+&quot;,paste0(modelFact, collapse=&quot;+&quot;))
+designh0 = as.formula(form0)
+designh1 = as.formula(paste(form0,&quot; + group&quot;))
 
 
 save(designh0, file=paste0(Home,&quot;/output/designh0.RData&quot;))
@@ -5070,7 +4898,7 @@ pheatmap(sampleDistMatrix,
          clustering_method = &quot;ward.D2&quot;,
          border_color = NA, 
          annotation_row = Patdata[,c(&quot;Age&quot;, &quot;site&quot;, &quot;X260_280&quot;, &quot;Timediff_ExtrPurification&quot;)],
-         annotation_col = Patdata[,c(&quot;group&quot;, &quot;scrsympt&quot;,&quot;contraceptives&quot;, clinFact)],
+         annotation_col = Patdata[,c(&quot;group&quot;, &quot;scrsympt&quot;, clinFact[-c(1,2)])],
          col = colors, 
          annotation_colors = ann_colors,
          main = &quot;Distances not normalized log2 counts&quot;)</code></pre>
@@ -5158,7 +4986,7 @@ pheatmap(sampleDistMatrix,
          clustering_method = &quot;ward.D2&quot;,
          border_color = NA, 
          annotation_row = Patdata[,c(&quot;Age&quot;, &quot;site&quot;, &quot;X260_280&quot;, &quot;Timediff_ExtrPurification&quot;)],
-         annotation_col = Patdata[,c(&quot;group&quot;, &quot;scrsympt&quot;,&quot;contraceptives&quot;, clinFact)],
+         annotation_col = Patdata[,c(&quot;group&quot;, &quot;scrsympt&quot;, clinFact[-c(1,2)])],
          col = colors, 
          annotation_colors = ann_colors,
          main = &quot;Distances normalized log2 counts, after filtering&quot;)</code></pre>
@@ -5252,7 +5080,7 @@ ng_per_ul                     642 (252)          731 (299)       0.113
 Timediff_ExtrPurification    4.34 (3.01)        4.02 (3.38)      0.620   
 reads_per_sample          11017072 (5505663) 9475335 (4256539)   0.122   
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ </code></pre>
-<pre class="r"><code>export2word(res, file = paste0(Home,&quot;/output/table1_filtered.docx&quot;))</code></pre>
+<pre class="r"><code>#export2word(res, file = paste0(Home,&quot;/output/table1_filtered.docx&quot;))</code></pre>
 <ul>
 <li>Total number of samples: 99</li>
 <li>Total number of Tags: 216 102</li>
@@ -5368,9 +5196,9 @@ UTR5
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.3 (2020-10-10)
+<pre><code>R version 4.0.4 (2021-02-15)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 19042)
+Running under: Windows 10 x64 (build 18363)
 
 Matrix products: default
 
@@ -5384,63 +5212,64 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] RCircos_1.2.1               compareGroups_4.4.6        
- [3] cluster_2.1.0               kableExtra_1.3.1           
- [5] knitr_1.30                  glmpca_0.2.0               
+ [1] RCircos_1.2.1               compareGroups_4.5.1        
+ [3] cluster_2.1.1               kableExtra_1.3.4           
+ [5] knitr_1.31                  glmpca_0.2.0               
  [7] sva_3.38.0                  BiocParallel_1.24.1        
- [9] genefilter_1.72.0           mgcv_1.8-33                
-[11] nlme_3.1-151                pheatmap_1.0.12            
-[13] vsn_3.58.0                  DESeq2_1.30.0              
+ [9] genefilter_1.72.1           mgcv_1.8-34                
+[11] nlme_3.1-152                pheatmap_1.0.12            
+[13] vsn_3.58.0                  DESeq2_1.30.1              
 [15] SummarizedExperiment_1.20.0 Biobase_2.50.0             
-[17] MatrixGenerics_1.2.0        matrixStats_0.57.0         
-[19] GenomicRanges_1.42.0        GenomeInfoDb_1.26.2        
+[17] MatrixGenerics_1.2.1        matrixStats_0.58.0         
+[19] GenomicRanges_1.42.0        GenomeInfoDb_1.26.4        
 [21] IRanges_2.24.1              S4Vectors_0.28.1           
-[23] BiocGenerics_0.36.0         forcats_0.5.0              
-[25] stringr_1.4.0               dplyr_1.0.2                
+[23] BiocGenerics_0.36.0         forcats_0.5.1              
+[25] stringr_1.4.0               dplyr_1.0.5                
 [27] purrr_0.3.4                 readr_1.4.0                
-[29] tidyr_1.1.2                 tibble_3.0.4               
+[29] tidyr_1.1.3                 tibble_3.1.0               
 [31] tidyverse_1.3.0             corrplot_0.84              
 [33] ggplot2_3.3.3               gplots_3.1.1               
-[35] RColorBrewer_1.1-2          data.table_1.13.6          
+[35] RColorBrewer_1.1-2          data.table_1.14.0          
 [37] workflowr_1.6.2            
 
 loaded via a namespace (and not attached):
-  [1] uuid_0.1-4             readxl_1.3.1           backports_1.2.0       
-  [4] systemfonts_0.3.2      splines_4.0.3          digest_0.6.27         
-  [7] htmltools_0.5.1.1      fansi_0.4.1            magrittr_2.0.1        
- [10] Rsolnp_1.16            memoise_2.0.0          limma_3.46.0          
- [13] annotate_1.68.0        modelr_0.1.8           officer_0.3.16        
- [16] colorspace_2.0-0       blob_1.2.1             rvest_0.3.6           
- [19] haven_2.3.1            xfun_0.20              crayon_1.3.4          
- [22] RCurl_1.98-1.2         jsonlite_1.7.2         survival_3.2-7        
- [25] glue_1.4.2             gtable_0.3.0           zlibbioc_1.36.0       
- [28] XVector_0.30.0         webshot_0.5.2          DelayedArray_0.16.0   
- [31] scales_1.1.1           DBI_1.1.1              edgeR_3.32.1          
- [34] Rcpp_1.0.5             viridisLite_0.3.0      xtable_1.8-4          
- [37] bit_4.0.4              preprocessCore_1.52.1  truncnorm_1.0-8       
- [40] httr_1.4.2             ellipsis_0.3.1         mice_3.12.0           
- [43] farver_2.0.3           pkgconfig_2.0.3        XML_3.99-0.5          
- [46] dbplyr_2.0.0           locfit_1.5-9.4         labeling_0.4.2        
- [49] tidyselect_1.1.0       rlang_0.4.10           later_1.1.0.1         
- [52] AnnotationDbi_1.52.0   munsell_0.5.0          cellranger_1.1.0      
- [55] tools_4.0.3            cachem_1.0.1           cli_2.2.0             
- [58] generics_0.1.0         RSQLite_2.2.2          broom_0.7.3           
- [61] evaluate_0.14          fastmap_1.1.0          yaml_2.2.1            
- [64] bit64_4.0.5            fs_1.5.0               zip_2.1.1             
- [67] caTools_1.18.1         whisker_0.4            xml2_1.3.2            
- [70] compiler_4.0.3         rstudioapi_0.13        affyio_1.60.0         
- [73] reprex_1.0.0           geneplotter_1.68.0     stringi_1.5.3         
- [76] HardyWeinberg_1.7.1    highr_0.8              ps_1.5.0              
- [79] gdtools_0.2.3          lattice_0.20-41        Matrix_1.2-18         
- [82] vctrs_0.3.6            pillar_1.4.7           lifecycle_0.2.0       
- [85] BiocManager_1.30.10    flextable_0.6.2        bitops_1.0-6          
- [88] httpuv_1.5.5           R6_2.5.0               affy_1.68.0           
- [91] promises_1.1.1         KernSmooth_2.23-18     writexl_1.3.1         
- [94] MASS_7.3-53            gtools_3.8.2           assertthat_0.2.1      
- [97] chron_2.3-56           rprojroot_2.0.2        withr_2.4.1           
-[100] GenomeInfoDbData_1.2.4 hms_1.0.0              grid_4.0.3            
-[103] rmarkdown_2.6          git2r_0.28.0           base64enc_0.1-3       
-[106] lubridate_1.7.9.2     </code></pre>
+  [1] uuid_0.1-4             readxl_1.3.1           backports_1.2.1       
+  [4] systemfonts_1.0.1      splines_4.0.4          digest_0.6.27         
+  [7] htmltools_0.5.1.1      fansi_0.4.2            Rsolnp_1.16           
+ [10] magrittr_2.0.1         memoise_2.0.0          limma_3.46.0          
+ [13] annotate_1.68.0        modelr_0.1.8           officer_0.3.17        
+ [16] svglite_2.0.0          colorspace_2.0-0       blob_1.2.1            
+ [19] rvest_1.0.0            haven_2.3.1            xfun_0.21             
+ [22] crayon_1.4.1           RCurl_1.98-1.2         jsonlite_1.7.2        
+ [25] survival_3.2-9         glue_1.4.2             gtable_0.3.0          
+ [28] zlibbioc_1.36.0        XVector_0.30.0         webshot_0.5.2         
+ [31] DelayedArray_0.16.2    scales_1.1.1           DBI_1.1.1             
+ [34] edgeR_3.32.1           Rcpp_1.0.6             viridisLite_0.3.0     
+ [37] xtable_1.8-4           bit_4.0.4              preprocessCore_1.52.1 
+ [40] truncnorm_1.0-8        httr_1.4.2             ellipsis_0.3.1        
+ [43] mice_3.13.0            farver_2.1.0           pkgconfig_2.0.3       
+ [46] XML_3.99-0.5           sass_0.3.1             dbplyr_2.1.0          
+ [49] locfit_1.5-9.4         utf8_1.1.4             labeling_0.4.2        
+ [52] tidyselect_1.1.0       rlang_0.4.10           later_1.1.0.1         
+ [55] AnnotationDbi_1.52.0   munsell_0.5.0          cellranger_1.1.0      
+ [58] tools_4.0.4            cachem_1.0.4           cli_2.3.1             
+ [61] generics_0.1.0         RSQLite_2.2.4          broom_0.7.5           
+ [64] evaluate_0.14          fastmap_1.1.0          yaml_2.2.1            
+ [67] bit64_4.0.5            fs_1.5.0               zip_2.1.1             
+ [70] caTools_1.18.2         xml2_1.3.2             compiler_4.0.4        
+ [73] rstudioapi_0.13        affyio_1.60.0          reprex_1.0.0          
+ [76] geneplotter_1.68.0     bslib_0.2.4            stringi_1.5.3         
+ [79] HardyWeinberg_1.7.1    highr_0.8              ps_1.6.0              
+ [82] gdtools_0.2.3          lattice_0.20-41        Matrix_1.3-2          
+ [85] vctrs_0.3.6            pillar_1.5.1           lifecycle_1.0.0       
+ [88] BiocManager_1.30.12    jquerylib_0.1.3        flextable_0.6.4       
+ [91] bitops_1.0-6           httpuv_1.5.5           R6_2.5.0              
+ [94] affy_1.68.0            promises_1.2.0.1       KernSmooth_2.23-18    
+ [97] writexl_1.3.1          MASS_7.3-53.1          gtools_3.8.2          
+[100] assertthat_0.2.1       chron_2.3-56           rprojroot_2.0.2       
+[103] withr_2.4.1            GenomeInfoDbData_1.2.4 hms_1.0.0             
+[106] grid_4.0.4             rmarkdown_2.7          git2r_0.28.0          
+[109] base64enc_0.1-3        lubridate_1.7.10      </code></pre>
 </div>
 </div>
 
@@ -5487,7 +5316,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
