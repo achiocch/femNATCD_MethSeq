@@ -21,7 +21,7 @@ Full peer reviewed article is available [soon]()
 * [Preprocessing](01_Preprocessing.html)
 * [Differentially methylated sites](02_1_Main_LME.html)
 * [Differentially methylated regions](02_2_Main_DMR.html)
-* [Gene enrichment and Enrironmental risk analysis](03_01_Posthoc_analyses_Gene_Enrichment.html)
+* [Gene enrichment and environmental risk analysis](03_01_Posthoc_analyses_Gene_Enrichment.html)
 * [Plot significant tags and regions](04_Plot_Results.html)
 
 

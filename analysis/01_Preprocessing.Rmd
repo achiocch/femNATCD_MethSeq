@@ -87,9 +87,11 @@ Patdata$Ever_smoked = factor(Patdata$Ever_smoked, c(0, 1,2), c(NA, "no", "yes"))
 allowedvalues=as.character(c(0,1,8, NA))
 
 
+
 for (i in 1:ncol(Patdata)) {
   if(sum(Patdata[,i] %in% allowedvalues)==nrow(Patdata)){
     Patdata[,i] = yesnofac(Patdata[,i])
+    print(colnames(Patdata)[i])
   }
   
 }
@@ -121,25 +123,16 @@ index = sample(1:nrow(EpiData), 10000)
 Sampleddata = EpiData[index,]
 
 boxplot_counts = function(plotsubset, maintitle, colorcode) {
-  dat=log2(plotsubset+1)
-  par(mar=c(5,5,5,8))
-  a = boxplot(dat, main = maintitle, col = Dark8[as.factor(Patdata[,colorcode])], names=NA,
-              ylab = "log2 transformed", xlab="samples")
-  legend(length(a$n)*1.05, max(dat), legend = levels(Patdata[,colorcode]),
-         pch = 16, col = Dark8[1:length(unique(Patdata[,colorcode]))],
-         xpd=T,bty="n")
+  boxplot(log2(plotsubset+1), main = maintitle, col = Dark8[as.factor(Patdata[,colorcode])], names=NA,
+          ylab = "log2 transformed", xlab="samples")
+  legend("topleft", legend = levels(Patdata[,colorcode]), pch = 16, col = Dark8[1:length(unique(Patdata[,colorcode]))])
 }
 
 
 barplot_counts = function(DF, maintitle, colorcode) {
-  dat=log2(DF[,"reads_per_sample"])
-  par(mar=c(5,5,5,8))
-  a = barplot(dat, main = maintitle, border=NA,
-          col = Dark8[as.factor(DF[,colorcode])], names="",
+  barplot(log2(DF[,"reads_per_sample"]), main = maintitle, col = Dark8[as.factor(DF[,colorcode])], names="",
           ylab = "log2 transformed",xlab="samples")
-  legend(max(a)*1.05, max(dat), xpd=T,
-         legend = levels(DF[,colorcode]), bty="n",
-         pch = 16, col = Dark8[1:length(unique(DF[,colorcode]))])
+  legend("bottomleft", legend = levels(DF[,colorcode]), pch = 16, col = Dark8[1:length(unique(DF[,colorcode]))])
 }
 
 
@@ -176,6 +169,18 @@ Patdata$int_dis = yesnofac(Patdata$int_dis)
 clinFact = c(clinFact, "int_dis")
 modelFact = c(modelFact,"int_dis")
 
+# Patdata$ext_dis = with(Patdata, (ADHD_life=="yes" | 
+#                                   ODD_life=="yes" |
+#                                   anp_life=="yes") * 1)
+# Patdata$ext_dis = yesnofac(Patdata$ext_dis)
+# clinFact  = c(clinFact, "ext_dis")
+
+# Patdata$add_dis = with(Patdata, (Alk_life=="yes" | 
+#                                    SUD_life=="yes") * 1)
+# 
+# Patdata$add_dis = yesnofac(Patdata$add_dis)
+# clinFact  = c(clinFact, "add_dis")
+
 clinFact = c(clinFact, "medication", "contraceptives", "cigday_1")
 modelFact = c(modelFact,"medication", "contraceptives", "cigday_1")
 
@@ -192,6 +197,15 @@ envFact = c(envFact, "Matsmk")
 Patdata$Matagg = with(Patdata, (aggress=="yes")*1)
 Patdata$Matagg = factor(Patdata$Matagg,levels = c(0,1), labels = c("no", "yes"))
 envFact = c(envFact, "Matagg")
+
+# # self-reported maternal stress experience during pregnancy
+# Patdata$Matstr = with(Patdata, (stress=="yes")*1)
+# Patdata$Matstr = factor(Patdata$Matstr,levels = c(0,1), labels = c("no", "yes"))
+# envFact = c(envFact, "Matstr")
+
+# # psychiatric disorders in the family
+# Patdata$PsychScore = with(Patdata, rowSums(cbind(mpsych_4_12=="yes", mpsych_gt12=="yes", ppsych_le12=="yes", psych_fam=="yes"), na.rm=T))
+# envFact = c(envFact, "PsychScore")
 
 #adverse family situation
 Patdata$FamScore = with(Patdata, rowSums(cbind(#single=="yes", 
@@ -229,6 +243,7 @@ save(envFact, file=paste0(Home,"/output/envFact.RData"))
 # test differences between site  ####
 
 ## add IQ and Anx here 
+
 tablevariates = c("site","Age","tsympt", "Pubstat", "cigday_1","contraceptives")
 genomicvariates = c("X260_280","ng_per_ul", "Timediff_ExtrPurification","reads_per_sample" ) 
 
@@ -237,6 +252,7 @@ res = table_sumstat(Patdata,
                     groupfactor = "group")
 
 res
+export2word(res, file = paste0(Home,"/output/table1_unfiltered.docx"))
 
 ```
 
@@ -393,7 +409,7 @@ pheatmap(sampleDistMatrix,
          clustering_method = "ward.D2",
          border_color = NA, 
          annotation_row = Patdata[,c("Age", "site", "X260_280", "Timediff_ExtrPurification")],
-         annotation_col = Patdata[,c("group", "scrsympt", clinFact[-c(1,2)])],
+         annotation_col = Patdata[,c("group", "scrsympt","contraceptives", clinFact)],
          col = colors, 
          annotation_colors = ann_colors,
          main = "Distances not normalized log2 counts")
@@ -487,7 +503,7 @@ pheatmap(sampleDistMatrix,
          clustering_method = "ward.D2",
          border_color = NA, 
          annotation_row = Patdata[,c("Age", "site", "X260_280", "Timediff_ExtrPurification")],
-         annotation_col = Patdata[,c("group", "scrsympt", clinFact[-c(1,2)])],
+         annotation_col = Patdata[,c("group", "scrsympt","contraceptives", clinFact)],
          col = colors, 
          annotation_colors = ann_colors,
          main = "Distances normalized log2 counts, after filtering")
@@ -538,7 +554,7 @@ res = table_sumstat(clPatdata,
                     columns=unique(c(tablevariates, clinFact,modelFact, envFact, genomicvariates)), 
                     groupfactor = "group")
 res
-#export2word(res, file = paste0(Home,"/output/table1_filtered.docx"))
+export2word(res, file = paste0(Home,"/output/table1_filtered.docx"))
 
 ```
 

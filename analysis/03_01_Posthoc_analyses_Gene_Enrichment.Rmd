@@ -12,6 +12,8 @@ library(RColorBrewer)
 library(corrplot)
 library(gplots)
 library(ggplot2)
+library(WGCNA)
+library(viridis)
 library(lavaan)
 library(semPlot)
 library(tidyverse)
@@ -42,7 +44,7 @@ opts_chunk$set(echo = TRUE,
                message = TRUE,
                warning = TRUE,
                fig.align='center',
-               dev = c("png", "svg"))
+               dev = c("png"))
 
 
 Dark8 = brewer.pal(8, "Dark2")
@@ -56,8 +58,6 @@ load(paste0(Home,"/output/resultsdmr_table.RData"))
 results_Deseq = results(dds_filt)
 log2_cpm = log2(counts(dds_filt, normalized=T)+1)
 
-
-
 ```
 
 ## Genomic location enrichment
@@ -65,7 +65,7 @@ log2_cpm = log2(counts(dds_filt, normalized=T)+1)
 Significant loci with a p-value <= `r thresholdp` and a absolute log2 fold-change lager `r thresholdLFC` were tested for enrichment in annotated genomic feature using fisher exact test.  
 
 
-```{r genomiclocation, fig.width=15, fig.height=5}
+```{r genomiclocation, fig.width=5, fig.height=5}
 
 Ranges=rowData(dds_filt)
 
@@ -137,13 +137,15 @@ Resup$Beta = log(Resup$OR)
 Resup$SE = (log(Resup$OR)-log(Resup$CI95L))/1.96
 Resup$Padj=p.adjust(Resup$P, method = "bonferroni")
 
-par(mfrow=c(1,3))
-
 multiORplot(Resall, Pval = "P", Padj = "Padj", beta="Beta",SE = "SE", pheno="All diff. methylated loci")
 multiORplot(Resup, Pval = "P", Padj = "Padj", beta="Beta",SE = "SE", pheno="hypomethylated loci")
 multiORplot(Resdown, Pval = "P", Padj = "Padj", beta="Beta",SE = "SE", pheno="Hypermethylated loci")
 
-
+pdf(paste0(Home, "/output/functional_Enrichemnt.pdf"))
+multiORplot(Resall, Pval = "P", Padj = "Padj", beta="Beta",SE = "SE", pheno="All diff. methylated loci")
+multiORplot(Resup, Pval = "P", Padj = "Padj", beta="Beta",SE = "SE", pheno="hypomethylated loci")
+multiORplot(Resdown, Pval = "P", Padj = "Padj", beta="Beta",SE = "SE", pheno="Hypermethylated loci")
+dev.off()
 
 
 ```
@@ -162,7 +164,7 @@ getGOresults = function(geneset, genereference){
   resgo = gost(geneset, organism = "hsapiens",
                correction_method = "g_SCS",
                domain_scope = "custom",
-               sources = c("GO:BP", "GO:MF", "GO:CC", "KEGG", "TF", "HP", "HPA"),
+               sources = c("GO:BP", "GO:MF", "GO:CC"),
                custom_bg = genereference)
   if(length(resgo) != 0){
     return(resgo)
@@ -174,11 +176,6 @@ getGOresults = function(geneset, genereference){
 
 gene_univers = getuniquegenes(as.data.frame(rowRanges(dds_filt))$gene)
 
-# idx = (results_Deseq$pvalue <= thresholdp) & (results_Deseq$log2FoldChange > thresholdLFC)
-# genes_pos_beta = getuniquegenes(as.data.frame(rowRanges(dds_filt))$gene[idx])
-# 
-# idx = (results_Deseq$pvalue <= thresholdp) & (results_Deseq$log2FoldChange <= -thresholdLFC)
-# genes_neg_beta = getuniquegenes(as.data.frame(rowRanges(dds_filt))$gene[idx])
 
 idx = (results_Deseq$pvalue <= thresholdp & 
          (abs(results_Deseq$log2FoldChange) > thresholdLFC))
@@ -192,9 +189,6 @@ dmr_genes = unique(resultsdmr_table$name[resultsdmr_table$p.value<=thresholdp &
 
 Genes_of_interset = list("01_dmregions" = dmr_genes,  
                          "02_dmtag" = genes_reg
-                         # , 
-                         # "03_hypermethlated" = genes_neg_beta, 
-                         # "04_hypomethlated" = genes_pos_beta
                          )
 
 gostres = getGOresults(Genes_of_interset, gene_univers)
@@ -215,7 +209,7 @@ write.xlsx2(toptab, file = paste0(Home,"/output/GOres.xlsx"), sheetName = "GO_en
 Gene sets identified to be deferentially methylated with a p-value <= `r thresholdp` and an absolute log2 fold-change larger `r thresholdLFC` were tested for enrichment among gene-modules coregulated during Brain expression. 
 
 
-```{r brainModules, fig.height=12, fig.width=8}
+```{r brainModules, fig.height=12, fig.width=5}
 
 # define Reference Universe 
 
@@ -248,7 +242,7 @@ Annotation_list = Annotation_list[Annotation_list$univers==T,]
 UniversalGeneset=Annotation_list$Symbol
 
 # define Gene lists to test 
-# sort and order Modules to be teste 
+# sort and order Modules to be tested
 
 Modules=unique(Annotation_list$Module)
 Modules = Modules[! Modules %in% c(NA, "")]
@@ -284,10 +278,18 @@ for(j in names(GOI1)){
   Resultsall[[j]] = Res
   
 }
-par(mfrow = c(2,2))
+par(mfrow = c(2,1))
 for (i in names(Resultsall)){ 
   multiORplot(datatoplot = Resultsall[[i]], pheno=i)
 }
+
+par(mfrow = c(1,1))
+pdf(paste0(Home, "/output/BrainMod_Enrichemnt.pdf"))
+for (i in names(Resultsall)){
+  multiORplot(datatoplot = Resultsall[[i]], pheno=i)
+}
+dev.off()
+
 
 Modsig = c()
 
@@ -296,14 +298,217 @@ for(r in names(Resultsall)){
   Modsig = c(Modsig,a)
 }
 
-# show brains TODO
-Modisg=unique(Modsig)
-load(paste0(Home,"/data/Kang_DataPreprocessing.RData")) #Load the Kang expression data of all genes 
-datExprPlot=matriz #Expression data of Kang loaded as Rdata object DataPreprocessing.RData
 
 
 
 ```
+
+```{r modplots}
+
+# show brains and expression
+Modsig2=unique(Modsig[Modsig!="M_all"])
+
+load(paste0(Home,"/data/Kang_DataPreprocessing.RData")) #Load the Kang expression data of all genes 
+datExprPlot=matriz #Expression data of Kang loaded as Rdata object DataPreprocessing.RData
+
+
+Genes = GL_all[names(GL_all)!="M_all"]
+
+Genes_expression<-list()
+
+pcatest<-list()
+for (i in names(Genes)){
+  Genes_expression[[i]]<-matriz[,which(colnames(matriz) %in% Genes[[i]])]
+  pcatest[[i]]=prcomp(t(as.matrix(Genes_expression[[i]])),retx=TRUE)
+}
+
+# PCA test
+PCA<-data.frame(pcatest[[1]]$rotation)
+PCA$donor_name<-rownames(PCA)
+PC1<-data.frame(PCA[,c(1,ncol(PCA))])
+
+#Combining the age with expression data
+list <- strsplit(sampleInfo$age, " ")
+library("plyr")
+df <- ldply(list)
+colnames(df) <- c("Age", "time")
+
+sampleInfo<-cbind(sampleInfo[,1:9],df)
+sampleInfo$Age<-as.numeric(sampleInfo$Age)
+
+sampleInfo$period<-ifelse(sampleInfo$time=="pcw",sampleInfo$Age*7,ifelse(sampleInfo$time=="yrs",sampleInfo$Age*365+270,ifelse(sampleInfo$time=="mos",sampleInfo$Age*30+270,NA)))
+
+#We need it just for the donor names
+
+PCA_matrix<-merge.with.order(PC1,sampleInfo,by.y="SampleID",by.x="donor_name",keep_order=1)
+
+#Select which have phenotype info present 
+matriz2<-matriz[which(rownames(matriz) %in% PCA_matrix$donor_name),]
+FactorGenes_expression<-list()
+#Factors here mean modules
+for (i in names(Genes)){
+  FactorGenes_expression[[i]]<-matriz2[,which(colnames(matriz2) %in% Genes[[i]])]
+}
+
+
+FactorseGE<-list()
+for (i in names(Genes)){
+  FactorseGE[[i]]<-FactorGenes_expression[[i]]
+}
+
+allModgenes=NULL
+colors=vector()
+for ( i in names(Genes)){
+  allModgenes=cbind(allModgenes,FactorseGE[[i]])
+  colors=c(colors, rep(i, ncol(FactorseGE[[i]])))
+}
+
+
+lengths=unlist(lapply(FactorGenes_expression, ncol), use.names = F)
+
+MEorig=moduleEigengenes(allModgenes, colors)
+
+PCA_matrixfreeze=PCA_matrix
+
+index=!PCA_matrix$structure_acronym %in% c("URL", "DTH", "CGE","LGE", "MGE",  "Ocx", "PCx", "M1C-S1C","DIE", "TCx", "CB")
+PCA_matrix=PCA_matrix[index,]
+ME = MEorig$eigengenes[index,]
+matsel = matriz2[index,]
+
+colnames(ME) = gsub("ME", "", colnames(ME))
+
+timepoints=seq(56,15000, length.out=1000)
+matrix(c("CB", "THA", "CBC", "MD"), ncol=2 ) -> cnm
+
+
+brainheatmap=function(Module){
+  MEmod=ME[,Module]
+  toplot=data.frame(matrix(NA, nrow=length(table(PCA_matrix$structure_acronym)), ncol=998))
+  rownames(toplot)=unique(PCA_matrix$structure_acronym)
+  target <- c("OFC", "DFC", "VFC", "MFC","M1C","S1C","IPC","A1C","STC","ITC","V1C","HIP","AMY","STR","MD","CBC")
+  toplot<-toplot[c(6,2,8,5,11,12,10,9,7,4,14,3,1,13,16,15),]
+  
+  
+  for ( i in unique(PCA_matrix$structure_acronym)){
+    index=PCA_matrix$structure_acronym==i
+    LOESS=loess(MEmod[index]~PCA_matrix$period[index])
+    toplot[i,]=predict(LOESS,newdata = round(exp(seq(log(56),log(15000), length.out=998)),2))
+    colnames(toplot)[c(1,77,282,392,640,803,996)]<-
+      c("1pcw","21pcw","Birth","1.3years","5.4years","13.6years","40.7years")
+  }
+  
+  
+  
+  cols=viridis(100)
+  labvec <- c(rep(NA, 1000))
+  
+  labvec[c(1,77,282,392,640,803,996)] <- c("1pcw","21pcw","Birth","1.3years","5.4years","13.6years","40.7years")
+  
+  
+  toplot<-toplot[,1:998]
+  date<-c(1:998)
+  dateY<-paste0(round(date/365,2),"_Years")
+  
+  names(toplot)<-dateY
+  
+  par(xpd=FALSE) 
+  heatmap.2(as.matrix(toplot), col = cols, 
+            main=Module,
+            trace = "none", 
+            na.color = "grey",
+            Colv = F, Rowv = F,
+            labCol = labvec,
+            #breaks = seq(-0.1,0.1, length.out=101),
+            symkey = T,
+            scale = "row",
+            key.title = "",
+            dendrogram = "none",
+            key.xlab = "eigengene",
+            density.info = "none",
+            #main=paste("Module",1),
+            srtCol=90,
+            tracecol = "none", 
+            cexRow = 1,
+            add.expr=eval.parent(abline(v=282),
+                                 axis(1,at=c(1,77,282,392,640,803,996),
+                                      labels =FALSE)),cexCol = 1)
+  
+ 
+}
+
+brainheatmap_gene=function(Genename){
+  MEmod=matsel[,Genename]
+  toplot=data.frame(matrix(NA, nrow=length(table(PCA_matrix$structure_acronym)), ncol=998))
+  rownames(toplot)=unique(PCA_matrix$structure_acronym)
+  target <- c("OFC", "DFC", "VFC", "MFC","M1C","S1C","IPC","A1C","STC","ITC","V1C","HIP","AMY","STR","MD","CBC")
+  toplot<-toplot[c(6,2,8,5,11,12,10,9,7,4,14,3,1,13,16,15),]
+
+
+  for ( i in unique(PCA_matrix$structure_acronym)){
+    index=PCA_matrix$structure_acronym==i
+    LOESS=loess(MEmod[index]~PCA_matrix$period[index])
+    toplot[i,]=predict(LOESS,newdata = round(exp(seq(log(56),log(15000), length.out=998)),2))
+    colnames(toplot)[c(1,77,282,392,640,803,996)]<-
+      c("1pcw","21pcw","Birth","1.3years","5.4years","13.6years","40.7years")
+  }
+
+
+
+  cols=viridis(100)
+  labvec <- c(rep(NA, 1000))
+
+  labvec[c(1,77,282,392,640,803,996)] <- c("1pcw","21pcw","Birth","1.3years","5.4years","13.6years","40.7years")
+
+
+  toplot<-toplot[,1:998]
+  date<-c(1:998)
+  dateY<-paste0(round(date/365,2),"_Years")
+
+  names(toplot)<-dateY
+
+  par(xpd=FALSE)
+  heatmap.2(as.matrix(toplot), col = cols,
+            main=Genename,
+            trace = "none",
+            na.color = "grey",
+            Colv = F, Rowv = F,
+            labCol = labvec,
+            #breaks = seq(-0.1,0.1, length.out=101),
+            symkey = F,
+            scale = "none",
+            key.title = "",
+            dendrogram = "none",
+            key.xlab = "eigengene",
+            density.info = "none",
+            #main=paste("Module",1),
+            #srtCol=90,
+            tracecol = "none",
+            cexRow = 1,
+            add.expr=eval.parent(abline(v=282),
+                                 axis(1,at=c(1,77,282,392,640,803,996),
+                                      labels =FALSE))
+            ,cexCol = 1)
+}
+
+
+brainheatmap_gene("SLITRK5")
+for(Module in Modsig2){
+  brainheatmap(Module)
+}
+
+pdf(paste0(Home, "/output/Brain_Module_Heatmap.pdf"))
+
+brainheatmap_gene("SLITRK5")
+for(Module in Modsig2){
+  brainheatmap(Module)
+}
+dev.off()
+
+
+
+
+```
+
 
 
 ## SEM
@@ -335,7 +540,7 @@ EpiMarker = c(EpiMarker, "Epi_TopHit", "Epi_all")
 
 #Brain Modules
 
-Epitestset=GL_all[Modisg]
+Epitestset=GL_all[Modsig]
 
 for(n in names(Epitestset)){
   index=gettaglistforgenelist(genelist = Epitestset[[n]], dds_filt)
@@ -375,7 +580,7 @@ for (marker in EpiMarker) {
   
   sink(paste0(Home,"/output/SEM_summary_group",marker,".txt"))
   summary(fit)
-  fitMeasures(fit)
+  print(fitMeasures(fit))
   sink()
   
   #SOURCE FOR PLOT https://stackoverflow.com/questions/51270032/how-can-i-display-only-significant-path-lines-on-a-path-diagram-r-lavaan-sem
@@ -427,13 +632,20 @@ for (marker in EpiMarker) {
   
   edges$dashes = F
   edges$label =  DF$std
-  edges$color=Dark8[1:2][factor(sign(DF$std), levels=c(-1,0,1),labels=c(1,2,2))]
-  plotnet<- visNetwork(nodes, edges,
+  edges$color=c("firebrick", "forestgreen")[1:2][factor(sign(DF$std), levels=c(-1,0,1),labels=c(1,2,2))]
+  edges$width=2
+  cexlab = 18
+  plotnet<- visNetwork(nodes, edges,  
                        main=list(text=marker,
                                  style="font-family:arial;font-size:20px;text-align:center"),
-                       submain=list(text="significant paths", style="font-family:arial;text-align:center")) %>% 
-    visEdges(arrows =list(to = list(enabled = TRUE, scaleFactor = 0.7))) %>%
+                       submain=list(text="significant paths", 
+                                    style="font-family:arial;text-align:center")) %>% 
+    visEdges(arrows =list(to = list(enabled = TRUE, scaleFactor = 0.7)),
+                       font=list(size=cexlab, style="font-family:arial;text-align:center")) %>%
+    visNodes(font=list(size=cexlab, style="font-family:arial;text-align:center")) %>%
+    
     visPhysics(enabled = T, solver = "forceAtlas2Based")
+  
   
   Netlist[[marker]] = plotnet
   htmlfile = paste0(Home,"/output/SEMplot_",marker,".html")

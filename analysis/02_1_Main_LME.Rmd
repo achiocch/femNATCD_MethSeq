@@ -89,7 +89,6 @@ designmatrix = model.matrix(design(dds_filt), colData(dds_filt))
 
 ```
 model formula: `r paste0("Epi ~ " , as.character(design(dds_filt))[2])`
-random effects: site
 
 # analyze
 ```{r analyze}
@@ -118,6 +117,9 @@ res$ID = paste0("tag_",1:nrow(res), "_",res$gene)
 rownames(res)=res$ID
 res$CHR = as.numeric(res$seqnames)
 
+restop = as.data.frame(res[order(res$pvalue, decreasing = F), ])
+restop = restop[restop$pvalue<=10E-3,]
+
 if(savefile){
   save(dds_filt, file=paste0(Home,"/output/dds_filt_analyzed.RData"))}
 
@@ -133,7 +135,7 @@ EnhancedVolcano(res,
                 lab = rownames(res),
                 x = 'log2FoldChange',
                 y = 'pvalue',
-                pCutoff = 10e-4,
+                pCutoff = 10e-3,
                 FCcutoff = 0.5)
 
 lp <- -log10(res$pvalue)
@@ -146,5 +148,6 @@ ressum= res[ord,]
 display_tab(ressum)
 
 write.csv(res, file = paste0(Home,"/output/LME_Results.csv"), row.names = T)
+write.csv2(restop, file = paste0(Home,"/output/LME_Results_Sig.csv"), row.names = T)
 
 ```
