@@ -123,16 +123,28 @@ index = sample(1:nrow(EpiData), 10000)
 Sampleddata = EpiData[index,]
 
 boxplot_counts = function(plotsubset, maintitle, colorcode) {
-  boxplot(log2(plotsubset+1), main = maintitle, col = Dark8[as.factor(Patdata[,colorcode])], names=NA,
-          ylab = "log2 transformed", xlab="samples")
-  legend("topleft", legend = levels(Patdata[,colorcode]), pch = 16, col = Dark8[1:length(unique(Patdata[,colorcode]))])
+ dat=log2(plotsubset+1)
+   par(mar=c(5,5,5,8))
+  
+  a = boxplot(dat, main = maintitle, col = Dark8[as.factor(Patdata[,colorcode])], names=NA,
+              ylab = "log2 transformed", xlab="samples")
+  
+  legend(x=length(a$n)*1.05, y=max(dat), 
+         xpd=T,
+         legend = levels(Patdata[,colorcode]), 
+         bty="n",pch = 16, 
+         col = Dark8[1:length(unique(Patdata[,colorcode]))])
 }
 
 
 barplot_counts = function(DF, maintitle, colorcode) {
-  barplot(log2(DF[,"reads_per_sample"]), main = maintitle, col = Dark8[as.factor(DF[,colorcode])], names="",
-          ylab = "log2 transformed",xlab="samples")
-  legend("bottomleft", legend = levels(DF[,colorcode]), pch = 16, col = Dark8[1:length(unique(DF[,colorcode]))])
+  dat=log2(DF[,"reads_per_sample"])
+  par(mar=c(5,5,5,8))
+  a = barplot(dat, main = maintitle, col = Dark8[as.factor(DF[,colorcode])], names="",
+              ylab = "log2 transformed",xlab="samples")
+  legend(x=max(a)*1.05,y=max(dat), xpd=T, bty="n",
+         legend = levels(DF[,colorcode]), pch = 16, 
+         col = Dark8[1:length(unique(DF[,colorcode]))])
 }
 
 
