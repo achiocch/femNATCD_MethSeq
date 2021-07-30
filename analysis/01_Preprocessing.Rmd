@@ -69,7 +69,12 @@ Patdata = Patdata %>% column_to_rownames("V1")
 SNPdata = fread(paste0(Home,"/data/SNPCommonFilt.csv"), header = T, data.table=F)
 SNPdata = SNPdata %>% column_to_rownames("V1")
 
+PopPCAdata = fread(paste0(Home,"/data/femNAT_PC20.txt"), header = T, data.table=F)
+PopPCAdata$ID = paste0("ID_", gsub("-", "_", PopPCAdata$FID))
+PopPCAdata = PopPCAdata %>% column_to_rownames("ID")
+PopPCAdata = PopPCAdata[rownames(Patdata), grepl("PC_",colnames(PopPCAdata))]
 
+Patdata = cbind(Patdata, PopPCAdata)
 Patdata$group = factor(Patdata$group, c(0,1), c("CTRL", "CD"))
 Patdata$group = relevel(Patdata$group, "CTRL")
 
@@ -152,8 +157,8 @@ boxplot_counts(Sampleddata, "raw counts", "group")
 boxplot_counts(Sampleddata, "raw counts", "site")
 barplot_counts(Patdata, "total reads", "group")
 barplot_counts(Patdata, "total reads", "site")
-
 ```
+
 
 * Average Reads per Sample `r format(mean(Patdata$reads_per_sample), big.mark=" ", scientific=F)`
 
@@ -163,6 +168,46 @@ barplot_counts(Patdata, "total reads", "site")
 
 
 ## Sample stats
+
+### Population structure
+
+```{r plot_population}
+summary(aov(PC_1~site, data = Patdata))
+summary(aov(PC_2~site, data = Patdata))
+summary(aov(PC_3~site, data = Patdata))
+summary(aov(PC_4~site, data = Patdata))
+
+TukeyHSD(aov(PC_1~site, data = Patdata))
+TukeyHSD(aov(PC_2~site, data = Patdata))
+TukeyHSD(aov(PC_3~site, data = Patdata))
+TukeyHSD(aov(PC_4~site, data = Patdata))
+
+
+summary(aov(PC_1~group, data = Patdata))
+summary(aov(PC_2~group, data = Patdata))
+summary(aov(PC_3~group, data = Patdata))
+summary(aov(PC_4~group, data = Patdata))
+
+TukeyHSD(aov(PC_1~group, data = Patdata))
+TukeyHSD(aov(PC_2~group, data = Patdata))
+TukeyHSD(aov(PC_3~group, data = Patdata))
+TukeyHSD(aov(PC_4~group, data = Patdata))
+
+
+# Population structure plot
+
+pairs(~PC_1+PC_2+PC_3+PC_4, data=Patdata, main="Genetic population structure",
+      col=Dark8[as.factor(Patdata$site)], pch=as.numeric(Patdata$group)+15)
+
+legend(0.72,0.03, cex = 0.7, legend = c(levels(Patdata$site)), title="site",xpd=T,
+       pch = 16, col=Dark8[1:length(unique(Patdata$site))], ncol = nlevels(Patdata$site), bty = "n")
+
+legend(0.30,0.03, cex = 0.7, legend = c(levels(Patdata$group)), title="group",xpd=T,
+       pch = 15+c(1:nlevels(Patdata$group)), col="gray", ncol = nlevels(Patdata$group), bty = "n")
+
+```
+
+### Covariates
 
 ```{r cov_factors}
 
@@ -210,14 +255,6 @@ Patdata$Matagg = with(Patdata, (aggress=="yes")*1)
 Patdata$Matagg = factor(Patdata$Matagg,levels = c(0,1), labels = c("no", "yes"))
 envFact = c(envFact, "Matagg")
 
-# # self-reported maternal stress experience during pregnancy
-# Patdata$Matstr = with(Patdata, (stress=="yes")*1)
-# Patdata$Matstr = factor(Patdata$Matstr,levels = c(0,1), labels = c("no", "yes"))
-# envFact = c(envFact, "Matstr")
-
-# # psychiatric disorders in the family
-# Patdata$PsychScore = with(Patdata, rowSums(cbind(mpsych_4_12=="yes", mpsych_gt12=="yes", ppsych_le12=="yes", psych_fam=="yes"), na.rm=T))
-# envFact = c(envFact, "PsychScore")
 
 #adverse family situation
 Patdata$FamScore = with(Patdata, rowSums(cbind(#single=="yes", 
@@ -238,8 +275,10 @@ envFact = c(envFact, "EduPar")
 # number of trauma
 envFact = c(envFact, "n_trauma")
 
+corplotfacs=c("group", unique(c(modelFact, clinFact)), "PC_1", "PC_2", "PC_3", "PC_4")
+corplotfacs = corplotfacs[corplotfacs != "site"]
 
-cormat = cor(apply(Patdata[,c("group", unique(c(modelFact, clinFact)))] %>% mutate_all(as.numeric), 2, minmax_scaling),
+cormat = cor(apply(Patdata[,corplotfacs] %>% mutate_all(as.numeric), 2, minmax_scaling),
              use = "pairwise.complete.obs")
 
 corrplot(cormat, order = "hclust", main="clustered and scaled correlations")
@@ -251,12 +290,14 @@ save(envFact, file=paste0(Home,"/output/envFact.RData"))
 
 ```
 
-```{r test_samples_diff, warning=FALSE, message=FALSE}
+```{r test_samples_diff, warning=FALSE, message=FALSE, fig.height=10, fig.width=10}
 # test differences between site  ####
 
 ## add IQ and Anx here 
 
-tablevariates = c("site","Age","tsympt", "Pubstat", "cigday_1","contraceptives")
+tablevariates = c("site","Age","tsympt", "Pubstat", "cigday_1","contraceptives",
+                  "PC_1", "PC_2", "PC_3", "PC_4")
+
 genomicvariates = c("X260_280","ng_per_ul", "Timediff_ExtrPurification","reads_per_sample" ) 
 
 res = table_sumstat(Patdata, 
@@ -264,7 +305,9 @@ res = table_sumstat(Patdata,
                     groupfactor = "group")
 
 res
+setwd(tempdir())
 export2word(res, file = paste0(Home,"/output/table1_unfiltered.docx"))
+setwd(Home)
 
 ```
 
@@ -566,7 +609,9 @@ res = table_sumstat(clPatdata,
                     columns=unique(c(tablevariates, clinFact,modelFact, envFact, genomicvariates)), 
                     groupfactor = "group")
 res
+setwd(tempdir())
 export2word(res, file = paste0(Home,"/output/table1_filtered.docx"))
+setwd(Home)
 
 ```
 

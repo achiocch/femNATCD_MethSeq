@@ -13,3 +13,5 @@ analysis/site_libs
 data/*
 output/*
 setup_built.R
+*.png
+*.js

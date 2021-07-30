@@ -19,6 +19,9 @@ library(tidyverse)
 library(DESeq2)
 library(data.table)
 library(RColorBrewer)
+library(readxl)
+
+
 Home = getwd()
 
 options(stringsAsFactors = F)
@@ -58,6 +61,8 @@ load(paste0(Home,"/output/dds_filt_analyzed.RData"))
 
 ```{r}
 restab=results(dds_filt)
+selEpitpm = counts(dds_filt, normalized=T)
+selEpiMeta = mcols(dds_filt)
 
 alldiff = sum(restab$pvalue<=0.001)
 neg_LFC = sum(restab$pvalue<=0.001 & restab$log2FoldChange<0)
@@ -66,6 +71,8 @@ pos_LFC = sum(restab$pvalue<=0.001& restab$log2FoldChange>0)
 head(restab[order(restab$pvalue, decreasing = F), ])
 
 ```
+
+
 ```{r}
 
 GOtab = readxl::read_xlsx(paste0(Home, "/output/GOres.xlsx"))
@@ -125,4 +132,294 @@ dev.off()
 
 
 ```
+
+```{r RTPCR}
+
+RefGenes = c("GUSB")
+Targets_of_Int = c("SLITRK5", "MIR4500HG")
+nreplicates = 3
+flagscore=0.05 #replication quality error
+
+SamplesMeta=read_xlsx(paste0(Home,"/data/RTrawdata/ZelllinienRNA_femNAT.xlsx"))
+as.data.frame(SamplesMeta) -> SamplesMeta
+                      
+SamplesMeta$Pou=paste("POU", SamplesMeta$Pou)
+rownames(SamplesMeta)=SamplesMeta$Pou
+
+SamplesMeta$Group = dds_filt$group[match(SamplesMeta$femNATID, dds_filt$ID_femNAT)]
+
+
+Files=list.files(paste0(Home,"/data/RTrawdata/"), full.names = T)
+
+Files=Files[grepl("_data",Files)]
+
+Sets=unique(substr(basename(Files), 1,8))
+
+Targets_all=vector()
+Samples_all=vector()
+
+
+geoMean=function(x){
+  x=x[!is.na(x)]
+  if(length(x)==0)
+    return(NA)
+  else
+    return((prod(x))^(1/length(x)))}
+
+for (Set in Sets){
+
+    Setfiles=Files[grep(Set, Files)]
+
+    for( i in 1:length(Setfiles)){
+      tmp=read.table(Setfiles[i], skip=8, header=T, sep="\t", comment.char = "", fill=T)[1:96,]
+      tmp=tmp[,c("Sample.Name", "Target.Name","CÑ.")]
+      colnames(tmp)=c("Sample.Name", "Target.Name", "CT")
+      tmp$Target.Name=gsub("SLITRK5_L", "SLITRK5_", tmp$Target.Name)
+      tmp$Target.Name=gsub("VD_", "", tmp$Target.Name)
+      tmp$Target.Name=gsub("_", "", tmp$Target.Name)
+      tmp$Target.Name=substr(tmp$Target.Name,1, regexpr("#", tmp$Target.Name)-1)
+      tmp$CT=as.numeric(tmp$CT)
+      
+      # set bad replicates to NA 
+      tmpmu = tapply(tmp$CT, paste0(tmp$Sample.Name,"_",tmp$Target.Name), mean, na.rm=T)
+      tmpsd = tapply(tmp$CT, paste0(tmp$Sample.Name,"_",tmp$Target.Name), sd, na.rm=T)
+      for (corr in which(tmpsd/tmpmu>flagscore)){
+        index=unlist(strsplit(names(tmpmu)[corr], "_"))
+        tmp[which(tmp$Sample.Name==index[1] & tmp$Target.Name==index[2]),"CT"] = NA
+      }
+      assign(paste0("tmp_",Set,"_",i),tmp)
+    }
+    
+    tmp=do.call("rbind", mget(apropos(paste0("tmp_",Set))))
+    tmp=tmp[which(!(tmp$Sample.Name==""|is.na(tmp$Sample.Name))), ]
+    tmp=tmp[!tmp$Sample.Name=="NTC",]
+    
+    Samples=unique(tmp$Sample.Name)
+    Targets=unique(tmp$Target.Name)
+    Samples_all=unique(c(Samples_all, Samples))
+    Targets_all=unique(c(Targets_all, Targets))
+    
+    Reform=data.frame(matrix(NA, nrow=length(Samples), ncol=length(Targets)*nreplicates))
+    
+    colnames(Reform)=paste0(rep(Targets, each=3), letters[1:nreplicates])
+    rownames(Reform)=Samples
+    
+    for (i in Samples) {
+      #print(i)
+      for (j in Targets){
+        Reform[i,grep(j, colnames(Reform))]=tmp[tmp$Sample.Name==i & tmp$Target.Name==j,"CT"]
+      }
+    }
+    
+    HK=colnames(Reform)[grep(paste0(RefGenes, collapse="|"),colnames(Reform))]
+    
+    GMHK=apply(Reform[,HK], 1, geoMean)
+    tmp2=Reform-GMHK
+    
+    assign(paste0(Set,"_dCT"), tmp2)
+    rm(list=c(apropos("tmp"), "Reform", "GMHK"))
+    
+}
+
+Samples_all=unique(Samples_all)
+Targets_all = unique(Targets_all)
+
+```
+
+
+```{r RTPCR_step2}
+mergedCTtable=data.frame(matrix(NA,ncol=length(Targets_all)*nreplicates, nrow=length(Samples_all)))
+colnames(mergedCTtable)=paste0(rep(unique(Targets_all), each=nreplicates), letters[1:nreplicates])
+rownames(mergedCTtable)=Samples_all
+
+CTobj=apropos("_dCT")
+
+for( obj in CTobj){
+  DF=get(obj)
+  for(k in colnames(DF)){
+    for(l in rownames(DF)){
+      mergedCTtable[l,k]=DF[l,k]
+    }
+  }
+}
+
+CTmeans=colMeans(mergedCTtable, na.rm = T)
+
+meanvec=tapply(CTmeans,gsub(paste0(letters[1:nreplicates],collapse="|"),"",names(CTmeans)), mean, na.rm=T)
+meanvec = rep(meanvec, each=nreplicates)
+names(meanvec) = paste0(names(meanvec), letters[1:nreplicates])
+meanvec=meanvec[colnames(mergedCTtable)]
+ddCT=apply(mergedCTtable,1, function(x){x-meanvec}) 
+
+FC=2^-ddCT
+
+
+SamplesMeta$inset=F
+SamplesMeta$inset[SamplesMeta$Pou %in% colnames(FC)]=T
+
+SamplesMeta=SamplesMeta[SamplesMeta$inset,]
+
+CTRLCASEsorter=c(which(SamplesMeta$Group=="CTRL"),which(SamplesMeta$Group=="CD"))
+SamplesMeta = SamplesMeta[CTRLCASEsorter, ]
+
+searcher=paste0(Targets_of_Int, collapse = "|")
+
+FC = FC[grepl(searcher, rownames(FC)),SamplesMeta$Pou]
+
+MuFC=apply(FC, 2, function(x){tapply(log2(x), gsub("a|b|c","",rownames(FC)), mean, na.rm=T)})
+SDFC=apply(FC, 2, function(x){tapply(log2(x), gsub("a|b|c","",rownames(FC)), sd, na.rm=T)})
+
+plot(unlist(MuFC[2, ]), unlist(SDFC[2, ]))
+
+
+
+
+
+```
+
+
+```{r RTPCR_step3plot}
+pdf(paste0(Home, "/output/barplots.pdf"))
+
+for(i in Targets_of_Int){
+  if(any(!is.na(MuFC[i,]))){
+  a=barplot(unlist(MuFC[i,]), col=as.numeric(SamplesMeta[colnames(MuFC),"Group"])+1, main=i, las=3, 
+            ylim=c(-max(abs(MuFC[i,])*1.2, na.rm=T), (max(abs(MuFC[i,])*1.2, na.rm=T))))
+  arrows(a, MuFC[i,], a, MuFC[i,]+SDFC[i,], angle = 90, length = 0.1)
+  arrows(a, MuFC[i,], a, MuFC[i,]-SDFC[i,], angle = 90, length = 0.1)
+  legend("topleft", c("case", "control"), col=c(1,2), pch=15, bty="n")
+  } else {
+    plot(0,0, type="n", main=paste(i, "not detected"))
+  }
+}
+
+dev.off()
+
+for(i in Targets_of_Int){
+  if(any(!is.na(MuFC[i,]))){
+  a=barplot(unlist(MuFC[i,]), col=as.numeric(SamplesMeta[colnames(MuFC),"Group"])+1, main=i, las=3, 
+            ylim=c(-max(abs(MuFC[i,])*1.2, na.rm=T), (max(abs(MuFC[i,])*1.2, na.rm=T))))
+  arrows(a, MuFC[i,], a, MuFC[i,]+SDFC[i,], angle = 90, length = 0.1)
+  arrows(a, MuFC[i,], a, MuFC[i,]-SDFC[i,], angle = 90, length = 0.1)
+  legend("topleft", c("case", "control"), col=c(1,2), pch=15, bty="n")
+  } else {
+    plot(0,0, type="n", main=paste(i, "not detected"))
+  }
+}
+
+```
+
+
+```{r RTPCR_step4 test}
+sink(paste0(Home, "/output/ResultsgroupComp.txt"))
+
+Group=SamplesMeta$Group
+for(i in Targets_of_Int){
+  print(i)
+  print(summary(try(lm(unlist(MuFC[i,])~Group))))
+  print(t.test(unlist(MuFC[i,])~Group))
+}
+
+sink()
+
+for(i in Targets_of_Int){
+  print(i)
+  print(summary(try(lm(unlist(MuFC[i,])~Group))))
+  print(t.test(unlist(MuFC[i,])~Group, var.qual=F, mu=0))
+}
+
+
+SamplesMeta$femNATID2=paste0("ID_",gsub("-","_",SamplesMeta$femNATID))
+
+SamplesMeta=SamplesMeta[SamplesMeta$Pou %in% colnames(MuFC),]
+MuFC=MuFC[,SamplesMeta$Pou]
+
+TPM4RNA=selEpitpm[,SamplesMeta$femNATID2]
+colnames(TPM4RNA)=SamplesMeta$Pou
+
+tags=list()
+
+
+Targets=Targets_of_Int
+
+
+sigtags=which(restab$padj<=0.05)
+
+selEpiMeta[sigtags,]
+
+tagsOI=grep(paste0(Targets, collapse = "|"),selEpiMeta$gene)
+
+sigtagsOI = tagsOI[tagsOI %in% sigtags]
+
+fintagsOI=data.frame(tags=sigtagsOI, gene=selEpiMeta[sigtagsOI,"gene"])
+
+#Targ=Targets[1]
+#tag=tags[1]
+```
+
+
+```{r RTPCR_step4 test_plot, fig.width=15,fig.height=8}
+
+pdf(paste0(Home,"/output/RNAvsMETplots.pdf"))
+
+MuFC=as.data.frame(MuFC)
+MuFCsel=MuFC[Targets,]
+par(mar=c(5,5,5,3), mfrow=c(1,2))
+for (Targ in Targets){
+  tags=fintagsOI$tags[grep(Targ, fintagsOI$gene)]
+  for (tag in tags){
+    data=data.frame(tpm=unlist(TPM4RNA[tag,SamplesMeta$Pou]) , 
+                    RT=unlist(MuFCsel[grep(Targ, rownames(MuFCsel)),SamplesMeta$Pou]))
+    plot(data$tpm,data$RT, 
+         xlab="methylation tpm", 
+         ylab = "mRNA log2FC vs mean", 
+         ylim=c(-3,3),
+         col=4-as.numeric(SamplesMeta$Group), 
+         pch=as.numeric(SamplesMeta$Group)+14,
+         main=paste(tag, "Meth vs mRNA Expr", Targ))
+    legend("topleft", c("control", "case"), pch=c(15,16), col=c(3,2), bty="n")
+    a=lm(RT~tpm, data)
+    b=summary(a)
+    abline(a, col="blue")
+
+    SperCor=cor(data$RT,data$tpm,use = "c", method = "spearman")
+    mtext(3, text = paste("beta = ", round(coefficients(a)[2],2), 
+                          "; se =", round(b$coefficients[2,2],2), 
+                          "; pvalue = ", round(b$coefficients[2,4],3), 
+                          "; sperman cor = ", round(SperCor,3)))
+  }
+}
+
+dev.off()
+
+MuFC=as.data.frame(MuFC)
+MuFCsel=MuFC[Targets,]
+par(mar=c(5,5,5,3), mfrow=c(1,2))
+for (Targ in Targets){
+  tags=fintagsOI$tags[grep(Targ, fintagsOI$gene)]
+  for (tag in tags){
+    data=data.frame(tpm=unlist(TPM4RNA[tag,SamplesMeta$Pou]) , 
+                    RT=unlist(MuFCsel[grep(Targ, rownames(MuFCsel)),SamplesMeta$Pou]))
+    plot(data$tpm,data$RT, 
+         xlab="methylation tpm", 
+         ylab = "mRNA log2FC vs mean", 
+         ylim=c(-3,3),
+         col=4-as.numeric(SamplesMeta$Group), 
+         pch=as.numeric(SamplesMeta$Group)+14,
+         main=paste(tag, "Meth vs mRNA Expr", Targ))
+    legend("topleft", c("control", "case"), pch=c(15,16), col=c(3,2), bty="n")
+    a=lm(RT~tpm, data)
+    b=summary(a)
+    print(b)
+    abline(a, col="blue")
+    SperCor=cor(data$RT,data$tpm,use = "c", method = "spearman")
+    mtext(3, text = paste("beta = ", round(coefficients(a)[2],2), 
+                          "; se =", round(b$coefficients[2,2],2), 
+                          "; pvalue = ", round(b$coefficients[2,4],3), 
+                          "; sperman cor = ", round(SperCor,3)))
+  }
+}
+
+```
+
 

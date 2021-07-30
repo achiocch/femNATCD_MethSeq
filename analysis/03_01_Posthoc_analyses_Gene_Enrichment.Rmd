@@ -581,6 +581,8 @@ for (marker in EpiMarker) {
   sink(paste0(Home,"/output/SEM_summary_group",marker,".txt"))
   summary(fit)
   print(fitMeasures(fit))
+  print(fitMeasures(fit))
+  print(parameterEstimates(fit))
   sink()
   
   #SOURCE FOR PLOT https://stackoverflow.com/questions/51270032/how-can-i-display-only-significant-path-lines-on-a-path-diagram-r-lavaan-sem
