@@ -408,7 +408,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -417,7 +417,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -426,10 +426,10 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-05-08
+<strong>Last updated:</strong> 2021-07-30
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>femNATCD_MethSeq/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -445,12 +445,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -517,16 +517,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtreea8478239ce3ca497da23250c261c259b1d1f9088targetblanka847823a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/a8478239ce3ca497da23250c261c259b1d1f9088" target="_blank">a847823</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree798f4537e129c9af90d7b2ceb6512a47cd2c9b2etargetblank798f453a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/798f4537e129c9af90d7b2ceb6512a47cd2c9b2e" target="_blank">798f453</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtreea8478239ce3ca497da23250c261c259b1d1f9088targetblanka847823a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree798f4537e129c9af90d7b2ceb6512a47cd2c9b2etargetblank798f453a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/a8478239ce3ca497da23250c261c259b1d1f9088" target="_blank">a847823</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/798f4537e129c9af90d7b2ceb6512a47cd2c9b2e" target="_blank">798f453</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -545,7 +545,9 @@ Ignored files:
     Ignored:    data/Kang_dataset_genesMod_version2.txt
     Ignored:    data/PatMeta.csv
     Ignored:    data/ProcessedData.RData
+    Ignored:    data/RTrawdata/
     Ignored:    data/SNPCommonFilt.csv
+    Ignored:    data/femNAT_PC20.txt
     Ignored:    output/4A76FA10
     Ignored:    output/BrainMod_Enrichemnt.pdf
     Ignored:    output/Brain_Module_Heatmap.pdf
@@ -598,6 +600,11 @@ Ignored files:
     Ignored:    output/table1_unfiltered.docx
     Ignored:    setup_built.R
 
+Unstaged changes:
+    Modified:   analysis/03_01_Posthoc_analyses_Gene_Enrichment.Rmd
+    Modified:   analysis/99_helperforPaper.Rmd
+    Deleted:    analysis/RNAvsMETplots.pdf
+
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
@@ -635,6 +642,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/achiocch/femNATCD_MethSeq/blob/1a9f36fde268d7bd9b5615ff46b35309442db585/analysis/99_helperforPaper.Rmd" target="_blank">1a9f36f</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-07-30
+</td>
+<td>
+reviewed analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/2734c4e51aa341b50f59acf0df2900ab91d06654/docs/99_helperforPaper.html" target="_blank">2734c4e</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-05-08
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -781,6 +822,8 @@ wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"))
 <pre class="r"><code>## load Data  ####
 load(paste0(Home,&quot;/output/dds_filt_analyzed.RData&quot;))</code></pre>
 <pre class="r"><code>restab=results(dds_filt)
+selEpitpm = counts(dds_filt, normalized=T)
+selEpiMeta = mcols(dds_filt)
 
 alldiff = sum(restab$pvalue&lt;=0.001)
 neg_LFC = sum(restab$pvalue&lt;=0.001 &amp; restab$log2FoldChange&lt;0)
@@ -855,6 +898,515 @@ GOplot(GOtab_Reg[GOtab_Reg$source==&quot;GO:BP&quot;,], 20)
 dev.off()</code></pre>
 <pre><code>png 
   2 </code></pre>
+<pre class="r"><code>RefGenes = c(&quot;GUSB&quot;)
+Targets_of_Int = c(&quot;SLITRK5&quot;, &quot;MIR4500HG&quot;)
+nreplicates = 3
+flagscore=0.05 #replication quality error
+
+SamplesMeta=read_xlsx(paste0(Home,&quot;/data/RTrawdata/ZelllinienRNA_femNAT.xlsx&quot;))
+as.data.frame(SamplesMeta) -&gt; SamplesMeta
+                      
+SamplesMeta$Pou=paste(&quot;POU&quot;, SamplesMeta$Pou)
+rownames(SamplesMeta)=SamplesMeta$Pou
+
+SamplesMeta$Group = dds_filt$group[match(SamplesMeta$femNATID, dds_filt$ID_femNAT)]
+
+
+Files=list.files(paste0(Home,&quot;/data/RTrawdata/&quot;), full.names = T)
+
+Files=Files[grepl(&quot;_data&quot;,Files)]
+
+Sets=unique(substr(basename(Files), 1,8))
+
+Targets_all=vector()
+Samples_all=vector()
+
+
+geoMean=function(x){
+  x=x[!is.na(x)]
+  if(length(x)==0)
+    return(NA)
+  else
+    return((prod(x))^(1/length(x)))}
+
+for (Set in Sets){
+
+    Setfiles=Files[grep(Set, Files)]
+
+    for( i in 1:length(Setfiles)){
+      tmp=read.table(Setfiles[i], skip=8, header=T, sep=&quot;\t&quot;, comment.char = &quot;&quot;, fill=T)[1:96,]
+      tmp=tmp[,c(&quot;Sample.Name&quot;, &quot;Target.Name&quot;,&quot;CÑ.&quot;)]
+      colnames(tmp)=c(&quot;Sample.Name&quot;, &quot;Target.Name&quot;, &quot;CT&quot;)
+      tmp$Target.Name=gsub(&quot;SLITRK5_L&quot;, &quot;SLITRK5_&quot;, tmp$Target.Name)
+      tmp$Target.Name=gsub(&quot;VD_&quot;, &quot;&quot;, tmp$Target.Name)
+      tmp$Target.Name=gsub(&quot;_&quot;, &quot;&quot;, tmp$Target.Name)
+      tmp$Target.Name=substr(tmp$Target.Name,1, regexpr(&quot;#&quot;, tmp$Target.Name)-1)
+      tmp$CT=as.numeric(tmp$CT)
+      
+      # set bad replicates to NA 
+      tmpmu = tapply(tmp$CT, paste0(tmp$Sample.Name,&quot;_&quot;,tmp$Target.Name), mean, na.rm=T)
+      tmpsd = tapply(tmp$CT, paste0(tmp$Sample.Name,&quot;_&quot;,tmp$Target.Name), sd, na.rm=T)
+      for (corr in which(tmpsd/tmpmu&gt;flagscore)){
+        index=unlist(strsplit(names(tmpmu)[corr], &quot;_&quot;))
+        tmp[which(tmp$Sample.Name==index[1] &amp; tmp$Target.Name==index[2]),&quot;CT&quot;] = NA
+      }
+      assign(paste0(&quot;tmp_&quot;,Set,&quot;_&quot;,i),tmp)
+    }
+    
+    tmp=do.call(&quot;rbind&quot;, mget(apropos(paste0(&quot;tmp_&quot;,Set))))
+    tmp=tmp[which(!(tmp$Sample.Name==&quot;&quot;|is.na(tmp$Sample.Name))), ]
+    tmp=tmp[!tmp$Sample.Name==&quot;NTC&quot;,]
+    
+    Samples=unique(tmp$Sample.Name)
+    Targets=unique(tmp$Target.Name)
+    Samples_all=unique(c(Samples_all, Samples))
+    Targets_all=unique(c(Targets_all, Targets))
+    
+    Reform=data.frame(matrix(NA, nrow=length(Samples), ncol=length(Targets)*nreplicates))
+    
+    colnames(Reform)=paste0(rep(Targets, each=3), letters[1:nreplicates])
+    rownames(Reform)=Samples
+    
+    for (i in Samples) {
+      #print(i)
+      for (j in Targets){
+        Reform[i,grep(j, colnames(Reform))]=tmp[tmp$Sample.Name==i &amp; tmp$Target.Name==j,&quot;CT&quot;]
+      }
+    }
+    
+    HK=colnames(Reform)[grep(paste0(RefGenes, collapse=&quot;|&quot;),colnames(Reform))]
+    
+    GMHK=apply(Reform[,HK], 1, geoMean)
+    tmp2=Reform-GMHK
+    
+    assign(paste0(Set,&quot;_dCT&quot;), tmp2)
+    rm(list=c(apropos(&quot;tmp&quot;), &quot;Reform&quot;, &quot;GMHK&quot;))
+    
+}</code></pre>
+<pre><code>Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt
+
+Warning: NAs durch Umwandlung erzeugt</code></pre>
+<pre class="r"><code>Samples_all=unique(Samples_all)
+Targets_all = unique(Targets_all)</code></pre>
+<pre class="r"><code>mergedCTtable=data.frame(matrix(NA,ncol=length(Targets_all)*nreplicates, nrow=length(Samples_all)))
+colnames(mergedCTtable)=paste0(rep(unique(Targets_all), each=nreplicates), letters[1:nreplicates])
+rownames(mergedCTtable)=Samples_all
+
+CTobj=apropos(&quot;_dCT&quot;)
+
+for( obj in CTobj){
+  DF=get(obj)
+  for(k in colnames(DF)){
+    for(l in rownames(DF)){
+      mergedCTtable[l,k]=DF[l,k]
+    }
+  }
+}
+
+CTmeans=colMeans(mergedCTtable, na.rm = T)
+
+meanvec=tapply(CTmeans,gsub(paste0(letters[1:nreplicates],collapse=&quot;|&quot;),&quot;&quot;,names(CTmeans)), mean, na.rm=T)
+meanvec = rep(meanvec, each=nreplicates)
+names(meanvec) = paste0(names(meanvec), letters[1:nreplicates])
+meanvec=meanvec[colnames(mergedCTtable)]
+ddCT=apply(mergedCTtable,1, function(x){x-meanvec}) 
+
+FC=2^-ddCT
+
+
+SamplesMeta$inset=F
+SamplesMeta$inset[SamplesMeta$Pou %in% colnames(FC)]=T
+
+SamplesMeta=SamplesMeta[SamplesMeta$inset,]
+
+CTRLCASEsorter=c(which(SamplesMeta$Group==&quot;CTRL&quot;),which(SamplesMeta$Group==&quot;CD&quot;))
+SamplesMeta = SamplesMeta[CTRLCASEsorter, ]
+
+searcher=paste0(Targets_of_Int, collapse = &quot;|&quot;)
+
+FC = FC[grepl(searcher, rownames(FC)),SamplesMeta$Pou]
+
+MuFC=apply(FC, 2, function(x){tapply(log2(x), gsub(&quot;a|b|c&quot;,&quot;&quot;,rownames(FC)), mean, na.rm=T)})
+SDFC=apply(FC, 2, function(x){tapply(log2(x), gsub(&quot;a|b|c&quot;,&quot;&quot;,rownames(FC)), sd, na.rm=T)})
+
+plot(unlist(MuFC[2, ]), unlist(SDFC[2, ]))</code></pre>
+<p><img src="figure/99_helperforPaper.Rmd/RTPCR_step2-1.png" width="4500" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>pdf(paste0(Home, &quot;/output/barplots.pdf&quot;))
+
+for(i in Targets_of_Int){
+  if(any(!is.na(MuFC[i,]))){
+  a=barplot(unlist(MuFC[i,]), col=as.numeric(SamplesMeta[colnames(MuFC),&quot;Group&quot;])+1, main=i, las=3, 
+            ylim=c(-max(abs(MuFC[i,])*1.2, na.rm=T), (max(abs(MuFC[i,])*1.2, na.rm=T))))
+  arrows(a, MuFC[i,], a, MuFC[i,]+SDFC[i,], angle = 90, length = 0.1)
+  arrows(a, MuFC[i,], a, MuFC[i,]-SDFC[i,], angle = 90, length = 0.1)
+  legend(&quot;topleft&quot;, c(&quot;case&quot;, &quot;control&quot;), col=c(1,2), pch=15, bty=&quot;n&quot;)
+  } else {
+    plot(0,0, type=&quot;n&quot;, main=paste(i, &quot;not detected&quot;))
+  }
+}
+
+dev.off()</code></pre>
+<pre><code>png 
+  2 </code></pre>
+<pre class="r"><code>for(i in Targets_of_Int){
+  if(any(!is.na(MuFC[i,]))){
+  a=barplot(unlist(MuFC[i,]), col=as.numeric(SamplesMeta[colnames(MuFC),&quot;Group&quot;])+1, main=i, las=3, 
+            ylim=c(-max(abs(MuFC[i,])*1.2, na.rm=T), (max(abs(MuFC[i,])*1.2, na.rm=T))))
+  arrows(a, MuFC[i,], a, MuFC[i,]+SDFC[i,], angle = 90, length = 0.1)
+  arrows(a, MuFC[i,], a, MuFC[i,]-SDFC[i,], angle = 90, length = 0.1)
+  legend(&quot;topleft&quot;, c(&quot;case&quot;, &quot;control&quot;), col=c(1,2), pch=15, bty=&quot;n&quot;)
+  } else {
+    plot(0,0, type=&quot;n&quot;, main=paste(i, &quot;not detected&quot;))
+  }
+}</code></pre>
+<p><img src="figure/99_helperforPaper.Rmd/RTPCR_step3plot-1.png" width="4500" style="display: block; margin: auto;" /><img src="figure/99_helperforPaper.Rmd/RTPCR_step3plot-2.png" width="4500" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>sink(paste0(Home, &quot;/output/ResultsgroupComp.txt&quot;))
+
+Group=SamplesMeta$Group
+for(i in Targets_of_Int){
+  print(i)
+  print(summary(try(lm(unlist(MuFC[i,])~Group))))
+  print(t.test(unlist(MuFC[i,])~Group))
+}</code></pre>
+<pre><code>[1] &quot;SLITRK5&quot;
+
+Call:
+lm(formula = unlist(MuFC[i, ]) ~ Group)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.3710 -0.4489  0.1142  0.4382  0.9983 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  -0.1703     0.1718  -0.991    0.334
+GroupCD       0.5109     0.2975   1.717    0.102
+
+Residual standard error: 0.6427 on 19 degrees of freedom
+Multiple R-squared:  0.1343,    Adjusted R-squared:  0.08878 
+F-statistic: 2.949 on 1 and 19 DF,  p-value: 0.1022
+
+
+    Welch Two Sample t-test
+
+data:  unlist(MuFC[i, ]) by Group
+t = -2.0316, df = 18.197, p-value = 0.05706
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.03871726  0.01701686
+sample estimates:
+mean in group CTRL   mean in group CD 
+        -0.1702834          0.3405668 
+
+[1] &quot;MIR4500HG&quot;
+
+Call:
+lm(formula = unlist(MuFC[i, ]) ~ Group)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.7172 -1.2116 -0.2660  0.5749  5.4474 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  -0.6053     0.5683  -1.065    0.301
+GroupCD       0.6614     0.9607   0.688    0.500
+
+Residual standard error: 2.049 on 18 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.02566,   Adjusted R-squared:  -0.02847 
+F-statistic: 0.474 on 1 and 18 DF,  p-value: 0.4999
+
+
+    Welch Two Sample t-test
+
+data:  unlist(MuFC[i, ]) by Group
+t = -0.65047, df = 10.602, p-value = 0.5292
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -2.909646  1.586853
+sample estimates:
+mean in group CTRL   mean in group CD 
+       -0.60525003         0.05614653 </code></pre>
+<pre class="r"><code>sink()
+
+for(i in Targets_of_Int){
+  print(i)
+  print(summary(try(lm(unlist(MuFC[i,])~Group))))
+  print(t.test(unlist(MuFC[i,])~Group, var.qual=F, mu=0))
+}</code></pre>
+<pre><code>[1] &quot;SLITRK5&quot;
+
+Call:
+lm(formula = unlist(MuFC[i, ]) ~ Group)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.3710 -0.4489  0.1142  0.4382  0.9983 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  -0.1703     0.1718  -0.991    0.334
+GroupCD       0.5109     0.2975   1.717    0.102
+
+Residual standard error: 0.6427 on 19 degrees of freedom
+Multiple R-squared:  0.1343,    Adjusted R-squared:  0.08878 
+F-statistic: 2.949 on 1 and 19 DF,  p-value: 0.1022
+
+
+    Welch Two Sample t-test
+
+data:  unlist(MuFC[i, ]) by Group
+t = -2.0316, df = 18.197, p-value = 0.05706
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.03871726  0.01701686
+sample estimates:
+mean in group CTRL   mean in group CD 
+        -0.1702834          0.3405668 
+
+[1] &quot;MIR4500HG&quot;
+
+Call:
+lm(formula = unlist(MuFC[i, ]) ~ Group)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.7172 -1.2116 -0.2660  0.5749  5.4474 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  -0.6053     0.5683  -1.065    0.301
+GroupCD       0.6614     0.9607   0.688    0.500
+
+Residual standard error: 2.049 on 18 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.02566,   Adjusted R-squared:  -0.02847 
+F-statistic: 0.474 on 1 and 18 DF,  p-value: 0.4999
+
+
+    Welch Two Sample t-test
+
+data:  unlist(MuFC[i, ]) by Group
+t = -0.65047, df = 10.602, p-value = 0.5292
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -2.909646  1.586853
+sample estimates:
+mean in group CTRL   mean in group CD 
+       -0.60525003         0.05614653 </code></pre>
+<pre class="r"><code>SamplesMeta$femNATID2=paste0(&quot;ID_&quot;,gsub(&quot;-&quot;,&quot;_&quot;,SamplesMeta$femNATID))
+
+SamplesMeta=SamplesMeta[SamplesMeta$Pou %in% colnames(MuFC),]
+MuFC=MuFC[,SamplesMeta$Pou]
+
+TPM4RNA=selEpitpm[,SamplesMeta$femNATID2]
+colnames(TPM4RNA)=SamplesMeta$Pou
+
+tags=list()
+
+
+Targets=Targets_of_Int
+
+
+sigtags=which(restab$padj&lt;=0.05)
+
+selEpiMeta[sigtags,]</code></pre>
+<pre><code>DataFrame with 1 row and 55 columns
+           raw_gene              gene    distance     feature         cpg
+        &lt;character&gt;       &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt;
+1 MIR4500HG,SLITRK5 MIR4500HG,SLITRK5           0    upstream         cpg
+   tf_binding samples_per_target      mean       std  baseMean   baseVar
+  &lt;character&gt;          &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+1    Pol2//GR                100   15.7059   12.6308    13.294   61.7602
+    allZero dispGeneEst dispGeneIter   dispFit dispersion  dispIter dispOutlier
+  &lt;logical&gt;   &lt;numeric&gt;    &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt; &lt;integer&gt;   &lt;logical&gt;
+1     FALSE    0.176742           11   0.17053   0.175669        11       FALSE
+    dispMAP        Age int_disno int_disyes medicationyes contraceptivesyes
+  &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;     &lt;numeric&gt;         &lt;numeric&gt;
+1  0.175669 -0.0452923   4.74064     5.0314      0.166961         -0.126415
+   cigday_1        V8   groupCD    SE_Age SE_int_disno SE_int_disyes
+  &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;    &lt;numeric&gt;     &lt;numeric&gt;
+1 0.0305576  0.706369  -1.12842 0.0539633     0.854072      0.884392
+  SE_medicationyes SE_contraceptivesyes SE_cigday_1     SE_V8 SE_groupCD
+         &lt;numeric&gt;            &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;
+1         0.213896             0.191566   0.0173334  0.879379   0.201492
+  WaldStatistic_Age WaldStatistic_int_disno WaldStatistic_int_disyes
+          &lt;numeric&gt;               &lt;numeric&gt;                &lt;numeric&gt;
+1         -0.839318                 5.55064                  5.68911
+  WaldStatistic_medicationyes WaldStatistic_contraceptivesyes
+                    &lt;numeric&gt;                       &lt;numeric&gt;
+1                    0.780573                       -0.659903
+  WaldStatistic_cigday_1 WaldStatistic_V8 WaldStatistic_groupCD WaldPvalue_Age
+               &lt;numeric&gt;        &lt;numeric&gt;             &lt;numeric&gt;      &lt;numeric&gt;
+1                1.76293         0.803259              -5.60034       0.401291
+  WaldPvalue_int_disno WaldPvalue_int_disyes WaldPvalue_medicationyes
+             &lt;numeric&gt;             &lt;numeric&gt;                &lt;numeric&gt;
+1          2.84626e-08           1.27704e-08                 0.435054
+  WaldPvalue_contraceptivesyes WaldPvalue_cigday_1 WaldPvalue_V8
+                     &lt;numeric&gt;           &lt;numeric&gt;     &lt;numeric&gt;
+1                     0.509316           0.0779121      0.421825
+  WaldPvalue_groupCD  betaConv  betaIter  deviance  maxCooks
+           &lt;numeric&gt; &lt;logical&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;logical&gt;
+1        2.13936e-08      TRUE         6   645.105        NA</code></pre>
+<pre class="r"><code>tagsOI=grep(paste0(Targets, collapse = &quot;|&quot;),selEpiMeta$gene)
+
+sigtagsOI = tagsOI[tagsOI %in% sigtags]
+
+fintagsOI=data.frame(tags=sigtagsOI, gene=selEpiMeta[sigtagsOI,&quot;gene&quot;])
+
+#Targ=Targets[1]
+#tag=tags[1]</code></pre>
+<pre class="r"><code>pdf(paste0(Home,&quot;/output/RNAvsMETplots.pdf&quot;), width = 15, height = 8)
+
+MuFC=as.data.frame(MuFC)
+MuFCsel=MuFC[Targets,]
+par(mar=c(5,5,5,3), mfrow=c(1,2))
+for (Targ in Targets){
+  tags=fintagsOI$tags[grep(Targ, fintagsOI$gene)]
+  for (tag in tags){
+    data=data.frame(tpm=unlist(TPM4RNA[tag,SamplesMeta$Pou]) , 
+                    RT=unlist(MuFCsel[grep(Targ, rownames(MuFCsel)),SamplesMeta$Pou]))
+    plot(data$tpm,data$RT, 
+         xlab=&quot;methylation tpm&quot;, 
+         ylab = &quot;mRNA log2FC vs mean&quot;, 
+         ylim=c(-3,3),
+         col=4-as.numeric(SamplesMeta$Group), 
+         pch=as.numeric(SamplesMeta$Group)+14,
+         main=paste(tag, &quot;Meth vs mRNA Expr&quot;, Targ))
+    legend(&quot;topleft&quot;, c(&quot;control&quot;, &quot;case&quot;), pch=c(15,16), col=c(3,2), bty=&quot;n&quot;)
+    a=lm(RT~tpm, data)
+    b=summary(a)
+    abline(a, col=&quot;blue&quot;)
+
+    SperCor=cor(data$RT,data$tpm,use = &quot;c&quot;, method = &quot;spearman&quot;)
+    mtext(3, text = paste(&quot;beta = &quot;, round(coefficients(a)[2],2), 
+                          &quot;; se =&quot;, round(b$coefficients[2,2],2), 
+                          &quot;; pvalue = &quot;, round(b$coefficients[2,4],3), 
+                          &quot;; sperman cor = &quot;, round(SperCor,3)))
+  }
+}
+
+dev.off()</code></pre>
+<pre><code>png 
+  2 </code></pre>
+<pre class="r"><code>MuFC=as.data.frame(MuFC)
+MuFCsel=MuFC[Targets,]
+par(mar=c(5,5,5,3), mfrow=c(1,2))
+for (Targ in Targets){
+  tags=fintagsOI$tags[grep(Targ, fintagsOI$gene)]
+  for (tag in tags){
+    data=data.frame(tpm=unlist(TPM4RNA[tag,SamplesMeta$Pou]) , 
+                    RT=unlist(MuFCsel[grep(Targ, rownames(MuFCsel)),SamplesMeta$Pou]))
+    plot(data$tpm,data$RT, 
+         xlab=&quot;methylation tpm&quot;, 
+         ylab = &quot;mRNA log2FC vs mean&quot;, 
+         ylim=c(-3,3),
+         col=4-as.numeric(SamplesMeta$Group), 
+         pch=as.numeric(SamplesMeta$Group)+14,
+         main=paste(tag, &quot;Meth vs mRNA Expr&quot;, Targ))
+    legend(&quot;topleft&quot;, c(&quot;control&quot;, &quot;case&quot;), pch=c(15,16), col=c(3,2), bty=&quot;n&quot;)
+    a=lm(RT~tpm, data)
+    b=summary(a)
+    print(b)
+    abline(a, col=&quot;blue&quot;)
+    SperCor=cor(data$RT,data$tpm,use = &quot;c&quot;, method = &quot;spearman&quot;)
+    mtext(3, text = paste(&quot;beta = &quot;, round(coefficients(a)[2],2), 
+                          &quot;; se =&quot;, round(b$coefficients[2,2],2), 
+                          &quot;; pvalue = &quot;, round(b$coefficients[2,4],3), 
+                          &quot;; sperman cor = &quot;, round(SperCor,3)))
+  }
+}</code></pre>
+<pre><code>
+Call:
+lm(formula = RT ~ tpm, data = data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.04611 -0.38191  0.09584  0.38038  1.06231 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)  0.66910    0.26738   2.502   0.0216 *
+tpm         -0.05479    0.01930  -2.839   0.0105 *
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.5788 on 19 degrees of freedom
+Multiple R-squared:  0.2979,    Adjusted R-squared:  0.2609 
+F-statistic: 8.061 on 1 and 19 DF,  p-value: 0.01049</code></pre>
+<p><img src="figure/99_helperforPaper.Rmd/RTPCR_step4%20test_plot-1.png" width="7500" style="display: block; margin: auto;" /></p>
+<pre><code>
+Call:
+lm(formula = RT ~ tpm, data = data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.9602 -0.9674 -0.3599  0.7415  5.1303 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  0.77882    0.93125   0.836    0.414
+tpm         -0.09302    0.06621  -1.405    0.177
+
+Residual standard error: 1.971 on 18 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.09882,   Adjusted R-squared:  0.04876 
+F-statistic: 1.974 on 1 and 18 DF,  p-value: 0.1771</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -881,18 +1433,18 @@ attached base packages:
 other attached packages:
  [1] scales_1.1.1                RCircos_1.2.1              
  [3] compareGroups_4.4.6         kableExtra_1.3.1           
- [5] RColorBrewer_1.1-2          data.table_1.13.6          
- [7] DESeq2_1.30.0               SummarizedExperiment_1.20.0
- [9] Biobase_2.50.0              MatrixGenerics_1.2.0       
-[11] matrixStats_0.57.0          GenomicRanges_1.42.0       
-[13] GenomeInfoDb_1.26.2         IRanges_2.24.1             
-[15] S4Vectors_0.28.1            BiocGenerics_0.36.0        
-[17] forcats_0.5.0               stringr_1.4.0              
-[19] dplyr_1.0.2                 purrr_0.3.4                
-[21] readr_1.4.0                 tidyr_1.1.2                
-[23] tibble_3.0.4                ggplot2_3.3.3              
-[25] tidyverse_1.3.0             knitr_1.30                 
-[27] workflowr_1.6.2            
+ [5] readxl_1.3.1                RColorBrewer_1.1-2         
+ [7] data.table_1.13.6           DESeq2_1.30.0              
+ [9] SummarizedExperiment_1.20.0 Biobase_2.50.0             
+[11] MatrixGenerics_1.2.0        matrixStats_0.57.0         
+[13] GenomicRanges_1.42.0        GenomeInfoDb_1.26.2        
+[15] IRanges_2.24.1              S4Vectors_0.28.1           
+[17] BiocGenerics_0.36.0         forcats_0.5.0              
+[19] stringr_1.4.0               dplyr_1.0.2                
+[21] purrr_0.3.4                 readr_1.4.0                
+[23] tidyr_1.1.2                 tibble_3.0.4               
+[25] ggplot2_3.3.3               tidyverse_1.3.0            
+[27] knitr_1.30                  workflowr_1.6.2            
 
 loaded via a namespace (and not attached):
  [1] colorspace_2.0-0       ellipsis_0.3.1         rprojroot_2.0.2       
@@ -923,10 +1475,9 @@ loaded via a namespace (and not attached):
 [76] survival_3.2-7         RCurl_1.98-1.2         modelr_0.1.8          
 [79] crayon_1.3.4           uuid_0.1-4             officer_0.3.16        
 [82] rmarkdown_2.6          locfit_1.5-9.4         grid_4.0.3            
-[85] readxl_1.3.1           blob_1.2.1             git2r_0.28.0          
-[88] reprex_1.0.0           digest_0.6.27          webshot_0.5.2         
-[91] xtable_1.8-4           httpuv_1.5.5           munsell_0.5.0         
-[94] viridisLite_0.3.0     </code></pre>
+[85] blob_1.2.1             git2r_0.28.0           reprex_1.0.0          
+[88] digest_0.6.27          webshot_0.5.2          xtable_1.8-4          
+[91] httpuv_1.5.5           munsell_0.5.0          viridisLite_0.3.0     </code></pre>
 </div>
 
 

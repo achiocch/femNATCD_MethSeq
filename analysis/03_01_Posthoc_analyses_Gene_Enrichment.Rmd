@@ -581,7 +581,6 @@ for (marker in EpiMarker) {
   sink(paste0(Home,"/output/SEM_summary_group",marker,".txt"))
   summary(fit)
   print(fitMeasures(fit))
-  print(fitMeasures(fit))
   print(parameterEstimates(fit))
   sink()
   

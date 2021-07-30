@@ -360,7 +360,7 @@ fintagsOI=data.frame(tags=sigtagsOI, gene=selEpiMeta[sigtagsOI,"gene"])
 
 ```{r RTPCR_step4 test_plot, fig.width=15,fig.height=8}
 
-pdf(paste0(Home,"/output/RNAvsMETplots.pdf"))
+pdf(paste0(Home,"/output/RNAvsMETplots.pdf"), width = 15, height = 8)
 
 MuFC=as.data.frame(MuFC)
 MuFCsel=MuFC[Targets,]
