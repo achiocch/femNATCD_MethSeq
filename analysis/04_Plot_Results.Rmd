@@ -250,8 +250,6 @@ grid.export(paste0(Home,"/output/LME_tophit.svg"))
 ```
 
 
-
-
 ## Plot DMR results
 
 ```{r plot_results_DMR, warning=FALSE}

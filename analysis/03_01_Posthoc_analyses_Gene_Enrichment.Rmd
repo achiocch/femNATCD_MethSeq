@@ -28,6 +28,8 @@ library(xlsx)
 library(org.Hs.eg.db)
 library(visNetwork)
 library(webshot); #webshot::install_phantomjs() #in case phantomjs was not installed 
+library(lme4)
+
 
 Home = getwd()
 
@@ -48,17 +50,90 @@ opts_chunk$set(echo = TRUE,
 
 
 Dark8 = brewer.pal(8, "Dark2")
+Set3 = brewer.pal(12, "Set3")
 Dark8_50 = paste0(brewer.pal(8, "Dark2"), "7D")
+
 jetcolors = colorRampPalette(c("darkblue", "skyblue", "green", "yellow", "orange", "red", "darkred"))
 OBcolors = colorRampPalette(c("darkblue", "skyblue", "white",  "orange", "darkorange3"))
 load(paste0(Home,"/output/dds_filt_analyzed.RData"))
 load(paste0(Home,"/output/resdmr.RData"))
 load(paste0(Home,"/output/resultsdmr_table.RData"))
+load(paste0(Home,"/output/envFact.RData"))
+load(paste0(Home,"/output/clinFact.RData"))
 
 results_Deseq = results(dds_filt)
 log2_cpm = log2(counts(dds_filt, normalized=T)+1)
 
 ```
+
+## Sensitivity main hit
+
+For the most significant tag of interest (5' of the SLITRK5 gene), we tested if the group effect is stable if correcting for Ethnicity (PC1-PC4) or CD associated environmental risk factors. 
+
+
+```{r disect_SLTIRK5}
+
+tophit=which.min(results_Deseq$padj)
+methdata=log2_cpm[tophit,]
+Probdat=as.data.frame(colData(dds_filt))
+Probdat$topHit=methdata[rownames(Probdat)]
+
+
+model0=as.character(design(dds_filt))[2]
+model0=as.formula(gsub("0", "topHit ~ 0 + (1|site)", model0))
+
+lmres=lmer(model0, data=Probdat)
+lmrescoeff = as.data.frame(coefficients(summary(lmres)))
+lmrescoeff$pval = dt(lmrescoeff$"t value", df=length(Probdat)-1)
+
+
+totestpar=c("PC_1", "PC_2", "PC_3", "PC_4", envFact)
+
+ressens=data.frame(matrix(nrow = length(totestpar)+1, ncol=c(3)))
+colnames(ressens) = c("beta", "se", "p.value")
+rownames(ressens) = c("original", totestpar)
+
+ressens["original",] = lmrescoeff["groupCD", c("Estimate", "Std. Error", "pval")]
+
+for( parm in totestpar){
+  modelpar=as.character(design(dds_filt))[2]
+  modelpar=as.formula(gsub("0", paste0("topHit ~ 0 + (1|site) +",parm), modelpar))
+  lmres=lmer(modelpar, data=Probdat)
+  lmrescoeff = as.data.frame(coefficients(summary(lmres)))
+  lmrescoeff$pval = dt(lmrescoeff$"t value", df=length(Probdat)-1)
+  ressens[parm,] = lmrescoeff["groupCD", c("Estimate", "Std. Error", "pval")] 
+}
+
+
+
+a = barplot(height = ressens$beta, 
+            ylim=rev(range(c(0,ressens$beta-ressens$se)))*1.3, 
+            names.arg = rownames(ressens), col=Set3, border = NA, las=3, 
+            ylab="beta[se]", main="Effect sensitvity analysis")
+
+arrows(a,ressens$beta, a, ressens$beta+ressens$se, angle = 90, length = 0.1)
+arrows(a,ressens$beta, a, ressens$beta-ressens$se, angle = 90, length = 0.1)
+
+text(a, min(ressens$beta-ressens$se)*1.15, 
+     formatC(ressens$p.value), cex=0.6, srt=90)
+
+
+
+```
+
+All models are corrected for: 
+<br>
+`r clinFact`, 
+<br>
+site is included as random effect. 
+<br>
+
+original: model defined as `r as.character(model0)[3]`
+<br>
+
+all other models represent the original model + the variable of interest
+<br>
+
 
 ## Genomic location enrichment
 
