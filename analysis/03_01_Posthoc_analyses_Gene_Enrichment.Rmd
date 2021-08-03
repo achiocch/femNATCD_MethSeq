@@ -588,15 +588,16 @@ dev.off()
 
 ## SEM
 
-```{r SEM, , fig.width=15, fig.height=8, results = 'asis'}
+```{r SEM, , fig.width=15, fig.height=8}
 
-dropfact=c("site")
+dropfact=c("site", "0", "group")
+
+modelFact=strsplit(as.character(design(dds_filt))[2], " \\+ ")[[1]]
 
 
 Patdata=as.data.frame(colData(dds_filt))
 
 load(paste0(Home, "/output/envFact.RData"))
-load(paste0(Home, "/output/modelFact.RData"))
 
 envFact=envFact[!envFact %in% dropfact] 
 modelFact=modelFact[!modelFact %in% dropfact] 
@@ -634,15 +635,33 @@ par(mfrow=c(1,2))
 corrplot(cormat, main="correlations")
 corrplot(cormat, order = "hclust", main="scaled correlations")
 
-fullmodEnv=paste(envFact,modelFact, sep = "+", collapse = "+")
+fullmodEnv=paste(unique(envFact,modelFact), sep = "+", collapse = "+")
 
 Dataset = Patdata[,c("group", envFact,modelFact,EpiMarker)]
 
-model = paste0("group ~ Epi+", fullmodEnv,"
-Epi ~" , fullmodEnv,"
+model = "
+Epi~1+a*Matsmk+b*Matagg+c*FamScore+d*EduPar+e*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+V8
+group~1+f*Matsmk+g*Matagg+h*FamScore+i*EduPar+j*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+z*Epi
+
+#direct
+directMatsmk := f
+directMatagg := g
+directFamScore := h
+directEduPar := i
+directn_trauma := j
+
+#indirect
+EpiMatsmk := a*z
+EpiMatagg := b*z
+EpiFamScore := c*z
+EpiEduPar := d*z
+Epin_trauma := e*z
+
+total := f + g + h + i + j + (a*z)+(b*z)+(c*z)+(d*z)+(e*z)
+
 Epi~~Epi
 group~~group
-")
+"
 
 Netlist = list()
 
@@ -658,6 +677,15 @@ for (marker in EpiMarker) {
   print(fitMeasures(fit))
   print(parameterEstimates(fit))
   sink()
+  print("############################")
+  print("############################")
+  print(marker)
+  print("############################")
+  print("############################")
+  summary(fit)
+  fitMeasures(fit)
+  parameterEstimates(fit)
+  
   
   #SOURCE FOR PLOT https://stackoverflow.com/questions/51270032/how-can-i-display-only-significant-path-lines-on-a-path-diagram-r-lavaan-sem
   restab=lavaan::standardizedSolution(fit) %>% dplyr::filter(!is.na(pvalue)) %>% 
@@ -728,6 +756,7 @@ for (marker in EpiMarker) {
   visSave(plotnet, htmlfile)
   webshot(paste0(Home,"/output/SEMplot_",marker,".html"), zoom = 1, 
           file = paste0(Home,"/output/SEMplot_",marker,".png"))
+  
 }
 
 ```

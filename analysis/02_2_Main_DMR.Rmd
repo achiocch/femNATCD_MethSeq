@@ -25,7 +25,7 @@ Home = getwd()
 no_cores = detectCores()
 
 registerDoParallel(cores = no_cores-2)
-reanalyze =T
+reanalyze =F
 
 options(stringsAsFactors = F)
 

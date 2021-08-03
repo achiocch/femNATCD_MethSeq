@@ -20,7 +20,7 @@ library(qqman)
 
 Home = getwd()
 
-reanalyze=T
+reanalyze=F
 
 no_cores = detectCores()
 registerDoParallel(cores = no_cores-2)
