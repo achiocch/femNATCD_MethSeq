@@ -641,7 +641,7 @@ Dataset = Patdata[,c("group", envFact,modelFact,EpiMarker)]
 
 model = "
 Epi~1+a*Matsmk+b*Matagg+c*FamScore+d*EduPar+e*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+V8
-group~1+f*Matsmk+g*Matagg+h*FamScore+i*EduPar+j*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+z*Epi
+group~1+f*Matsmk+g*Matagg+h*FamScore+i*EduPar+j*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+V8+z*Epi
 
 #direct
 directMatsmk := f
@@ -677,15 +677,17 @@ for (marker in EpiMarker) {
   print(fitMeasures(fit))
   print(parameterEstimates(fit))
   sink()
-  print("############################")
-  print("############################")
-  print(marker)
-  print("############################")
-  print("############################")
+  cat("############################\n")
+  cat("############################\n")
+  cat(marker, "\n")
+  cat("############################\n")
+  cat("############################\n")
   summary(fit)
-  fitMeasures(fit)
-  parameterEstimates(fit)
-  
+  cat("\n")
+  print(fitMeasures(fit))
+  cat("\n")
+  print(parameterEstimates(fit))
+  cat("\n")
   
   #SOURCE FOR PLOT https://stackoverflow.com/questions/51270032/how-can-i-display-only-significant-path-lines-on-a-path-diagram-r-lavaan-sem
   restab=lavaan::standardizedSolution(fit) %>% dplyr::filter(!is.na(pvalue)) %>% 
