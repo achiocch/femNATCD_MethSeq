@@ -698,6 +698,9 @@ for (marker in EpiMarker) {
   
   obj <- semPlot:::semPlotModel(fit)
   original_Pars <- obj@Pars
+  
+  print(original_Pars)
+  
   check_Pars <- obj@Pars %>% dplyr:::filter(!(edge %in% c("int","<->") | lhs == rhs)) # this is the list of parameter to sift thru
   keep_Pars <- obj@Pars %>% dplyr:::filter(edge %in% c("int","<->") | lhs == rhs) # this is the list of parameter to keep asis
   
@@ -721,7 +724,7 @@ for (marker in EpiMarker) {
   
   DF = obj@Pars
   DF = DF[DF$lhs!=DF$rhs,]
-  DF = DF[abs(DF$std)>0.1,]
+  DF = DF[abs(DF$est)>0.1,]
   
   DF = DF[DF$edge == "~>",] # only include directly modelled effects in figure 
   
@@ -733,12 +736,12 @@ for (marker in EpiMarker) {
   
   edges <- data.frame(from = DF$lhs, 
                       to = DF$rhs, 
-                      width=abs(DF$std), 
+                      width=abs(DF$est), 
                       arrows ="to")
   
   edges$dashes = F
-  edges$label =  DF$std
-  edges$color=c("firebrick", "forestgreen")[1:2][factor(sign(DF$std), levels=c(-1,0,1),labels=c(1,2,2))]
+  edges$label =  DF$est
+  edges$color=c("firebrick", "forestgreen")[1:2][factor(sign(DF$est), levels=c(-1,0,1),labels=c(1,2,2))]
   edges$width=2
   cexlab = 18
   plotnet<- visNetwork(nodes, edges,  
