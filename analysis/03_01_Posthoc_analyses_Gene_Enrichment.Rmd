@@ -73,7 +73,7 @@ selEpiMeta = mcols(dds_filt)
 
 ### including SES
 
-```{r effect_of_SES, eval=FALSE}
+```{r effect_of_SES, eval=TRUE}
 collector=data.frame(originalP=results_Deseq$pvalue,
                      originall2FC=results_Deseq$log2FoldChange)
 
@@ -121,7 +121,7 @@ plot(collector$originall2FC[idx],collector[,paste0(parm,"l2FC")][idx], pch=16,
 
 ### excluding int_dis
 
-```{r effect_of_w/o_intdis, eval=FALSE}
+```{r effect_of_w/o_intdis, eval=TRUE}
 ### excluding int_dist
 
 modelpar=as.character(design(dds_filt))[2]
