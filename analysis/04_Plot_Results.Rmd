@@ -252,7 +252,7 @@ grid.export(paste0(Home,"/output/LME_tophit.svg"))
 
 ## Plot DMR results
 
-```{r plot_results_DMR, warning=FALSE}
+```{r plot_results_DMR, warning=FALSE, fig.width=10,fig.height=10}
 
 DFtoplotall = resultsdmr_table
 colnames(DFtoplotall)[1:3] = c("Chromosome", "chromStart", "chromEnd")
