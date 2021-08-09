@@ -69,6 +69,8 @@ selEpiMeta = mcols(dds_filt)
 
 
 ```
+# Sensitivity Analyses
+
 ## Sensitivity EWAS 
 
 ### including SES
@@ -228,7 +230,9 @@ original: model defined as `r as.character(model0)[3]`
 all other models represent the original model + the variable of interest
 <br>
 
+# Real-time PCR validation 
 
+## Data loading and parsing
 ```{r RTPCR}
 
 RefGenes = c("GUSB")
@@ -320,11 +324,6 @@ for (Set in Sets){
 Samples_all=unique(Samples_all)
 Targets_all = unique(Targets_all)
 
-
-```
-
-
-```{r RTPCR_step2}
 mergedCTtable=data.frame(matrix(NA,ncol=length(Targets_all)*nreplicates, nrow=length(Samples_all)))
 colnames(mergedCTtable)=paste0(rep(unique(Targets_all), each=nreplicates), letters[1:nreplicates])
 rownames(mergedCTtable)=Samples_all
@@ -366,10 +365,10 @@ FC = FC[grepl(searcher, rownames(FC)),SamplesMeta$Pou]
 MuFC=apply(FC, 2, function(x){tapply(log2(x), gsub("a|b|c","",rownames(FC)), mean, na.rm=T)})
 SDFC=apply(FC, 2, function(x){tapply(log2(x), gsub("a|b|c","",rownames(FC)), sd, na.rm=T)})
 
-plot(unlist(MuFC[2, ]), unlist(SDFC[2, ]))
 
 ```
 
+## plot erelative expression by samples 
 
 ```{r RTPCR_step3plot}
 pdf(paste0(Home, "/output/barplots.pdf"))
@@ -388,8 +387,23 @@ for(i in Targets_of_Int){
 
 dev.off()
 
+for(i in Targets_of_Int){
+  if(any(!is.na(MuFC[i,]))){
+  a=barplot(unlist(MuFC[i,]), col=as.numeric(SamplesMeta[colnames(MuFC),"Group"])+1, main=i, las=3, 
+            ylim=c(-max(abs(MuFC[i,])*1.2, na.rm=T), (max(abs(MuFC[i,])*1.2, na.rm=T))))
+  arrows(a, MuFC[i,], a, MuFC[i,]+SDFC[i,], angle = 90, length = 0.1)
+  arrows(a, MuFC[i,], a, MuFC[i,]-SDFC[i,], angle = 90, length = 0.1)
+  legend("topleft", c("case", "control"), col=c(1,2), pch=15, bty="n")
+  } else {
+    plot(0,0, type="n", main=paste(i, "not detected"))
+  }
+}
+
+
 ```
 
+
+## compare across groups 
 
 ```{r RTPCR_step4 test}
 sink(paste0(Home, "/output/ResultsgroupComp.txt"))
@@ -402,12 +416,6 @@ for(i in Targets_of_Int){
 }
 
 sink()
-
-for(i in Targets_of_Int){
-  print(i)
-  print(summary(try(lm(unlist(MuFC[i,])~Group))))
-  print(t.test(unlist(MuFC[i,])~Group, var.qual=F, mu=0))
-}
 
 
 SamplesMeta$femNATID2=paste0("ID_",gsub("-","_",SamplesMeta$femNATID))
@@ -426,8 +434,6 @@ Targets=Targets_of_Int
 
 sigtags=which(restab$padj<=0.05)
 
-selEpiMeta[sigtags,]
-
 tagsOI=grep(paste0(Targets, collapse = "|"),selEpiMeta$gene)
 
 sigtagsOI = tagsOI[tagsOI %in% sigtags]
@@ -438,6 +444,7 @@ fintagsOI=data.frame(tags=sigtagsOI, gene=selEpiMeta[sigtagsOI,"gene"])
 #tag=tags[1]
 ```
 
+## compare against methylation level
 
 ```{r RTPCR_step4 test_plot, fig.width=15,fig.height=8}
 
@@ -491,7 +498,6 @@ for (Targ in Targets){
     legend("topleft", c("control", "case"), pch=c(15,16), col=c(3,2), bty="n")
     a=lm(RT~tpm, data)
     b=summary(a)
-    print(b)
     abline(a, col="blue")
     SperCor=cor(data$RT,data$tpm,use = "c", method = "spearman")
     mtext(3, text = paste("beta = ", round(coefficients(a)[2],2), 
@@ -504,10 +510,9 @@ for (Targ in Targets){
 ```
 
 
+# Systems Analysis
 
-
-
-## Genomic location enrichment
+## Genomic feature enrichment
 
 Significant loci with a p-value <= `r thresholdp` and a absolute log2 fold-change lager `r thresholdLFC` were tested for enrichment in annotated genomic feature using fisher exact test.  
 
@@ -651,10 +656,11 @@ write.xlsx2(toptab, file = paste0(Home,"/output/GOres.xlsx"), sheetName = "GO_en
 
 ```
 
-## Kang Brain Module Enrichments 
+# Brain Developmental Processes Enrichment tests 
 
 Gene sets identified to be deferentially methylated with a p-value <= `r thresholdp` and an absolute log2 fold-change larger `r thresholdLFC` were tested for enrichment among gene-modules coregulated during Brain expression. 
 
+## Kang Modules 
 
 ```{r brainModules, fig.height=12, fig.width=5}
 
@@ -749,7 +755,7 @@ for(r in names(Resultsall)){
 
 
 ```
-
+## Brain espresseion heatmaps
 ```{r modplots}
 
 # show brains and expression
@@ -958,10 +964,11 @@ dev.off()
 
 
 
-## SEM
+# Risk Factor Mediation Analysis 
+
+## Risk factor loading and correlation plots 
 
 ```{r SEM, , fig.width=15, fig.height=8}
-
 dropfact=c("site", "0", "group")
 
 modelFact=strsplit(as.character(design(dds_filt))[2], " \\+ ")[[1]]
@@ -1006,7 +1013,10 @@ cormat = cor(apply(Patdata[,c("group", envFact, modelFact, EpiMarker)] %>% mutat
 par(mfrow=c(1,2))
 corrplot(cormat, main="correlations")
 corrplot(cormat, order = "hclust", main="correlations ordered")
+```
 
+## SEM analysis 
+```{r SEM_modelling, , fig.width=15, fig.height=8}
 fullmodEnv=paste(unique(envFact,modelFact), sep = "+", collapse = "+")
 
 Dataset = Patdata[,c("group", envFact, modelFact,EpiMarker)]
@@ -1155,9 +1165,9 @@ for (n in names(rmd_paths)) {
 
 ```
 
-## Interactive results SEM analysis 
+## Interactive SEM plots 
 
-only direct effects with a significant standardized effect of p<0.05 are shown. 
+Only direct effects with a significant standardized effect of p<0.05 are shown. 
 
 
 ```{r plotsems_show_interactive, results='asis'}

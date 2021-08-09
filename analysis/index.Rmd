@@ -16,12 +16,12 @@ Statistical analysis performed within the [femNAT-CD consortium](https://femnat-
 
 Full peer reviewed article is available [soon]() 
 
-## Analysis Pipeline and outcomes
+## Analysis Pipeline and Results
 
-* [Preprocessing](01_Preprocessing.html)
-* [Differentially methylated sites](02_1_Main_LME.html)
-* [Differentially methylated regions](02_2_Main_DMR.html)
-* [Gene enrichment and environmental risk analysis](03_01_Posthoc_analyses_Gene_Enrichment.html)
-* [Plot significant tags and regions](04_Plot_Results.html)
+* [Preprocessing and Outcomes](01_Preprocessing.html)
+* [Identification of differentially methylated sites](02_1_Main_LME.html)
+* [Identification of differentially methylated regions](02_2_Main_DMR.html)
+* [Follow up: SLITRK5 validation, Gene enrichment and environmental risk factor analysis](03_01_Posthoc_analyses_Gene_Enrichment.html)
+* [Additional visualization of significant tags and regions](04_Plot_Results.html)
 
 
