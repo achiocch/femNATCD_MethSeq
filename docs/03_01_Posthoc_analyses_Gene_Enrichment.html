@@ -436,7 +436,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-08-06
+<strong>Last updated:</strong> 2021-08-10
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -527,16 +527,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree611ca247d08c0b4dc0a90a8a2815ca7c7412204ftargetblank611ca24a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/611ca247d08c0b4dc0a90a8a2815ca7c7412204f" target="_blank">611ca24</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree723a1aa6b066fd0af5ab10215e9f45b2b859b783targetblank723a1aaa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/723a1aa6b066fd0af5ab10215e9f45b2b859b783" target="_blank">723a1aa</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree611ca247d08c0b4dc0a90a8a2815ca7c7412204ftargetblank611ca24a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree723a1aa6b066fd0af5ab10215e9f45b2b859b783targetblank723a1aaa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/611ca247d08c0b4dc0a90a8a2815ca7c7412204f" target="_blank">611ca24</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/723a1aa6b066fd0af5ab10215e9f45b2b859b783" target="_blank">723a1aa</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -649,6 +649,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/achiocch/femNATCD_MethSeq/blob/723a1aa6b066fd0af5ab10215e9f45b2b859b783/analysis/03_01_Posthoc_analyses_Gene_Enrichment.Rmd" target="_blank">723a1aa</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-08-09
+</td>
+<td>
+wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/70cd649ce41081b3d0bade1bd0cc176931c783f4/docs/03_01_Posthoc_analyses_Gene_Enrichment.html" target="_blank">70cd649</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-08-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1268,6 +1302,8 @@ wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"), update = F)
 </div>
 </div>
 </div>
+<div id="sensitivity-analyses" class="section level1">
+<h1>Sensitivity Analyses</h1>
 <div id="sensitivity-ewas" class="section level2">
 <h2>Sensitivity EWAS</h2>
 <div id="including-ses" class="section level3">
@@ -1450,6 +1486,13 @@ text(a, min(ressens$beta-ressens$se)*1.15,
 <p>All models are corrected for: <br> site, Age, Pubstat, int_dis, medication, contraceptives, cigday_1, <br> site is included as random effect. <br></p>
 <p>original: model defined as 0 + +Age + int_dis + medication + contraceptives + cigday_1 + V8 + group <br></p>
 <p>all other models represent the original model + the variable of interest <br></p>
+</div>
+</div>
+</div>
+<div id="real-time-pcr-validation" class="section level1">
+<h1>Real-time PCR validation</h1>
+<div id="data-loading-and-parsing" class="section level2">
+<h2>Data loading and parsing</h2>
 <pre class="r"><code>RefGenes = c(&quot;GUSB&quot;)
 Targets_of_Int = c(&quot;SLITRK5&quot;, &quot;MIR4500HG&quot;)
 nreplicates = 3
@@ -1618,8 +1661,9 @@ Warning: NAs durch Umwandlung erzeugt</code></pre>
 <pre><code>Warning in rm(list = c(apropos(&quot;tmp&quot;), &quot;Reform&quot;, &quot;GMHK&quot;)): Objekt
 &#39;set_java_tmp_dir&#39; nicht gefunden</code></pre>
 <pre class="r"><code>Samples_all=unique(Samples_all)
-Targets_all = unique(Targets_all)</code></pre>
-<pre class="r"><code>mergedCTtable=data.frame(matrix(NA,ncol=length(Targets_all)*nreplicates, nrow=length(Samples_all)))
+Targets_all = unique(Targets_all)
+
+mergedCTtable=data.frame(matrix(NA,ncol=length(Targets_all)*nreplicates, nrow=length(Samples_all)))
 colnames(mergedCTtable)=paste0(rep(unique(Targets_all), each=nreplicates), letters[1:nreplicates])
 rownames(mergedCTtable)=Samples_all
 
@@ -1658,10 +1702,10 @@ searcher=paste0(Targets_of_Int, collapse = &quot;|&quot;)
 FC = FC[grepl(searcher, rownames(FC)),SamplesMeta$Pou]
 
 MuFC=apply(FC, 2, function(x){tapply(log2(x), gsub(&quot;a|b|c&quot;,&quot;&quot;,rownames(FC)), mean, na.rm=T)})
-SDFC=apply(FC, 2, function(x){tapply(log2(x), gsub(&quot;a|b|c&quot;,&quot;&quot;,rownames(FC)), sd, na.rm=T)})
-
-plot(unlist(MuFC[2, ]), unlist(SDFC[2, ]))</code></pre>
-<p><img src="figure/03_01_Posthoc_analyses_Gene_Enrichment.Rmd/RTPCR_step2-1.png" width="864" style="display: block; margin: auto;" /></p>
+SDFC=apply(FC, 2, function(x){tapply(log2(x), gsub(&quot;a|b|c&quot;,&quot;&quot;,rownames(FC)), sd, na.rm=T)})</code></pre>
+</div>
+<div id="plot-erelative-expression-by-samples" class="section level2">
+<h2>plot erelative expression by samples</h2>
 <pre class="r"><code>pdf(paste0(Home, &quot;/output/barplots.pdf&quot;))
 
 for(i in Targets_of_Int){
@@ -1679,6 +1723,21 @@ for(i in Targets_of_Int){
 dev.off()</code></pre>
 <pre><code>png 
   2 </code></pre>
+<pre class="r"><code>for(i in Targets_of_Int){
+  if(any(!is.na(MuFC[i,]))){
+  a=barplot(unlist(MuFC[i,]), col=as.numeric(SamplesMeta[colnames(MuFC),&quot;Group&quot;])+1, main=i, las=3, 
+            ylim=c(-max(abs(MuFC[i,])*1.2, na.rm=T), (max(abs(MuFC[i,])*1.2, na.rm=T))))
+  arrows(a, MuFC[i,], a, MuFC[i,]+SDFC[i,], angle = 90, length = 0.1)
+  arrows(a, MuFC[i,], a, MuFC[i,]-SDFC[i,], angle = 90, length = 0.1)
+  legend(&quot;topleft&quot;, c(&quot;case&quot;, &quot;control&quot;), col=c(1,2), pch=15, bty=&quot;n&quot;)
+  } else {
+    plot(0,0, type=&quot;n&quot;, main=paste(i, &quot;not detected&quot;))
+  }
+}</code></pre>
+<p><img src="figure/03_01_Posthoc_analyses_Gene_Enrichment.Rmd/RTPCR_step3plot-1.png" width="864" style="display: block; margin: auto;" /><img src="figure/03_01_Posthoc_analyses_Gene_Enrichment.Rmd/RTPCR_step3plot-2.png" width="864" style="display: block; margin: auto;" /></p>
+</div>
+<div id="compare-across-groups" class="section level2">
+<h2>compare across groups</h2>
 <pre class="r"><code>sink(paste0(Home, &quot;/output/ResultsgroupComp.txt&quot;))
 
 Group=SamplesMeta$Group
@@ -1749,72 +1808,8 @@ mean in group CTRL   mean in group CD
        -0.60525003         0.05614653 </code></pre>
 <pre class="r"><code>sink()
 
-for(i in Targets_of_Int){
-  print(i)
-  print(summary(try(lm(unlist(MuFC[i,])~Group))))
-  print(t.test(unlist(MuFC[i,])~Group, var.qual=F, mu=0))
-}</code></pre>
-<pre><code>[1] &quot;SLITRK5&quot;
 
-Call:
-lm(formula = unlist(MuFC[i, ]) ~ Group)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--1.3710 -0.4489  0.1142  0.4382  0.9983 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)  -0.1703     0.1718  -0.991    0.334
-GroupCD       0.5109     0.2975   1.717    0.102
-
-Residual standard error: 0.6427 on 19 degrees of freedom
-Multiple R-squared:  0.1343,    Adjusted R-squared:  0.08878 
-F-statistic: 2.949 on 1 and 19 DF,  p-value: 0.1022
-
-
-    Welch Two Sample t-test
-
-data:  unlist(MuFC[i, ]) by Group
-t = -2.0316, df = 18.197, p-value = 0.05706
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -1.03871726  0.01701686
-sample estimates:
-mean in group CTRL   mean in group CD 
-        -0.1702834          0.3405668 
-
-[1] &quot;MIR4500HG&quot;
-
-Call:
-lm(formula = unlist(MuFC[i, ]) ~ Group)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--2.7172 -1.2116 -0.2660  0.5749  5.4474 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)  -0.6053     0.5683  -1.065    0.301
-GroupCD       0.6614     0.9607   0.688    0.500
-
-Residual standard error: 2.049 on 18 degrees of freedom
-  (1 observation deleted due to missingness)
-Multiple R-squared:  0.02566,   Adjusted R-squared:  -0.02847 
-F-statistic: 0.474 on 1 and 18 DF,  p-value: 0.4999
-
-
-    Welch Two Sample t-test
-
-data:  unlist(MuFC[i, ]) by Group
-t = -0.65047, df = 10.602, p-value = 0.5292
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -2.909646  1.586853
-sample estimates:
-mean in group CTRL   mean in group CD 
-       -0.60525003         0.05614653 </code></pre>
-<pre class="r"><code>SamplesMeta$femNATID2=paste0(&quot;ID_&quot;,gsub(&quot;-&quot;,&quot;_&quot;,SamplesMeta$femNATID))
+SamplesMeta$femNATID2=paste0(&quot;ID_&quot;,gsub(&quot;-&quot;,&quot;_&quot;,SamplesMeta$femNATID))
 
 SamplesMeta=SamplesMeta[SamplesMeta$Pou %in% colnames(MuFC),]
 MuFC=MuFC[,SamplesMeta$Pou]
@@ -1830,45 +1825,7 @@ Targets=Targets_of_Int
 
 sigtags=which(restab$padj&lt;=0.05)
 
-selEpiMeta[sigtags,]</code></pre>
-<pre><code>DataFrame with 1 row and 55 columns
-           raw_gene              gene    distance     feature         cpg
-        &lt;character&gt;       &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt;
-1 MIR4500HG,SLITRK5 MIR4500HG,SLITRK5           0    upstream         cpg
-   tf_binding samples_per_target      mean       std  baseMean   baseVar
-  &lt;character&gt;          &lt;integer&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-1    Pol2//GR                100   15.7059   12.6308    13.294   61.7602
-    allZero dispGeneEst dispGeneIter   dispFit dispersion  dispIter dispOutlier
-  &lt;logical&gt;   &lt;numeric&gt;    &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt; &lt;integer&gt;   &lt;logical&gt;
-1     FALSE    0.176742           11   0.17053   0.175669        11       FALSE
-    dispMAP        Age int_disno int_disyes medicationyes contraceptivesyes
-  &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;     &lt;numeric&gt;         &lt;numeric&gt;
-1  0.175669 -0.0452923   4.74064     5.0314      0.166961         -0.126415
-   cigday_1        V8   groupCD    SE_Age SE_int_disno SE_int_disyes
-  &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;    &lt;numeric&gt;     &lt;numeric&gt;
-1 0.0305576  0.706369  -1.12842 0.0539633     0.854072      0.884392
-  SE_medicationyes SE_contraceptivesyes SE_cigday_1     SE_V8 SE_groupCD
-         &lt;numeric&gt;            &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;
-1         0.213896             0.191566   0.0173334  0.879379   0.201492
-  WaldStatistic_Age WaldStatistic_int_disno WaldStatistic_int_disyes
-          &lt;numeric&gt;               &lt;numeric&gt;                &lt;numeric&gt;
-1         -0.839318                 5.55064                  5.68911
-  WaldStatistic_medicationyes WaldStatistic_contraceptivesyes
-                    &lt;numeric&gt;                       &lt;numeric&gt;
-1                    0.780573                       -0.659903
-  WaldStatistic_cigday_1 WaldStatistic_V8 WaldStatistic_groupCD WaldPvalue_Age
-               &lt;numeric&gt;        &lt;numeric&gt;             &lt;numeric&gt;      &lt;numeric&gt;
-1                1.76293         0.803259              -5.60034       0.401291
-  WaldPvalue_int_disno WaldPvalue_int_disyes WaldPvalue_medicationyes
-             &lt;numeric&gt;             &lt;numeric&gt;                &lt;numeric&gt;
-1          2.84626e-08           1.27704e-08                 0.435054
-  WaldPvalue_contraceptivesyes WaldPvalue_cigday_1 WaldPvalue_V8
-                     &lt;numeric&gt;           &lt;numeric&gt;     &lt;numeric&gt;
-1                     0.509316           0.0779121      0.421825
-  WaldPvalue_groupCD  betaConv  betaIter  deviance  maxCooks
-           &lt;numeric&gt; &lt;logical&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;logical&gt;
-1        2.13936e-08      TRUE         6   645.105        NA</code></pre>
-<pre class="r"><code>tagsOI=grep(paste0(Targets, collapse = &quot;|&quot;),selEpiMeta$gene)
+tagsOI=grep(paste0(Targets, collapse = &quot;|&quot;),selEpiMeta$gene)
 
 sigtagsOI = tagsOI[tagsOI %in% sigtags]
 
@@ -1876,6 +1833,9 @@ fintagsOI=data.frame(tags=sigtagsOI, gene=selEpiMeta[sigtagsOI,&quot;gene&quot;]
 
 #Targ=Targets[1]
 #tag=tags[1]</code></pre>
+</div>
+<div id="compare-against-methylation-level" class="section level2">
+<h2>compare against methylation level</h2>
 <pre class="r"><code>pdf(paste0(Home,&quot;/output/RNAvsMETplots.pdf&quot;), width = 15, height = 8)
 
 MuFC=as.data.frame(MuFC)
@@ -1927,7 +1887,6 @@ for (Targ in Targets){
     legend(&quot;topleft&quot;, c(&quot;control&quot;, &quot;case&quot;), pch=c(15,16), col=c(3,2), bty=&quot;n&quot;)
     a=lm(RT~tpm, data)
     b=summary(a)
-    print(b)
     abline(a, col=&quot;blue&quot;)
     SperCor=cor(data$RT,data$tpm,use = &quot;c&quot;, method = &quot;spearman&quot;)
     mtext(3, text = paste(&quot;beta = &quot;, round(coefficients(a)[2],2), 
@@ -1936,46 +1895,13 @@ for (Targ in Targets){
                           &quot;; Spearman cor = &quot;, round(SperCor,3)))
   }
 }</code></pre>
-<pre><code>
-Call:
-lm(formula = RT ~ tpm, data = data)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--1.04611 -0.38191  0.09584  0.38038  1.06231 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept)  0.66910    0.26738   2.502   0.0216 *
-tpm         -0.05479    0.01930  -2.839   0.0105 *
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Residual standard error: 0.5788 on 19 degrees of freedom
-Multiple R-squared:  0.2979,    Adjusted R-squared:  0.2609 
-F-statistic: 8.061 on 1 and 19 DF,  p-value: 0.01049</code></pre>
 <p><img src="figure/03_01_Posthoc_analyses_Gene_Enrichment.Rmd/RTPCR_step4%20test_plot-1.png" width="1440" style="display: block; margin: auto;" /></p>
-<pre><code>
-Call:
-lm(formula = RT ~ tpm, data = data)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--2.9602 -0.9674 -0.3599  0.7415  5.1303 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)  0.77882    0.93125   0.836    0.414
-tpm         -0.09302    0.06621  -1.405    0.177
-
-Residual standard error: 1.971 on 18 degrees of freedom
-  (1 observation deleted due to missingness)
-Multiple R-squared:  0.09882,   Adjusted R-squared:  0.04876 
-F-statistic: 1.974 on 1 and 18 DF,  p-value: 0.1771</code></pre>
 </div>
 </div>
-<div id="genomic-location-enrichment" class="section level2">
-<h2>Genomic location enrichment</h2>
+<div id="systems-analysis" class="section level1">
+<h1>Systems Analysis</h1>
+<div id="genomic-feature-enrichment" class="section level2">
+<h2>Genomic feature enrichment</h2>
 <p>Significant loci with a p-value &lt;= 0.01 and a absolute log2 fold-change lager 0.5 were tested for enrichment in annotated genomic feature using fisher exact test.</p>
 <pre class="r"><code>Ranges=rowData(dds_filt)
 
@@ -2099,7 +2025,7 @@ gostres = getGOresults(Genes_of_interset, gene_univers)
 
 gostplot(gostres, capped = TRUE, interactive = T)</code></pre>
 <div id="htmlwidget-a5fc78feecdae89c7fb0" style="width:864px;height:1440px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a5fc78feecdae89c7fb0">{"x":{"data":[{"x":[138.095046488634],"y":[1.85315377698654],"text":"GO:0048731 (4421) <br> system development <br> 1.402e-02","key":["GO:0048731"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,153,0,1)","opacity":0.8,"size":19.5572105100368,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,153,0,1)"}},"hoveron":"points","set":"SharedDatae79cfaf3","name":"GO:BP","legendgroup":"GO:BP","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[138.095046488634,138.557894784493,90.2123840900491,112.964396407373,90.6551085469579,112.960371639583,108.565325212815,138.606191997974,137.185448968076,137.306192001778,93.6535605505677,107.873065152921,137.966253919351,108.106501684746,89.7656348653501,78.6572757647286,114.461610025283,114.457585257493,78.6492262291485,138.565944320073,108.621671961876,169.270897790596,110.577709107855,138.38482976952,137.837461350069,152.531888551652,139.314551129028,167.411455071579,139.266253915547,89.004953753025,137.346439679679,139.278328218918,137.841486117859,167.532198105281,139.282352986708,90.6873066892785,131.224767870967,91.6773995656383,111.282043471119,123.678328264566,151.099071218383,166.4696594087,167.536222873071,90.6913314570686,165.612383869413,117.154179676846,108.2876162353],"y":[15.7891725212773,15.2650297433841,14.9584302171471,13.621410256286,10.8244007359635,9.52437935564416,8.87637286592102,8.77729201893277,7.82401527939161,6.69364965787958,6.02021546014978,5.85910030827547,5.70697606682804,5.19341033572917,5.04112871444826,4.86246382147518,4.67331264390008,4.64263892644462,4.60132329905935,4.45231739009699,3.96902998622611,3.85454805924345,3.64803343931882,3.54288745834155,3.52547317926018,3.06639450334527,2.74138797567311,2.70469638610715,2.68084806938811,2.5606348738613,2.39806782998628,2.37802306508785,2.23404026332143,2.02730434578675,1.98302713076904,1.95799238637558,1.88335827213225,1.75420797873719,1.74581898605794,1.6584402860475,1.61437948984051,1.60191789265926,1.58200621390344,1.5738520079254,1.5316457118958,1.40187409607766,1.3285865707126],"text":["GO:0048731 (4421) <br> system development <br> 1.625e-16","GO:0048856 (5338) <br> anatomical structure development <br> 5.432e-16","GO:0007275 (4921) <br> multicellular organism development <br> 1.100e-15","GO:0032502 (5754) <br> developmental process <br> 2.391e-14","GO:0007399 (2263) <br> nervous system development <br> 1.498e-11","GO:0032501 (6571) <br> multicellular organismal process <br> 2.990e-10","GO:0030154 (3780) <br> cell differentiation <br> 1.329e-09","GO:0048869 (3844) <br> cellular developmental process <br> 1.670e-09","GO:0048468 (1900) <br> cell development <br> 1.500e-08","GO:0048513 (3211) <br> animal organ development <br> 2.025e-07","GO:0009653 (2520) <br> anatomical structure morphogenesis <br> 9.545e-07","GO:0022008 (1548) <br> neurogenesis <br> 1.383e-06","GO:0048699 (1439) <br> generation of neurons <br> 1.963e-06","GO:0022610 (1334) <br> biological adhesion <br> 6.406e-06","GO:0007155 (1328) <br> cell adhesion <br> 9.096e-06","GO:0000904 (700) <br> cell morphogenesis involved in differentiation <br> 1.373e-05","GO:0032990 (660) <br> cell part morphogenesis <br> 2.122e-05","GO:0032989 (742) <br> cellular component morphogenesis <br> 2.277e-05","GO:0000902 (971) <br> cell morphogenesis <br> 2.504e-05","GO:0048858 (644) <br> cell projection morphogenesis <br> 3.529e-05","GO:0030182 (1313) <br> neuron differentiation <br> 1.074e-04","GO:0120039 (640) <br> plasma membrane bounded cell projection morphogenesis <br> 1.398e-04","GO:0031175 (935) <br> neuron projection development <br> 2.249e-04","GO:0048812 (627) <br> neuron projection morphogenesis <br> 2.865e-04","GO:0048666 (1065) <br> neuron development <br> 2.982e-04","GO:0065007 (10586) <br> biological regulation <br> 8.582e-04","GO:0050804 (403) <br> modulation of chemical synaptic transmission <br> 1.814e-03","GO:0099177 (404) <br> regulation of trans-synaptic signaling <br> 1.974e-03","GO:0050789 (10009) <br> regulation of biological process <br> 2.085e-03","GO:0006928 (1927) <br> movement of cell or subcellular component <br> 2.750e-03","GO:0048523 (4455) <br> negative regulation of cellular process <br> 3.999e-03","GO:0050793 (2275) <br> regulation of developmental process <br> 4.188e-03","GO:0048667 (566) <br> cell morphogenesis involved in neuron differentiation <br> 5.834e-03","GO:0099536 (681) <br> synaptic signaling <br> 9.391e-03","GO:0050794 (9510) <br> regulation of cellular process <br> 1.040e-02","GO:0007409 (448) <br> axonogenesis <br> 1.102e-02","GO:0045595 (1476) <br> regulation of cell differentiation <br> 1.308e-02","GO:0008150 (14695) <br> biological_process <br> 1.761e-02","GO:0031589 (332) <br> cell-substrate adhesion <br> 1.795e-02","GO:0040011 (1681) <br> locomotion <br> 2.196e-02","GO:0061564 (482) <br> axon development <br> 2.430e-02","GO:0098742 (251) <br> cell-cell adhesion via plasma-membrane adhesion molecules <br> 2.501e-02","GO:0099537 (662) <br> trans-synaptic signaling <br> 2.618e-02","GO:0007411 (262) <br> axon guidance <br> 2.668e-02","GO:0097485 (263) <br> neuron projection guidance <br> 2.940e-02","GO:0034330 (657) <br> cell junction organization <br> 3.964e-02","GO:0023051 (3244) <br> regulation of signaling <br> 4.693e-02"],"key":["GO:0048731","GO:0048856","GO:0007275","GO:0032502","GO:0007399","GO:0032501","GO:0030154","GO:0048869","GO:0048468","GO:0048513","GO:0009653","GO:0022008","GO:0048699","GO:0022610","GO:0007155","GO:0000904","GO:0032990","GO:0032989","GO:0000902","GO:0048858","GO:0030182","GO:0120039","GO:0031175","GO:0048812","GO:0048666","GO:0065007","GO:0050804","GO:0099177","GO:0050789","GO:0006928","GO:0048523","GO:0050793","GO:0048667","GO:0099536","GO:0050794","GO:0007409","GO:0045595","GO:0008150","GO:0031589","GO:0040011","GO:0061564","GO:0098742","GO:0099537","GO:0007411","GO:0097485","GO:0034330","GO:0023051"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,153,0,1)","opacity":0.8,"size":[19.5572105100368,20.0672993551912,19.8491606094274,20.2659960771741,17.5933876869613,20.6117921783681,19.1203983965255,19.1678108903827,17.0328594997736,18.6518283671846,17.9272182411365,16.3442001517204,16.089479745425,15.8194657814909,15.8032095794893,13.2135709086509,12.9389573628929,13.4778569158187,14.6145960436799,12.8219577200101,15.7621477423026,12.7920118416962,14.4622363939182,12.6926673454302,14.9785116483559,21.7991364635162,10.1894908444215,10.2062445192508,21.6636724478295,17.078974121741,19.5782646242804,17.6099892104808,12.1796579594183,13.0861506703163,21.5391665463785,10.869914370257,16.1786389777086,22.5722677242784,8.70599188712214,16.6256796290843,11.3042482162819,3.77952755905512,12.9532791480363,5.70877976524072,5.79263328325251,12.9173507617318,18.6816282498582],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,153,0,1)"}},"hoveron":"points","set":"SharedDatae79cfaf3","name":"GO:BP","legendgroup":"GO:BP","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[68.0551468973956,57.5203128050762,56.4132897346185,70.9696367265279,59.5773629469085,65.2976530673464,55.8778931223607,70.3577548839476,61.5216980124761,58.7642041824269],"y":[7.80681014933879,7.15351042968926,6.08744092080892,5.52390622960661,4.2292755070979,3.18810583814936,2.0003135848526,1.88938236815936,1.53412715861802,1.35298934129863],"text":["GO:0071944 (4931) <br> cell periphery <br> 1.560e-08","GO:0005886 (4511) <br> plasma membrane <br> 7.022e-08","GO:0005575 (15295) <br> cellular_component <br> 8.176e-07","GO:0110165 (15176) <br> cellular anatomical entity <br> 2.993e-06","GO:0030054 (1923) <br> cell junction <br> 5.898e-05","GO:0045202 (1234) <br> synapse <br> 6.485e-04","GO:0000785 (1098) <br> chromatin <br> 9.993e-03","GO:0098984 (339) <br> neuron to neuron synapse <br> 1.290e-02","GO:0032279 (316) <br> asymmetric synapse <br> 2.923e-02","GO:0014069 (310) <br> postsynaptic density <br> 4.436e-02"],"key":["GO:0071944","GO:0005886","GO:0005575","GO:0110165","GO:0030054","GO:0045202","GO:0000785","GO:0098984","GO:0032279","GO:0014069"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(16,150,24,1)","opacity":0.8,"size":[19.854640878224,19.6125341366952,22.6644367627277,22.6464828059672,17.0721932941884,15.5353064218788,15.0961216170688,8.88645139918929,8.24986098503999,8.05975739183683],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(16,150,24,1)"}},"hoveron":"points","set":"SharedDatae79cfaf3","name":"GO:CC","legendgroup":"GO:CC","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[3.59791046486707,9.4904568642761,9.55888124186487],"y":[7.34554033340611,3.06875002931791,1.81650967156365],"text":["GO:0003674 (15380) <br> molecular_function <br> 4.513e-08","GO:0005488 (14350) <br> binding <br> 8.536e-04","GO:0005515 (12728) <br> protein binding <br> 1.526e-02"],"key":["GO:0003674","GO:0005488","GO:0005515"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(220,57,18,1)","opacity":0.8,"size":[22.6771653543307,22.5173364922675,22.2375048082395],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(220,57,18,1)"}},"hoveron":"points","set":"SharedDatae79cfaf3","name":"GO:MF","legendgroup":"GO:MF","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[2,51.4265503994146],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(220,57,18,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2,51.4265503994146],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(220,57,18,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[55.4511860479298,73.3970364046588],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(16,150,24,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[55.4511860479298,73.3970364046588],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(16,150,24,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[77.421672053174,200.004024635649],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(255,153,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[77.421672053174,200.004024635649],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(255,153,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[180],"y":[16.2],"text":"values above this threshold are capped","hovertext":"","textfont":{"size":7.55905511811024,"color":"rgba(190,190,190,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[180],"y":[16.2],"text":"values above this threshold are capped","hovertext":"","textfont":{"size":7.55905511811024,"color":"rgba(190,190,190,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0,210],"y":[16,16],"text":"","type":"scatter","mode":"lines","line":{"width":0.755905511811024,"color":"rgba(190,190,190,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,210],"y":[16,16],"text":"","type":"scatter","mode":"lines","line":{"width":0.755905511811024,"color":"rgba(190,190,190,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":29.2835201328352,"r":6.6417600664176,"b":34.6245339262839,"l":61.0377750103778},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0,210],"tickmode":"array","ticktext":["GO:MF","GO:CC","GO:BP"],"tickvals":[26.7132751997073,64.4241112262943,138.712848344411],"categoryorder":"array","categoryarray":["GO:MF","GO:CC","GO:BP"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.6268161062682},"tickangle":-45,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.132835201328352,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"yaxis":{"domain":[0.509276249462564,1],"automargin":true,"type":"linear","autorange":false,"range":[-1,18.5],"tickmode":"array","ticktext":["0","2","4","6","8","10","12","14",">16"],"tickvals":[0,2,4,6,8,10,12,14,16],"categoryorder":"array","categoryarray":["0","2","4","6","8","10","12","14",">16"],"nticks":null,"ticks":"outside","tickcolor":"rgba(190,190,190,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"annotations":[{"text":"-log10(p-adj)","x":-0.0120785480374521,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis"},{"text":"01_dmregions","x":0.5,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(169,169,169,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"02_dmtag","x":0.5,"y":0.490723750537436,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(169,169,169,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0.509276249462564,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":24.9730178497302,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":0.490723750537436},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":24.9730178497302,"yanchor":0.490723750537436,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[0,210],"tickmode":"array","ticktext":["GO:MF","GO:CC","GO:BP"],"tickvals":[26.7132751997073,64.4241112262943,138.712848344411],"categoryorder":"array","categoryarray":["GO:MF","GO:CC","GO:BP"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.6268161062682},"tickangle":-45,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.132835201328352,"showgrid":false,"domain":[0,1],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y2","title":"","hoverformat":".2f"},"yaxis2":{"type":"linear","autorange":false,"range":[-1,18.5],"tickmode":"array","ticktext":["0","2","4","6","8","10","12","14",">16"],"tickvals":[0,2,4,6,8,10,12,14,16],"categoryorder":"array","categoryarray":["0","2","4","6","8","10","12","14",">16"],"nticks":null,"ticks":"outside","tickcolor":"rgba(190,190,190,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.66417600664176,"showgrid":false,"domain":[0,0.490723750537436],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative","dragmode":"zoom"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"3894746336e2":{"colour":{},"size":{},"alpha":{},"key":{},"x":{},"y":{},"text":{},"type":"scatter"},"389412a6405e":{"x":{},"xend":{},"y":{},"yend":{}},"389446256e15":{"x":{},"xend":{},"y":{},"yend":{}},"38946e6d1b50":{"x":{},"xend":{},"y":{},"yend":{}},"389478f27d27":{"x":{},"y":{}},"38947bccd16":{"yintercept":{}}},"cur_data":"3894746336e2","visdat":{"3894746336e2":["function (y) ","x"],"389412a6405e":["function (y) ","x"],"389446256e15":["function (y) ","x"],"38946e6d1b50":["function (y) ","x"],"389478f27d27":["function (y) ","x"],"38947bccd16":["function (y) ","x"]},"highlight":{"on":"plotly_click","off":"plotly_doubleclick","persistent":false,"dynamic":false,"color":null,"selectize":false,"defaultValues":null,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0,"ctGroups":["SharedDatae79cfaf3"]},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-a5fc78feecdae89c7fb0">{"x":{"data":[{"x":[138.095046488634],"y":[1.85315377698654],"text":"GO:0048731 (4421) <br> system development <br> 1.402e-02","key":["GO:0048731"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,153,0,1)","opacity":0.8,"size":19.5572105100368,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,153,0,1)"}},"hoveron":"points","set":"SharedDatae79cfaf3","name":"GO:BP","legendgroup":"GO:BP","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[138.095046488634,138.557894784493,90.2123840900491,112.964396407373,90.6551085469579,112.960371639583,108.565325212815,138.606191997974,137.185448968076,137.306192001778,93.6535605505677,107.873065152921,137.966253919351,108.106501684746,89.7656348653501,78.6572757647286,114.461610025283,114.457585257493,78.6492262291485,138.565944320073,108.621671961876,169.270897790596,110.577709107855,138.38482976952,137.837461350069,152.531888551652,139.314551129028,167.411455071579,139.266253915547,89.004953753025,137.346439679679,139.278328218918,137.841486117859,167.532198105281,139.282352986708,90.6873066892785,131.224767870967,91.6773995656383,111.282043471119,123.678328264566,151.099071218383,166.4696594087,167.536222873071,90.6913314570686,165.612383869413,117.154179676846,108.2876162353],"y":[15.7891725212773,15.2650297433841,14.9584302171471,13.621410256286,10.8244007359635,9.52437935564416,8.87637286592102,8.77729201893277,7.82401527939161,6.69364965787958,6.02021546014978,5.85910030827547,5.70697606682804,5.19341033572917,5.04112871444826,4.86246382147518,4.67331264390008,4.64263892644462,4.60132329905935,4.45231739009699,3.96902998622611,3.85454805924345,3.64803343931882,3.54288745834155,3.52547317926018,3.06639450334527,2.74138797567311,2.70469638610715,2.68084806938811,2.5606348738613,2.39806782998628,2.37802306508785,2.23404026332143,2.02730434578675,1.98302713076904,1.95799238637558,1.88335827213225,1.75420797873719,1.74581898605794,1.6584402860475,1.61437948984051,1.60191789265926,1.58200621390344,1.5738520079254,1.5316457118958,1.40187409607766,1.3285865707126],"text":["GO:0048731 (4421) <br> system development <br> 1.625e-16","GO:0048856 (5338) <br> anatomical structure development <br> 5.432e-16","GO:0007275 (4921) <br> multicellular organism development <br> 1.100e-15","GO:0032502 (5754) <br> developmental process <br> 2.391e-14","GO:0007399 (2263) <br> nervous system development <br> 1.498e-11","GO:0032501 (6571) <br> multicellular organismal process <br> 2.990e-10","GO:0030154 (3780) <br> cell differentiation <br> 1.329e-09","GO:0048869 (3844) <br> cellular developmental process <br> 1.670e-09","GO:0048468 (1900) <br> cell development <br> 1.500e-08","GO:0048513 (3211) <br> animal organ development <br> 2.025e-07","GO:0009653 (2520) <br> anatomical structure morphogenesis <br> 9.545e-07","GO:0022008 (1548) <br> neurogenesis <br> 1.383e-06","GO:0048699 (1439) <br> generation of neurons <br> 1.963e-06","GO:0022610 (1334) <br> biological adhesion <br> 6.406e-06","GO:0007155 (1328) <br> cell adhesion <br> 9.096e-06","GO:0000904 (700) <br> cell morphogenesis involved in differentiation <br> 1.373e-05","GO:0032990 (660) <br> cell part morphogenesis <br> 2.122e-05","GO:0032989 (742) <br> cellular component morphogenesis <br> 2.277e-05","GO:0000902 (971) <br> cell morphogenesis <br> 2.504e-05","GO:0048858 (644) <br> cell projection morphogenesis <br> 3.529e-05","GO:0030182 (1313) <br> neuron differentiation <br> 1.074e-04","GO:0120039 (640) <br> plasma membrane bounded cell projection morphogenesis <br> 1.398e-04","GO:0031175 (935) <br> neuron projection development <br> 2.249e-04","GO:0048812 (627) <br> neuron projection morphogenesis <br> 2.865e-04","GO:0048666 (1065) <br> neuron development <br> 2.982e-04","GO:0065007 (10586) <br> biological regulation <br> 8.582e-04","GO:0050804 (403) <br> modulation of chemical synaptic transmission <br> 1.814e-03","GO:0099177 (404) <br> regulation of trans-synaptic signaling <br> 1.974e-03","GO:0050789 (10009) <br> regulation of biological process <br> 2.085e-03","GO:0006928 (1927) <br> movement of cell or subcellular component <br> 2.750e-03","GO:0048523 (4455) <br> negative regulation of cellular process <br> 3.999e-03","GO:0050793 (2275) <br> regulation of developmental process <br> 4.188e-03","GO:0048667 (566) <br> cell morphogenesis involved in neuron differentiation <br> 5.834e-03","GO:0099536 (681) <br> synaptic signaling <br> 9.391e-03","GO:0050794 (9510) <br> regulation of cellular process <br> 1.040e-02","GO:0007409 (448) <br> axonogenesis <br> 1.102e-02","GO:0045595 (1476) <br> regulation of cell differentiation <br> 1.308e-02","GO:0008150 (14695) <br> biological_process <br> 1.761e-02","GO:0031589 (332) <br> cell-substrate adhesion <br> 1.795e-02","GO:0040011 (1681) <br> locomotion <br> 2.196e-02","GO:0061564 (482) <br> axon development <br> 2.430e-02","GO:0098742 (251) <br> cell-cell adhesion via plasma-membrane adhesion molecules <br> 2.501e-02","GO:0099537 (662) <br> trans-synaptic signaling <br> 2.618e-02","GO:0007411 (262) <br> axon guidance <br> 2.668e-02","GO:0097485 (263) <br> neuron projection guidance <br> 2.940e-02","GO:0034330 (657) <br> cell junction organization <br> 3.964e-02","GO:0023051 (3244) <br> regulation of signaling <br> 4.693e-02"],"key":["GO:0048731","GO:0048856","GO:0007275","GO:0032502","GO:0007399","GO:0032501","GO:0030154","GO:0048869","GO:0048468","GO:0048513","GO:0009653","GO:0022008","GO:0048699","GO:0022610","GO:0007155","GO:0000904","GO:0032990","GO:0032989","GO:0000902","GO:0048858","GO:0030182","GO:0120039","GO:0031175","GO:0048812","GO:0048666","GO:0065007","GO:0050804","GO:0099177","GO:0050789","GO:0006928","GO:0048523","GO:0050793","GO:0048667","GO:0099536","GO:0050794","GO:0007409","GO:0045595","GO:0008150","GO:0031589","GO:0040011","GO:0061564","GO:0098742","GO:0099537","GO:0007411","GO:0097485","GO:0034330","GO:0023051"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,153,0,1)","opacity":0.8,"size":[19.5572105100368,20.0672993551912,19.8491606094274,20.2659960771741,17.5933876869613,20.6117921783681,19.1203983965255,19.1678108903827,17.0328594997736,18.6518283671846,17.9272182411365,16.3442001517204,16.089479745425,15.8194657814909,15.8032095794893,13.2135709086509,12.9389573628929,13.4778569158187,14.6145960436799,12.8219577200101,15.7621477423026,12.7920118416962,14.4622363939182,12.6926673454302,14.9785116483559,21.7991364635162,10.1894908444215,10.2062445192508,21.6636724478295,17.078974121741,19.5782646242804,17.6099892104808,12.1796579594183,13.0861506703163,21.5391665463785,10.869914370257,16.1786389777086,22.5722677242784,8.70599188712214,16.6256796290843,11.3042482162819,3.77952755905512,12.9532791480363,5.70877976524072,5.79263328325251,12.9173507617318,18.6816282498582],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,153,0,1)"}},"hoveron":"points","set":"SharedDatae79cfaf3","name":"GO:BP","legendgroup":"GO:BP","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[68.0551468973956,57.5203128050762,56.4132897346185,70.9696367265279,59.5773629469085,65.2976530673464,55.8778931223607,70.3577548839476,61.5216980124761,58.7642041824269],"y":[7.80681014933879,7.15351042968926,6.08744092080892,5.52390622960661,4.2292755070979,3.18810583814936,2.0003135848526,1.88938236815936,1.53412715861802,1.35298934129863],"text":["GO:0071944 (4931) <br> cell periphery <br> 1.560e-08","GO:0005886 (4511) <br> plasma membrane <br> 7.022e-08","GO:0005575 (15295) <br> cellular_component <br> 8.176e-07","GO:0110165 (15176) <br> cellular anatomical entity <br> 2.993e-06","GO:0030054 (1923) <br> cell junction <br> 5.898e-05","GO:0045202 (1234) <br> synapse <br> 6.485e-04","GO:0000785 (1098) <br> chromatin <br> 9.993e-03","GO:0098984 (339) <br> neuron to neuron synapse <br> 1.290e-02","GO:0032279 (316) <br> asymmetric synapse <br> 2.923e-02","GO:0014069 (310) <br> postsynaptic density <br> 4.436e-02"],"key":["GO:0071944","GO:0005886","GO:0005575","GO:0110165","GO:0030054","GO:0045202","GO:0000785","GO:0098984","GO:0032279","GO:0014069"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(16,150,24,1)","opacity":0.8,"size":[19.854640878224,19.6125341366952,22.6644367627277,22.6464828059672,17.0721932941884,15.5353064218788,15.0961216170688,8.88645139918929,8.24986098503999,8.05975739183683],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(16,150,24,1)"}},"hoveron":"points","set":"SharedDatae79cfaf3","name":"GO:CC","legendgroup":"GO:CC","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[3.59791046486707,9.4904568642761,9.55888124186487],"y":[7.34554033340611,3.06875002931791,1.81650967156365],"text":["GO:0003674 (15380) <br> molecular_function <br> 4.513e-08","GO:0005488 (14350) <br> binding <br> 8.536e-04","GO:0005515 (12728) <br> protein binding <br> 1.526e-02"],"key":["GO:0003674","GO:0005488","GO:0005515"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(220,57,18,1)","opacity":0.8,"size":[22.6771653543307,22.5173364922675,22.2375048082395],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(220,57,18,1)"}},"hoveron":"points","set":"SharedDatae79cfaf3","name":"GO:MF","legendgroup":"GO:MF","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[2,51.4265503994146],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(220,57,18,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2,51.4265503994146],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(220,57,18,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[55.4511860479298,73.3970364046588],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(16,150,24,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[55.4511860479298,73.3970364046588],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(16,150,24,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[77.421672053174,200.004024635649],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(255,153,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[77.421672053174,200.004024635649],"y":[-1,-1],"text":"","type":"scatter","mode":"lines","line":{"width":11.3385826771654,"color":"rgba(255,153,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[180],"y":[16.2],"text":"values above this threshold are capped","hovertext":"","textfont":{"size":7.55905511811024,"color":"rgba(190,190,190,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[180],"y":[16.2],"text":"values above this threshold are capped","hovertext":"","textfont":{"size":7.55905511811024,"color":"rgba(190,190,190,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0,210],"y":[16,16],"text":"","type":"scatter","mode":"lines","line":{"width":0.755905511811024,"color":"rgba(190,190,190,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,210],"y":[16,16],"text":"","type":"scatter","mode":"lines","line":{"width":0.755905511811024,"color":"rgba(190,190,190,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":29.2835201328352,"r":6.6417600664176,"b":34.6245339262839,"l":61.0377750103778},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0,210],"tickmode":"array","ticktext":["GO:MF","GO:CC","GO:BP"],"tickvals":[26.7132751997073,64.4241112262943,138.712848344411],"categoryorder":"array","categoryarray":["GO:MF","GO:CC","GO:BP"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.6268161062682},"tickangle":-45,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.132835201328352,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"yaxis":{"domain":[0.509276249462564,1],"automargin":true,"type":"linear","autorange":false,"range":[-1,18.5],"tickmode":"array","ticktext":["0","2","4","6","8","10","12","14",">16"],"tickvals":[0,2,4,6,8,10,12,14,16],"categoryorder":"array","categoryarray":["0","2","4","6","8","10","12","14",">16"],"nticks":null,"ticks":"outside","tickcolor":"rgba(190,190,190,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"annotations":[{"text":"-log10(p-adj)","x":-0.0120785480374521,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis"},{"text":"01_dmregions","x":0.5,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(169,169,169,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"02_dmtag","x":0.5,"y":0.490723750537436,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(169,169,169,1)","family":"","size":13.2835201328352},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0.509276249462564,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":24.9730178497302,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":0.490723750537436},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":24.9730178497302,"yanchor":0.490723750537436,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[0,210],"tickmode":"array","ticktext":["GO:MF","GO:CC","GO:BP"],"tickvals":[26.7132751997073,64.4241112262943,138.712848344411],"categoryorder":"array","categoryarray":["GO:MF","GO:CC","GO:BP"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.6268161062682},"tickangle":-45,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.132835201328352,"showgrid":false,"domain":[0,1],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y2","title":"","hoverformat":".2f"},"yaxis2":{"type":"linear","autorange":false,"range":[-1,18.5],"tickmode":"array","ticktext":["0","2","4","6","8","10","12","14",">16"],"tickvals":[0,2,4,6,8,10,12,14,16],"categoryorder":"array","categoryarray":["0","2","4","6","8","10","12","14",">16"],"nticks":null,"ticks":"outside","tickcolor":"rgba(190,190,190,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(190,190,190,1)","linewidth":0.66417600664176,"showgrid":false,"domain":[0,0.490723750537436],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative","dragmode":"zoom"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"f401365cab":{"colour":{},"size":{},"alpha":{},"key":{},"x":{},"y":{},"text":{},"type":"scatter"},"f405b2a207b":{"x":{},"xend":{},"y":{},"yend":{}},"f4057256414":{"x":{},"xend":{},"y":{},"yend":{}},"f40690a6a7b":{"x":{},"xend":{},"y":{},"yend":{}},"f40457e915":{"x":{},"y":{}},"f4014642b9c":{"yintercept":{}}},"cur_data":"f401365cab","visdat":{"f401365cab":["function (y) ","x"],"f405b2a207b":["function (y) ","x"],"f4057256414":["function (y) ","x"],"f40690a6a7b":["function (y) ","x"],"f40457e915":["function (y) ","x"],"f4014642b9c":["function (y) ","x"]},"highlight":{"on":"plotly_click","off":"plotly_doubleclick","persistent":false,"dynamic":false,"color":null,"selectize":false,"defaultValues":null,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0,"ctGroups":["SharedDatae79cfaf3"]},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>p = gostplot(gostres, capped = TRUE, interactive = F)
 
 toptab = gostres$result
@@ -2108,9 +2034,12 @@ pp = publish_gostplot(p, filename = paste0(Home,&quot;/output/gostres.pdf&quot;)
 <pre><code>The image is saved to C:/Users/chiocchetti/Projects/femNATCD_MethSeq/output/gostres.pdf</code></pre>
 <pre class="r"><code>write.xlsx2(toptab, file = paste0(Home,&quot;/output/GOres.xlsx&quot;), sheetName = &quot;GO_enrichment&quot;)</code></pre>
 </div>
-<div id="kang-brain-module-enrichments" class="section level2">
-<h2>Kang Brain Module Enrichments</h2>
+</div>
+<div id="brain-developmental-processes-enrichment-tests" class="section level1">
+<h1>Brain Developmental Processes Enrichment tests</h1>
 <p>Gene sets identified to be deferentially methylated with a p-value &lt;= 0.01 and an absolute log2 fold-change larger 0.5 were tested for enrichment among gene-modules coregulated during Brain expression.</p>
+<div id="kang-modules" class="section level2">
+<h2>Kang Modules</h2>
 <pre class="r"><code># define Reference Universe 
 
 KangUnivers&lt;- read.table(paste0(Home,&quot;/data/KangUnivers.txt&quot;), sep=&quot;\t&quot;, header=T)
@@ -2197,6 +2126,9 @@ for(r in names(Resultsall)){
   a=rownames(Resultsall[[r]])[Resultsall[[r]]$Padj&lt;=0.05]
   Modsig = c(Modsig,a)
 }</code></pre>
+</div>
+<div id="brain-espresseion-heatmaps" class="section level2">
+<h2>Brain espresseion heatmaps</h2>
 <pre class="r"><code># show brains and expression
 Modsig2=unique(Modsig[Modsig!=&quot;M_all&quot;])
 
@@ -2422,8 +2354,11 @@ dev.off()</code></pre>
 <pre><code>png 
   2 </code></pre>
 </div>
-<div id="sem" class="section level2">
-<h2>SEM</h2>
+</div>
+<div id="risk-factor-mediation-analysis" class="section level1">
+<h1>Risk Factor Mediation Analysis</h1>
+<div id="risk-factor-loading-and-correlation-plots" class="section level2">
+<h2>Risk factor loading and correlation plots</h2>
 <pre class="r"><code>dropfact=c(&quot;site&quot;, &quot;0&quot;, &quot;group&quot;)
 
 modelFact=strsplit(as.character(design(dds_filt))[2], &quot; \\+ &quot;)[[1]]
@@ -2469,6 +2404,9 @@ par(mfrow=c(1,2))
 corrplot(cormat, main=&quot;correlations&quot;)
 corrplot(cormat, order = &quot;hclust&quot;, main=&quot;correlations ordered&quot;)</code></pre>
 <p><img src="figure/03_01_Posthoc_analyses_Gene_Enrichment.Rmd/SEM,%20-1.png" width="1440" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sem-analysis" class="section level2">
+<h2>SEM analysis</h2>
 <pre class="r"><code>fullmodEnv=paste(unique(envFact,modelFact), sep = &quot;+&quot;, collapse = &quot;+&quot;)
 
 Dataset = Patdata[,c(&quot;group&quot;, envFact, modelFact,EpiMarker)]
@@ -5325,9 +5263,9 @@ for (n in names(rmd_paths)) {
     sink()
 }</code></pre>
 </div>
-<div id="interactive-results-sem-analysis" class="section level2">
-<h2>Interactive results SEM analysis</h2>
-<p>only direct effects with a significant standardized effect of p&lt;0.05 are shown.</p>
+<div id="interactive-sem-plots" class="section level2">
+<h2>Interactive SEM plots</h2>
+<p>Only direct effects with a significant standardized effect of p&lt;0.05 are shown.</p>
 <pre class="r"><code>    for (n in names(rmd_paths)) {
         cat(knitr::knit_child(rmd_paths[[n]],
                               quiet= TRUE))
@@ -5452,6 +5390,7 @@ loaded via a namespace (and not attached):
 [157] munsell_0.5.0          GenomeInfoDbData_1.2.4 iterators_1.0.13      
 [160] impute_1.64.0          haven_2.3.1            reshape2_1.4.4        
 [163] gtable_0.3.0          </code></pre>
+</div>
 </div>
 </div>
 
