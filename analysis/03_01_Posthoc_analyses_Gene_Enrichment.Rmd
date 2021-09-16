@@ -6,6 +6,10 @@ date: "29 Dezember 2020"
 output: html_document
 code_folding: hide
 ---
+```{r}
+Home = getwd()
+```
+
 
 ```{r setup, echo=F, include=FALSE}
 library(RColorBrewer)
@@ -31,7 +35,7 @@ library(webshot); #webshot::install_phantomjs() #in case phantomjs was not insta
 library(RRHO)
 library(readxl)
 
-Home = getwd()
+
 
 thresholdp = 10e-3
 thresholdLFC = 0.5
@@ -75,7 +79,7 @@ selEpiMeta = mcols(dds_filt)
 
 ### including SES
 
-```{r effect_of_SES, eval=TRUE}
+```{r effect_of_SES, eval=F}
 collector=data.frame(originalP=results_Deseq$pvalue,
                      originall2FC=results_Deseq$log2FoldChange)
 
@@ -123,7 +127,7 @@ plot(collector$originall2FC[idx],collector[,paste0(parm,"l2FC")][idx], pch=16,
 
 ### excluding int_dis
 
-```{r effect_of_w/o_intdis, eval=TRUE}
+```{r effect_of_w/o_intdis, eval=F}
 ### excluding int_dist
 
 modelpar=as.character(design(dds_filt))[2]
@@ -368,7 +372,7 @@ SDFC=apply(FC, 2, function(x){tapply(log2(x), gsub("a|b|c","",rownames(FC)), sd,
 
 ```
 
-## plot erelative expression by samples 
+## plot relative expression by samples 
 
 ```{r RTPCR_step3plot}
 pdf(paste0(Home, "/output/barplots.pdf"))
@@ -1022,8 +1026,9 @@ fullmodEnv=paste(unique(envFact,modelFact), sep = "+", collapse = "+")
 Dataset = Patdata[,c("group", envFact, modelFact,EpiMarker)]
 
 model = "
-Epi~1+a*Matsmk+b*Matagg+c*FamScore+d*EduPar+e*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+V8
-group~1+f*Matsmk+g*Matagg+h*FamScore+i*EduPar+j*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+V8+z*Epi
+Epi~a*Matsmk+b*Matagg+c*FamScore+d*EduPar+e*n_trauma+Age+int_dis+medication+contraceptives+V8+cigday_1
+
+group~f*Matsmk+g*Matagg+h*FamScore+i*EduPar+j*n_trauma+Age+int_dis+medication+contraceptives+V8+cigday_1+z*Epi
 
 #direct
 directMatsmk := f
@@ -1041,9 +1046,10 @@ Epin_trauma := e*z
 
 total := f + g + h + i + j + (a*z)+(b*z)+(c*z)+(d*z)+(e*z)
 
-Epi~~Epi
-group~~group
 "
+
+model0 = "group~Matsmk+Matagg+FamScore+EduPar+Matagg+FamScore+EduPar+n_trauma+Age+int_dis+medication+n_trauma+Age+int_dis+medication+contraceptives+V8+cigday_1+Epi"
+
 
 Netlist = list()
 
@@ -1051,19 +1057,23 @@ for (marker in EpiMarker) {
   Dataset$Epi = Dataset[,marker]
   Datasetscaled = Dataset %>% mutate_if(is.numeric, minmax_scaling)
   Datasetscaled = Datasetscaled %>% mutate_if(is.factor, ~ as.numeric(.)-1)
+  Datasetscaled$group = ordered(Datasetscaled$group)
   
-  fit<-lavaan(model,data=Datasetscaled, )
+  fit<-lavaan(model,data=Datasetscaled)
   
   sink(paste0(Home,"/output/SEM_summary_group",marker,".txt"))
   summary(fit)
   print(fitMeasures(fit))
   print(parameterEstimates(fit))
   sink()
+  
   cat("############################\n")
   cat("############################\n")
   cat(marker, "\n")
   cat("############################\n")
   cat("############################\n")
+  
+  cat("##Mediation Model ##\n")
   summary(fit)
   cat("\n")
   print(fitMeasures(fit))
