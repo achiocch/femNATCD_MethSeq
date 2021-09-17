@@ -1033,7 +1033,7 @@ fullmodEnv=paste(unique(envFact,modelFact), sep = "+", collapse = "+")
 Dataset = Patdata[,c("group", envFact, modelFact,EpiMarker)]
 
 model = "
-Epi~a*Matsmk+b*Matagg+c*FamScore+d*EduPar+e*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+V8
+Epi~0+a*Matsmk+b*Matagg+c*FamScore+d*EduPar+e*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+V8
 
 group~f*Matsmk+g*Matagg+h*FamScore+i*EduPar+j*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+V8+z*Epi
 
@@ -1055,17 +1055,19 @@ total := f + g + h + i + j + (a*z)+(b*z)+(c*z)+(d*z)+(e*z)
 
 "
 
-
 Netlist = list()
 
+
+nothing = function(x){return(x)}
+
 for (marker in EpiMarker) {
+  
   Dataset$Epi = Dataset[,marker]
   Datasetscaled = Dataset %>% mutate_if(is.numeric, minmax_scaling)
-  Datasetscaled = Datasetscaled %>% mutate_if(is.factor, ~ as.numeric(.)-1)
-  Datasetscaled$group = ordered(as.factor(Datasetscaled$group))
-  
+  Datasetscaled = Datasetscaled %>% mutate_if(is.factor,ordered)
+
   fit<-sem(model,data=Datasetscaled)
-  
+
   sink(paste0(Home,"/output/SEM_summary_group",marker,".txt"))
   summary(fit)
   print(fitMeasures(fit))
@@ -1087,7 +1089,7 @@ for (marker in EpiMarker) {
   cat("\n")
   
   #SOURCE FOR PLOT https://stackoverflow.com/questions/51270032/how-can-i-display-only-significant-path-lines-on-a-path-diagram-r-lavaan-sem
-  restab=lavaan::standardizedSolution(fit) %>% dplyr::filter(!is.na(pvalue)) %>% 
+  restab=lavaan::parameterEstimates(fit) %>% dplyr::filter(!is.na(pvalue)) %>% 
     arrange(desc(pvalue)) %>% mutate_if("is.numeric","round",3) %>% 
     dplyr::select(-ci.lower,-ci.upper,-z)
   
@@ -1101,7 +1103,7 @@ for (marker in EpiMarker) {
   check_Pars <- obj@Pars %>% dplyr:::filter(!(edge %in% c("int","<->") | lhs == rhs)) # this is the list of parameter to sift thru
   keep_Pars <- obj@Pars %>% dplyr:::filter(edge %in% c("int","<->") | lhs == rhs) # this is the list of parameter to keep asis
   
-  test_against <- lavaan::standardizedSolution(fit) %>% dplyr::filter(pvalue < pvalue_cutoff, rhs != lhs)
+  test_against <- lavaan::parameterEstimates(fit) %>% dplyr::filter(pvalue < pvalue_cutoff, rhs != lhs)
   
   # for some reason, the rhs and lhs are reversed in the standardizedSolution() output, for some of the values
   # I'll have to reverse it myself, and test against both orders
@@ -1131,6 +1133,7 @@ for (marker in EpiMarker) {
   nodes$color[nodes$label == marker] = Dark8[4]
   nodes$color[nodes$label %in% envFact] = Dark8[5]
   
+  if(nrow(DF)>0){
   edges <- data.frame(from = DF$lhs, 
                       to = DF$rhs, 
                       width=abs(DF$est), 
@@ -1140,6 +1143,9 @@ for (marker in EpiMarker) {
   edges$label =  DF$est
   edges$color=c("firebrick", "forestgreen")[1:2][factor(sign(DF$est), levels=c(-1,0,1),labels=c(1,2,2))]
   edges$width=2
+  }
+  else {edges = data.frame(from=NULL, to = NULL)}
+  
   cexlab = 18
   plotnet<- visNetwork(nodes, edges,  
                        main=list(text=marker,
