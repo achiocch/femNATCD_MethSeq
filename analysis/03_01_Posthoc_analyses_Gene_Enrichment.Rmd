@@ -5,11 +5,14 @@ author: "AG Chiocchetti"
 date: "29 Dezember 2020"
 output: html_document
 code_folding: hide
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
+
 ```{r}
 Home = getwd()
 ```
-
 
 ```{r setup, echo=F, include=FALSE}
 library(RColorBrewer)
@@ -73,9 +76,10 @@ selEpiMeta = mcols(dds_filt)
 
 
 ```
+
 # Sensitivity Analyses
 
-## Sensitivity EWAS 
+## Sensitivity EWAS
 
 ### including SES
 
@@ -165,9 +169,12 @@ plot(collector$originall2FC[idx],collector[,paste0(parm,"l2FC")][idx], pch=16,
      main="log 2 foldchange", ylab=parm, xlab="original")
 
 ```
+
 ## Sensitivity main hit
 
-For the most significant tag of interest (5' of the SLITRK5 gene), we tested if the group effect is stable if correcting for Ethnicity (PC1-PC4) or CD associated environmental risk factors. 
+For the most significant tag of interest (5' of the SLITRK5 gene), we
+tested if the group effect is stable if correcting for Ethnicity
+(PC1-PC4) or CD associated environmental risk factors.
 
 ```{r disect_SLTIRK5}
 
@@ -221,22 +228,18 @@ text(a, min(ressens$beta-ressens$se)*1.15,
 
 ```
 
-All models are corrected for: 
-<br>
-`r clinFact`, 
-<br>
-site is included as random effect. 
-<br>
+All models are corrected for: <br> `r clinFact`, <br> site is included
+as random effect. <br>
 
-original: model defined as `r as.character(model0)[3]`
-<br>
+original: model defined as `r as.character(model0)[3]` <br>
 
 all other models represent the original model + the variable of interest
 <br>
 
-# Real-time PCR validation 
+# Real-time PCR validation
 
 ## Data loading and parsing
+
 ```{r RTPCR}
 
 RefGenes = c("GUSB")
@@ -372,7 +375,7 @@ SDFC=apply(FC, 2, function(x){tapply(log2(x), gsub("a|b|c","",rownames(FC)), sd,
 
 ```
 
-## plot relative expression by samples 
+## plot relative expression by samples
 
 ```{r RTPCR_step3plot}
 pdf(paste0(Home, "/output/barplots.pdf"))
@@ -406,8 +409,7 @@ for(i in Targets_of_Int){
 
 ```
 
-
-## compare across groups 
+## compare across groups
 
 ```{r RTPCR_step4 test}
 sink(paste0(Home, "/output/ResultsgroupComp.txt"))
@@ -513,13 +515,13 @@ for (Targ in Targets){
 
 ```
 
-
 # Systems Analysis
 
 ## Genomic feature enrichment
 
-Significant loci with a p-value <= `r thresholdp` and a absolute log2 fold-change lager `r thresholdLFC` were tested for enrichment in annotated genomic feature using fisher exact test.  
-
+Significant loci with a p-value \<= `r thresholdp` and a absolute log2
+fold-change lager `r thresholdLFC` were tested for enrichment in
+annotated genomic feature using fisher exact test.
 
 ```{r genomiclocation, fig.width=5, fig.height=5}
 
@@ -606,13 +608,14 @@ dev.off()
 
 ```
 
-
 ## GO-term Enrichment
 
-Significant loci and differentially methylated regions with a p-value <= `r thresholdp` and an absolute log2 fold-change lager `r thresholdLFC` were tested for enrichment among  GO-terms Molecular Function, Cellular Compartment and Biological Processes, 
-KEGG pathways, Transcription factor Binding sites, Human Protein Atlas Tissue Expression, Human Phenotypes.  
-
-
+Significant loci and differentially methylated regions with a p-value
+\<= `r thresholdp` and an absolute log2 fold-change lager
+`r thresholdLFC` were tested for enrichment among GO-terms Molecular
+Function, Cellular Compartment and Biological Processes, KEGG pathways,
+Transcription factor Binding sites, Human Protein Atlas Tissue
+Expression, Human Phenotypes.
 
 ```{r go_term, fig.height=15, fig.width=9}
 
@@ -660,11 +663,14 @@ write.xlsx2(toptab, file = paste0(Home,"/output/GOres.xlsx"), sheetName = "GO_en
 
 ```
 
-# Brain Developmental Processes Enrichment tests 
+# Brain Developmental Processes Enrichment tests
 
-Gene sets identified to be deferentially methylated with a p-value <= `r thresholdp` and an absolute log2 fold-change larger `r thresholdLFC` were tested for enrichment among gene-modules coregulated during Brain expression. 
+Gene sets identified to be deferentially methylated with a p-value \<=
+`r thresholdp` and an absolute log2 fold-change larger `r thresholdLFC`
+were tested for enrichment among gene-modules coregulated during Brain
+expression.
 
-## Kang Modules 
+## Kang Modules
 
 ```{r brainModules, fig.height=12, fig.width=5}
 
@@ -759,7 +765,9 @@ for(r in names(Resultsall)){
 
 
 ```
+
 ## Brain espresseion heatmaps
+
 ```{r modplots}
 
 # show brains and expression
@@ -966,11 +974,9 @@ dev.off()
 
 ```
 
+# Risk Factor Mediation Analysis
 
-
-# Risk Factor Mediation Analysis 
-
-## Risk factor loading and correlation plots 
+## Risk factor loading and correlation plots
 
 ```{r SEM, , fig.width=15, fig.height=8}
 dropfact=c("site", "0", "group")
@@ -1019,16 +1025,17 @@ corrplot(cormat, main="correlations")
 corrplot(cormat, order = "hclust", main="correlations ordered")
 ```
 
-## SEM analysis 
+## SEM analysis
+
 ```{r SEM_modelling, , fig.width=15, fig.height=8}
 fullmodEnv=paste(unique(envFact,modelFact), sep = "+", collapse = "+")
 
 Dataset = Patdata[,c("group", envFact, modelFact,EpiMarker)]
 
 model = "
-Epi~a*Matsmk+b*Matagg+c*FamScore+d*EduPar+e*n_trauma+Age+int_dis+medication+contraceptives+V8+cigday_1
+Epi~a*Matsmk+b*Matagg+c*FamScore+d*EduPar+e*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+V8
 
-group~f*Matsmk+g*Matagg+h*FamScore+i*EduPar+j*n_trauma+Age+int_dis+medication+contraceptives+V8+cigday_1+z*Epi
+group~f*Matsmk+g*Matagg+h*FamScore+i*EduPar+j*n_trauma+Age+int_dis+medication+contraceptives+cigday_1+V8+z*Epi
 
 #direct
 directMatsmk := f
@@ -1048,8 +1055,6 @@ total := f + g + h + i + j + (a*z)+(b*z)+(c*z)+(d*z)+(e*z)
 
 "
 
-model0="group~1+Matsmk+Matagg+FamScore+EduPar+n_trauma+Age+int_dis+medication+contraceptives+V8+Epi"
-
 
 Netlist = list()
 
@@ -1057,9 +1062,9 @@ for (marker in EpiMarker) {
   Dataset$Epi = Dataset[,marker]
   Datasetscaled = Dataset %>% mutate_if(is.numeric, minmax_scaling)
   Datasetscaled = Datasetscaled %>% mutate_if(is.factor, ~ as.numeric(.)-1)
-  Datasetscaled$group = ordered(Datasetscaled$group)
+  Datasetscaled$group = ordered(as.factor(Datasetscaled$group))
   
-  fit<-lavaan(model,data=Datasetscaled)
+  fit<-sem(model,data=Datasetscaled)
   
   sink(paste0(Home,"/output/SEM_summary_group",marker,".txt"))
   summary(fit)
@@ -1175,10 +1180,10 @@ for (n in names(rmd_paths)) {
 
 ```
 
-## Interactive SEM plots 
+## Interactive SEM plots
 
-Only direct effects with a significant standardized effect of p<0.05 are shown. 
-
+Only direct effects with a significant standardized effect of p\<0.05
+are shown.
 
 ```{r plotsems_show_interactive, results='asis'}
     for (n in names(rmd_paths)) {
@@ -1187,8 +1192,3 @@ Only direct effects with a significant standardized effect of p<0.05 are shown.
         file.remove(rmd_paths[[n]])
     }
 ```
-
-
-
-
-
