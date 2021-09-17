@@ -1048,7 +1048,7 @@ total := f + g + h + i + j + (a*z)+(b*z)+(c*z)+(d*z)+(e*z)
 
 "
 
-model0 = "group~Matsmk+Matagg+FamScore+EduPar+Matagg+FamScore+EduPar+n_trauma+Age+int_dis+medication+n_trauma+Age+int_dis+medication+contraceptives+V8+cigday_1+Epi"
+model0="group~1+Matsmk+Matagg+FamScore+EduPar+n_trauma+Age+int_dis+medication+contraceptives+V8+Epi"
 
 
 Netlist = list()
