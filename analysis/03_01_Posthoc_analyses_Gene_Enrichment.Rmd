@@ -83,7 +83,7 @@ selEpiMeta = mcols(dds_filt)
 
 ### including SES
 
-```{r effect_of_SES, eval=F}
+```{r effect_of_SES}
 collector=data.frame(originalP=results_Deseq$pvalue,
                      originall2FC=results_Deseq$log2FoldChange)
 
@@ -100,7 +100,7 @@ tmpmod=gsub("int_dis \\+", "", tmpmod)
 modelpar=as.formula(tmpmod)
 design(workingcopy) = modelpar
 
-workingcopy = DESeq(workingcopy, parallel = T)
+workingcopy = DESeq(workingcopy)
 parmres=results(workingcopy)
 
 collector[,paste0(parm,"P")] = parmres$pvalue
@@ -131,7 +131,7 @@ plot(collector$originall2FC[idx],collector[,paste0(parm,"l2FC")][idx], pch=16,
 
 ### excluding int_dis
 
-```{r effect_of_w/o_intdis, eval=F}
+```{r effect_of_w/o_intdis}
 ### excluding int_dist
 
 modelpar=as.character(design(dds_filt))[2]
@@ -139,7 +139,7 @@ modelpar=as.formula(paste("~",gsub("int_dis +", "", modelpar)))
 
 design(workingcopy) = modelpar
 
-workingcopy = DESeq(workingcopy, parallel=T)
+workingcopy = DESeq(workingcopy)
 parmres=results(workingcopy)
 
 parm="wo.int.dis"
@@ -1066,8 +1066,8 @@ for (marker in EpiMarker) {
   Datasetscaled = Dataset %>% mutate_if(is.numeric, minmax_scaling)
   Datasetscaled = Datasetscaled %>% mutate_if(is.factor,ordered)
 
-  fit<-sem(model,data=Datasetscaled)
-
+  fit<-lavaan(model,data=Datasetscaled, estimator="DWLS")
+  
   sink(paste0(Home,"/output/SEM_summary_group",marker,".txt"))
   summary(fit)
   print(fitMeasures(fit))
@@ -1083,9 +1083,9 @@ for (marker in EpiMarker) {
   cat("##Mediation Model ##\n")
   summary(fit)
   cat("\n")
-  print(fitMeasures(fit))
+  #print(fitMeasures(fit))
   cat("\n")
-  print(parameterEstimates(fit))
+  #print(parameterEstimates(fit))
   cat("\n")
   
   #SOURCE FOR PLOT https://stackoverflow.com/questions/51270032/how-can-i-display-only-significant-path-lines-on-a-path-diagram-r-lavaan-sem
@@ -1098,7 +1098,9 @@ for (marker in EpiMarker) {
   obj <- semPlot:::semPlotModel(fit)
   original_Pars <- obj@Pars
   
+  
   print(original_Pars)
+  
   
   check_Pars <- obj@Pars %>% dplyr:::filter(!(edge %in% c("int","<->") | lhs == rhs)) # this is the list of parameter to sift thru
   keep_Pars <- obj@Pars %>% dplyr:::filter(edge %in% c("int","<->") | lhs == rhs) # this is the list of parameter to keep asis
@@ -1198,3 +1200,6 @@ are shown.
         file.remove(rmd_paths[[n]])
     }
 ```
+
+
+
