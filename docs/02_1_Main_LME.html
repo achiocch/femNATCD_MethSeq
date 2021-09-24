@@ -1,0 +1,3700 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="AG Chiocchetti" />
+
+
+<title>The Methylome in Female Adolescent Conduct Disorder: Neural Pathomechanisms and Environmental Risk Factors</title>
+
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">femNATCD_MethSeq</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/achiocch/femNATCD_MethSeq">
+    <span class="fas fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">The Methylome in Female Adolescent Conduct Disorder: Neural Pathomechanisms and Environmental Risk Factors</h1>
+<h3 class="subtitle">Differential Methylation Analysis</h3>
+<h4 class="author">AG Chiocchetti</h4>
+<h4 class="date">29 Dezember 2020</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-09-24
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>femNATCD_MethSeq/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210128code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210128)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210128code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210128)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree56bb68fa3527e1dacfe01b5396fbe135567d6ee3targetblank56bb68fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/56bb68fa3527e1dacfe01b5396fbe135567d6ee3" target="_blank">56bb68f</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomachiocchfemNATCDMethSeqtree56bb68fa3527e1dacfe01b5396fbe135567d6ee3targetblank56bb68fa" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/achiocch/femNATCD_MethSeq/tree/56bb68fa3527e1dacfe01b5396fbe135567d6ee3" target="_blank">56bb68f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/.Rhistory
+    Ignored:    code/.Rhistory
+    Ignored:    data/Epicounts.csv
+    Ignored:    data/Epimeta.csv
+    Ignored:    data/Epitpm.csv
+    Ignored:    data/KangUnivers.txt
+    Ignored:    data/Kang_DataPreprocessing.RData
+    Ignored:    data/Kang_dataset_genesMod_version2.txt
+    Ignored:    data/PatMeta.csv
+    Ignored:    data/ProcessedData.RData
+    Ignored:    data/RTrawdata/
+    Ignored:    data/SNPCommonFilt.csv
+    Ignored:    data/femNAT_PC20.txt
+    Ignored:    output/BrainMod_Enrichemnt.pdf
+    Ignored:    output/Brain_Module_Heatmap.pdf
+    Ignored:    output/DMR_Results.csv
+    Ignored:    output/GOres.xlsx
+    Ignored:    output/LME_GOplot.pdf
+    Ignored:    output/LME_Results.csv
+    Ignored:    output/LME_Results_Sig.csv
+    Ignored:    output/LME_tophit.svg
+    Ignored:    output/ProcessedData.RData
+    Ignored:    output/RNAvsMETplots.pdf
+    Ignored:    output/Regions_GOplot.pdf
+    Ignored:    output/ResultsgroupComp.txt
+    Ignored:    output/SEM_summary_groupEpi_M15.txt
+    Ignored:    output/SEM_summary_groupEpi_M2.txt
+    Ignored:    output/SEM_summary_groupEpi_M_all.txt
+    Ignored:    output/SEM_summary_groupEpi_TopHit.txt
+    Ignored:    output/SEM_summary_groupEpi_all.txt
+    Ignored:    output/SEMplot_Epi_M15.html
+    Ignored:    output/SEMplot_Epi_M15.png
+    Ignored:    output/SEMplot_Epi_M15_files/
+    Ignored:    output/SEMplot_Epi_M2.html
+    Ignored:    output/SEMplot_Epi_M2.png
+    Ignored:    output/SEMplot_Epi_M2_files/
+    Ignored:    output/SEMplot_Epi_M_all.html
+    Ignored:    output/SEMplot_Epi_M_all.png
+    Ignored:    output/SEMplot_Epi_M_all_files/
+    Ignored:    output/SEMplot_Epi_TopHit.html
+    Ignored:    output/SEMplot_Epi_TopHit.png
+    Ignored:    output/SEMplot_Epi_TopHit_files/
+    Ignored:    output/SEMplot_Epi_all.html
+    Ignored:    output/SEMplot_Epi_all.png
+    Ignored:    output/SEMplot_Epi_all_files/
+    Ignored:    output/barplots.pdf
+    Ignored:    output/circos_DMR_tags.svg
+    Ignored:    output/circos_LME_tags.svg
+    Ignored:    output/clinFact.RData
+    Ignored:    output/dds_filt_analyzed.RData
+    Ignored:    output/designh0.RData
+    Ignored:    output/designh1.RData
+    Ignored:    output/envFact.RData
+    Ignored:    output/functional_Enrichemnt.pdf
+    Ignored:    output/gostres.pdf
+    Ignored:    output/modelFact.RData
+    Ignored:    output/resdmr.RData
+    Ignored:    output/resultsdmr_table.RData
+    Ignored:    output/table1_filtered.Rmd
+    Ignored:    output/table1_filtered.docx
+    Ignored:    output/table1_unfiltered.Rmd
+    Ignored:    output/table1_unfiltered.docx
+    Ignored:    setup_built.R
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/02_1_Main_LME.Rmd</code>) and HTML (<code>docs/02_1_Main_LME.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/43333cc10901bd62b0cbea2c03f06b6a79819858/docs/02_1_Main_LME.html" target="_blank">43333cc</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-09-24
+</td>
+<td>
+adds new build
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/b497cc99a9a747a515d83ab1b9a3af95d3061ba4/docs/02_1_Main_LME.html" target="_blank">b497cc9</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-09-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/ccbc9e44823e6ddba282ac40845fc2c94262cbfc/docs/02_1_Main_LME.html" target="_blank">ccbc9e4</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-08-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/70cd649ce41081b3d0bade1bd0cc176931c783f4/docs/02_1_Main_LME.html" target="_blank">70cd649</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-08-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/2a53a8725668ff1a29d6f35437a6c587012809ac/docs/02_1_Main_LME.html" target="_blank">2a53a87</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-08-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/e3a9ae36c28b2ba178d5307fea867742cebed422/docs/02_1_Main_LME.html" target="_blank">e3a9ae3</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-08-04
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/f6bbdc0c4b54e5c101704cc3c7cb9c80408f92b2/docs/02_1_Main_LME.html" target="_blank">f6bbdc0</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-08-04
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/710904a781215272de2c506a1e4c29f7fc802778/docs/02_1_Main_LME.html" target="_blank">710904a</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-08-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/achiocch/femNATCD_MethSeq/blob/16112c31a3720918231ac96f98ae578113c75dc9/analysis/02_1_Main_LME.Rmd" target="_blank">16112c3</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-08-03
+</td>
+<td>
+wflow_publish(c(“analysis/<em>", "code/</em>”, “docs/”))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/16112c31a3720918231ac96f98ae578113c75dc9/docs/02_1_Main_LME.html" target="_blank">16112c3</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-08-03
+</td>
+<td>
+wflow_publish(c(“analysis/<em>", "code/</em>”, “docs/”))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/cde8384951ac43972b93866ec2512bb1ad4cc315/docs/02_1_Main_LME.html" target="_blank">cde8384</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-08-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/d761be40b9985b450720b472375b01adc12b63d6/docs/02_1_Main_LME.html" target="_blank">d761be4</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-07-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/b452d2f02a4bb8e5c4dd961ce50f42a703696053/docs/02_1_Main_LME.html" target="_blank">b452d2f</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-07-30
+</td>
+<td>
+wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"))
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/achiocch/femNATCD_MethSeq/blob/1a9f36fde268d7bd9b5615ff46b35309442db585/analysis/02_1_Main_LME.Rmd" target="_blank">1a9f36f</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-07-30
+</td>
+<td>
+reviewed analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/2734c4e51aa341b50f59acf0df2900ab91d06654/docs/02_1_Main_LME.html" target="_blank">2734c4e</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-05-08
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/a8478239ce3ca497da23250c261c259b1d1f9088/docs/02_1_Main_LME.html" target="_blank">a847823</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-05-08
+</td>
+<td>
+wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/9cc52f7bc59be3ada26bac3a9458fb6dbb154395/docs/02_1_Main_LME.html" target="_blank">9cc52f7</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-05-08
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/158d0b43dc3337bef41cfd99c32e3322750945f4/docs/02_1_Main_LME.html" target="_blank">158d0b4</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-05-08
+</td>
+<td>
+wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/0f262d1b920469dca52216115355a20663827e5e/docs/02_1_Main_LME.html" target="_blank">0f262d1</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-05-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/5167b90e01239a0adae727c7561e97a2ae16a750/docs/02_1_Main_LME.html" target="_blank">5167b90</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-05-07
+</td>
+<td>
+wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/05aac7fc7613833ecedbf0ff9dd4fd18088608fc/docs/02_1_Main_LME.html" target="_blank">05aac7f</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-04-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/f5c52650307ec764d17e5f70981ad2cab2dc514b/docs/02_1_Main_LME.html" target="_blank">f5c5265</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-04-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/17f1eec7fe797b93bcf724547cf86ce90c52e37f/docs/02_1_Main_LME.html" target="_blank">17f1eec</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-04-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/achiocch/femNATCD_MethSeq/blob/4dee231f75db4afbace8606bf75213f739dd24ad/analysis/02_1_Main_LME.Rmd" target="_blank">4dee231</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-04-10
+</td>
+<td>
+wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/91de221841561ea6b43fb67c9fd06d813bdb04b4/docs/02_1_Main_LME.html" target="_blank">91de221</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-04-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/4ea1bba17a570a8d27e65e5b4153833c4d999e77/docs/02_1_Main_LME.html" target="_blank">4ea1bba</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-02-25
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/achiocch/femNATCD_MethSeq/blob/6c21638381f6c8e162516fa9f9278f8e82503ab4/analysis/02_1_Main_LME.Rmd" target="_blank">6c21638</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-02-25
+</td>
+<td>
+wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"), update = F)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/achiocch/femNATCD_MethSeq/6c21638381f6c8e162516fa9f9278f8e82503ab4/docs/02_1_Main_LME.html" target="_blank">6c21638</a>
+</td>
+<td>
+achiocch
+</td>
+<td>
+2021-02-25
+</td>
+<td>
+wflow_publish(c(“analysis/<em>", "code/</em>”, "docs/*"), update = F)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<pre class="r"><code>## load Data  ####
+load(paste0(Home,&quot;/output/ProcessedData.RData&quot;))</code></pre>
+<div id="define-model" class="section level1">
+<h1>define model</h1>
+<pre class="r"><code># test SVAs for significant difference between groups
+
+svas = names(colData(dds_filt))[str_detect(names(colData(dds_filt)), &quot;^V&quot;)]
+
+testframe = as.data.frame(colData(dds_filt)) %&gt;% dplyr::select(group, all_of(svas))
+
+svas_sig = c()
+
+for (s in svas){
+  tmp = t.test(testframe[,s]~testframe[,&quot;group&quot;])$p.value
+  if(tmp &lt;= 0.05){
+    svas_sig=c(svas_sig,s) 
+  }
+}
+
+#add significant sva to model
+
+sva = paste0(svas_sig, collapse = &quot;+&quot;)
+
+dds_filt$group &lt;- relevel(dds_filt$group, ref = &quot;CTRL&quot;)
+tmpdes=gsub(&quot; group&quot;, paste0(sva,&quot;+group&quot;), as.character(design(dds_filt))[2])
+design(dds_filt) = formula(paste0(&quot;~&quot;,tmpdes))
+
+designmatrix = model.matrix(design(dds_filt), colData(dds_filt))</code></pre>
+<p>model formula: Epi ~ 0 + Age + int_dis + medication + contraceptives + cigday_1 + V8 + group</p>
+</div>
+<div id="analyze" class="section level1">
+<h1>analyze</h1>
+<pre class="r"><code>if (reanalyze){
+  dds_filt = DESeq(dds_filt)
+  savefile=TRUE
+} else 
+{
+  if(file.exists(paste0(Home,&quot;/output/dds_filt_analyzed.RData&quot;))){
+    load(paste0(Home,&quot;/output/dds_filt_analyzed.RData&quot;))
+    savefile=FALSE
+    
+  }else {
+    print(&quot;no preprocessed file found data is reanalyzed&quot;)
+    dds_filt = DESeq(dds_filt)
+    savefile=TRUE
+  }
+}
+
+res = results(dds_filt)
+summary(res)</code></pre>
+<pre><code>
+out of 216102 with nonzero total read count
+adjusted p-value &lt; 0.1
+LFC &gt; 0 (up)       : 0, 0%
+LFC &lt; 0 (down)     : 1, 0.00046%
+outliers [1]       : 0, 0%
+low counts [2]     : 0, 0%
+(mean count &lt; 4)
+[1] see &#39;cooksCutoff&#39; argument of ?results
+[2] see &#39;independentFiltering&#39; argument of ?results</code></pre>
+<pre class="r"><code>res &lt;- res %&gt;% cbind(as.data.frame(rowRanges(dds_filt)))
+res$ID = paste0(&quot;tag_&quot;,1:nrow(res), &quot;_&quot;,res$gene)
+rownames(res)=res$ID
+res$CHR = as.numeric(res$seqnames)
+
+restop = as.data.frame(res[order(res$pvalue, decreasing = F), ])
+restop = restop[restop$pvalue&lt;=10E-3,]
+
+if(savefile){
+  save(dds_filt, file=paste0(Home,&quot;/output/dds_filt_analyzed.RData&quot;))}</code></pre>
+</div>
+<div id="sumarize-results-linear-model" class="section level1">
+<h1>sumarize results linear model</h1>
+<pre class="r"><code>topN = 10
+DESeq2::plotDispEsts(dds_filt)</code></pre>
+<p><img src="figure/02_1_Main_LME.Rmd/show_results-1.png" width="3000" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>lp &lt;- -log10(res$pvalue)
+ord &lt;- order(lp, decreasing = TRUE)[1:topN]
+
+qqman::qq(res$pvalue, main=&quot;uncorrected p-value&quot;)</code></pre>
+<p><img src="figure/02_1_Main_LME.Rmd/show_results-2.png" width="3000" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>qqman::manhattan(res, chr=&quot;CHR&quot;, bp=&quot;start&quot;, p=&quot;pvalue&quot;, snp=&quot;ID&quot;, col = c(&quot;#366697&quot;, &quot;#BB8300&quot;))</code></pre>
+<p><img src="figure/02_1_Main_LME.Rmd/show_results-3.png" width="3000" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ressum= res[ord,]
+display_tab(ressum)</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:900px; ">
+<table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; '>
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+baseMean
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+log2FoldChange
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+lfcSE
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+stat
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+pvalue
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+padj
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+seqnames
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+start
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+end
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+width
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+strand
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+raw_gene
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+gene
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+distance
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+feature
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+cpg
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+tf_binding
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+samples_per_target
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+mean
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+std
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+baseMean.1
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+baseVar
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+allZero
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+dispGeneEst
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+dispGeneIter
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+dispFit
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+dispersion
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+dispIter
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+dispOutlier
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+dispMAP
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Age
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+int_disno
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+int_disyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+medicationyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+contraceptivesyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+cigday_1
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+V8
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+groupCD
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+SE_Age
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+SE_int_disno
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+SE_int_disyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+SE_medicationyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+SE_contraceptivesyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+SE_cigday_1
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+SE_V8
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+SE_groupCD
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldStatistic_Age
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldStatistic_int_disno
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldStatistic_int_disyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldStatistic_medicationyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldStatistic_contraceptivesyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldStatistic_cigday_1
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldStatistic_V8
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldStatistic_groupCD
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldPvalue_Age
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldPvalue_int_disno
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldPvalue_int_disyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldPvalue_medicationyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldPvalue_contraceptivesyes
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldPvalue_cigday_1
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldPvalue_V8
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+WaldPvalue_groupCD
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+betaConv
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+betaIter
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+deviance
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+maxCooks
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+ID
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+CHR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+tag_134778_MIR4500HG,SLITRK5
+</td>
+<td style="text-align:left;">
+13.294
+</td>
+<td style="text-align:left;">
+-1.128
+</td>
+<td style="text-align:left;">
+0.201
+</td>
+<td style="text-align:left;">
+-5.600
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.005
+</td>
+<td style="text-align:left;">
+chr13
+</td>
+<td style="text-align:left;">
+88324376
+</td>
+<td style="text-align:left;">
+88324381
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+MIR4500HG,SLITRK5
+</td>
+<td style="text-align:left;">
+MIR4500HG,SLITRK5
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+upstream
+</td>
+<td style="text-align:left;">
+cpg
+</td>
+<td style="text-align:left;">
+Pol2//GR
+</td>
+<td style="text-align:left;">
+100
+</td>
+<td style="text-align:left;">
+15.706
+</td>
+<td style="text-align:left;">
+12.631
+</td>
+<td style="text-align:left;">
+13.294
+</td>
+<td style="text-align:left;">
+61.760
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.177
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+0.171
+</td>
+<td style="text-align:left;">
+0.176
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.176
+</td>
+<td style="text-align:left;">
+-0.045
+</td>
+<td style="text-align:left;">
+4.741
+</td>
+<td style="text-align:left;">
+5.031
+</td>
+<td style="text-align:left;">
+0.167
+</td>
+<td style="text-align:left;">
+-0.126
+</td>
+<td style="text-align:left;">
+0.031
+</td>
+<td style="text-align:left;">
+0.706
+</td>
+<td style="text-align:left;">
+-1.128
+</td>
+<td style="text-align:left;">
+0.054
+</td>
+<td style="text-align:left;">
+0.854
+</td>
+<td style="text-align:left;">
+0.884
+</td>
+<td style="text-align:left;">
+0.214
+</td>
+<td style="text-align:left;">
+0.192
+</td>
+<td style="text-align:left;">
+0.017
+</td>
+<td style="text-align:left;">
+0.879
+</td>
+<td style="text-align:left;">
+0.201
+</td>
+<td style="text-align:left;">
+-0.839
+</td>
+<td style="text-align:left;">
+5.551
+</td>
+<td style="text-align:left;">
+5.689
+</td>
+<td style="text-align:left;">
+0.781
+</td>
+<td style="text-align:left;">
+-0.660
+</td>
+<td style="text-align:left;">
+1.763
+</td>
+<td style="text-align:left;">
+0.803
+</td>
+<td style="text-align:left;">
+-5.600
+</td>
+<td style="text-align:left;">
+0.401
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.435
+</td>
+<td style="text-align:left;">
+0.509
+</td>
+<td style="text-align:left;">
+0.078
+</td>
+<td style="text-align:left;">
+0.422
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+645.105
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+tag_134778_MIR4500HG,SLITRK5
+</td>
+<td style="text-align:left;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tag_204782_PDGFB
+</td>
+<td style="text-align:left;">
+14.798
+</td>
+<td style="text-align:left;">
+0.792
+</td>
+<td style="text-align:left;">
+0.174
+</td>
+<td style="text-align:left;">
+4.558
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.308
+</td>
+<td style="text-align:left;">
+chr22
+</td>
+<td style="text-align:left;">
+39629982
+</td>
+<td style="text-align:left;">
+39629987
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+PDGFB
+</td>
+<td style="text-align:left;">
+PDGFB
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+intronic
+</td>
+<td style="text-align:left;">
+NoCpg
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+100
+</td>
+<td style="text-align:left;">
+16.873
+</td>
+<td style="text-align:left;">
+10.585
+</td>
+<td style="text-align:left;">
+14.798
+</td>
+<td style="text-align:left;">
+67.579
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.131
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+0.154
+</td>
+<td style="text-align:left;">
+0.135
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.135
+</td>
+<td style="text-align:left;">
+0.118
+</td>
+<td style="text-align:left;">
+1.825
+</td>
+<td style="text-align:left;">
+1.468
+</td>
+<td style="text-align:left;">
+-0.032
+</td>
+<td style="text-align:left;">
+-0.272
+</td>
+<td style="text-align:left;">
+-0.009
+</td>
+<td style="text-align:left;">
+0.172
+</td>
+<td style="text-align:left;">
+0.792
+</td>
+<td style="text-align:left;">
+0.048
+</td>
+<td style="text-align:left;">
+0.767
+</td>
+<td style="text-align:left;">
+0.792
+</td>
+<td style="text-align:left;">
+0.184
+</td>
+<td style="text-align:left;">
+0.169
+</td>
+<td style="text-align:left;">
+0.015
+</td>
+<td style="text-align:left;">
+0.810
+</td>
+<td style="text-align:left;">
+0.174
+</td>
+<td style="text-align:left;">
+2.448
+</td>
+<td style="text-align:left;">
+2.380
+</td>
+<td style="text-align:left;">
+1.854
+</td>
+<td style="text-align:left;">
+-0.176
+</td>
+<td style="text-align:left;">
+-1.610
+</td>
+<td style="text-align:left;">
+-0.606
+</td>
+<td style="text-align:left;">
+0.212
+</td>
+<td style="text-align:left;">
+4.558
+</td>
+<td style="text-align:left;">
+0.014
+</td>
+<td style="text-align:left;">
+0.017
+</td>
+<td style="text-align:left;">
+0.064
+</td>
+<td style="text-align:left;">
+0.860
+</td>
+<td style="text-align:left;">
+0.107
+</td>
+<td style="text-align:left;">
+0.545
+</td>
+<td style="text-align:left;">
+0.832
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+650.103
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+tag_204782_PDGFB
+</td>
+<td style="text-align:left;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tag_35466_MIR4792
+</td>
+<td style="text-align:left;">
+5.316
+</td>
+<td style="text-align:left;">
+-1.543
+</td>
+<td style="text-align:left;">
+0.339
+</td>
+<td style="text-align:left;">
+-4.552
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.308
+</td>
+<td style="text-align:left;">
+chr3
+</td>
+<td style="text-align:left;">
+24561792
+</td>
+<td style="text-align:left;">
+24561797
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+MIR4792
+</td>
+<td style="text-align:left;">
+MIR4792
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+downstream
+</td>
+<td style="text-align:left;">
+NoCpg
+</td>
+<td style="text-align:left;">
+Pol2//CCNT2//ZBTB7A_(SC-34508)//GABP//HDAC2_(SC-6296)//TAF1//Pol2-4H8//NRSF//GATA-2//ELF1_(SC-631)//GATA2_(CG2-96)//TAL1_(SC-12984)
+</td>
+<td style="text-align:left;">
+86
+</td>
+<td style="text-align:left;">
+5.882
+</td>
+<td style="text-align:left;">
+5.642
+</td>
+<td style="text-align:left;">
+5.316
+</td>
+<td style="text-align:left;">
+24.526
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.494
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+0.420
+</td>
+<td style="text-align:left;">
+0.481
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.481
+</td>
+<td style="text-align:left;">
+-0.058
+</td>
+<td style="text-align:left;">
+3.348
+</td>
+<td style="text-align:left;">
+3.980
+</td>
+<td style="text-align:left;">
+0.265
+</td>
+<td style="text-align:left;">
+0.228
+</td>
+<td style="text-align:left;">
+0.076
+</td>
+<td style="text-align:left;">
+1.156
+</td>
+<td style="text-align:left;">
+-1.543
+</td>
+<td style="text-align:left;">
+0.090
+</td>
+<td style="text-align:left;">
+1.417
+</td>
+<td style="text-align:left;">
+1.466
+</td>
+<td style="text-align:left;">
+0.352
+</td>
+<td style="text-align:left;">
+0.311
+</td>
+<td style="text-align:left;">
+0.028
+</td>
+<td style="text-align:left;">
+1.430
+</td>
+<td style="text-align:left;">
+0.339
+</td>
+<td style="text-align:left;">
+-0.647
+</td>
+<td style="text-align:left;">
+2.363
+</td>
+<td style="text-align:left;">
+2.715
+</td>
+<td style="text-align:left;">
+0.752
+</td>
+<td style="text-align:left;">
+0.731
+</td>
+<td style="text-align:left;">
+2.711
+</td>
+<td style="text-align:left;">
+0.808
+</td>
+<td style="text-align:left;">
+-4.552
+</td>
+<td style="text-align:left;">
+0.517
+</td>
+<td style="text-align:left;">
+0.018
+</td>
+<td style="text-align:left;">
+0.007
+</td>
+<td style="text-align:left;">
+0.452
+</td>
+<td style="text-align:left;">
+0.465
+</td>
+<td style="text-align:left;">
+0.007
+</td>
+<td style="text-align:left;">
+0.419
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+525.501
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+tag_35466_MIR4792
+</td>
+<td style="text-align:left;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tag_120467_PVRL1
+</td>
+<td style="text-align:left;">
+36.541
+</td>
+<td style="text-align:left;">
+-0.468
+</td>
+<td style="text-align:left;">
+0.103
+</td>
+<td style="text-align:left;">
+-4.538
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.308
+</td>
+<td style="text-align:left;">
+chr11
+</td>
+<td style="text-align:left;">
+119544539
+</td>
+<td style="text-align:left;">
+119544544
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+PVRL1
+</td>
+<td style="text-align:left;">
+PVRL1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+intronic
+</td>
+<td style="text-align:left;">
+NoCpg
+</td>
+<td style="text-align:left;">
+Pol2-4H8//NFKB//BATF//YY1_(C-20)//CTCF//TCF12//CHD2_(N-1250)//RXRA//Pol2//SMC3_(ab9263)
+</td>
+<td style="text-align:left;">
+102
+</td>
+<td style="text-align:left;">
+42.863
+</td>
+<td style="text-align:left;">
+26.350
+</td>
+<td style="text-align:left;">
+36.541
+</td>
+<td style="text-align:left;">
+118.993
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.038
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+0.065
+</td>
+<td style="text-align:left;">
+0.042
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.042
+</td>
+<td style="text-align:left;">
+-0.030
+</td>
+<td style="text-align:left;">
+5.753
+</td>
+<td style="text-align:left;">
+5.685
+</td>
+<td style="text-align:left;">
+0.303
+</td>
+<td style="text-align:left;">
+0.117
+</td>
+<td style="text-align:left;">
+0.016
+</td>
+<td style="text-align:left;">
+-0.529
+</td>
+<td style="text-align:left;">
+-0.468
+</td>
+<td style="text-align:left;">
+0.028
+</td>
+<td style="text-align:left;">
+0.444
+</td>
+<td style="text-align:left;">
+0.459
+</td>
+<td style="text-align:left;">
+0.109
+</td>
+<td style="text-align:left;">
+0.099
+</td>
+<td style="text-align:left;">
+0.009
+</td>
+<td style="text-align:left;">
+0.461
+</td>
+<td style="text-align:left;">
+0.103
+</td>
+<td style="text-align:left;">
+-1.066
+</td>
+<td style="text-align:left;">
+12.948
+</td>
+<td style="text-align:left;">
+12.392
+</td>
+<td style="text-align:left;">
+2.774
+</td>
+<td style="text-align:left;">
+1.178
+</td>
+<td style="text-align:left;">
+1.746
+</td>
+<td style="text-align:left;">
+-1.148
+</td>
+<td style="text-align:left;">
+-4.538
+</td>
+<td style="text-align:left;">
+0.287
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.006
+</td>
+<td style="text-align:left;">
+0.239
+</td>
+<td style="text-align:left;">
+0.081
+</td>
+<td style="text-align:left;">
+0.251
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+725.887
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+tag_120467_PVRL1
+</td>
+<td style="text-align:left;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tag_137745_KLHDC2
+</td>
+<td style="text-align:left;">
+18.591
+</td>
+<td style="text-align:left;">
+-0.686
+</td>
+<td style="text-align:left;">
+0.154
+</td>
+<td style="text-align:left;">
+-4.447
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.321
+</td>
+<td style="text-align:left;">
+chr14
+</td>
+<td style="text-align:left;">
+50234989
+</td>
+<td style="text-align:left;">
+50234994
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+KLHDC2
+</td>
+<td style="text-align:left;">
+KLHDC2
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+UTR5
+</td>
+<td style="text-align:left;">
+cpg
+</td>
+<td style="text-align:left;">
+Pol2//TAF1//TBP//CCNT2//Sin3Ak-20//HMGN3//Pol2-4H8//HEY1//Oct-2
+</td>
+<td style="text-align:left;">
+102
+</td>
+<td style="text-align:left;">
+22.373
+</td>
+<td style="text-align:left;">
+17.109
+</td>
+<td style="text-align:left;">
+18.591
+</td>
+<td style="text-align:left;">
+61.296
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.093
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+0.123
+</td>
+<td style="text-align:left;">
+0.098
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.098
+</td>
+<td style="text-align:left;">
+-0.028
+</td>
+<td style="text-align:left;">
+4.755
+</td>
+<td style="text-align:left;">
+4.974
+</td>
+<td style="text-align:left;">
+0.334
+</td>
+<td style="text-align:left;">
+-0.145
+</td>
+<td style="text-align:left;">
+0.039
+</td>
+<td style="text-align:left;">
+0.049
+</td>
+<td style="text-align:left;">
+-0.686
+</td>
+<td style="text-align:left;">
+0.042
+</td>
+<td style="text-align:left;">
+0.659
+</td>
+<td style="text-align:left;">
+0.682
+</td>
+<td style="text-align:left;">
+0.162
+</td>
+<td style="text-align:left;">
+0.147
+</td>
+<td style="text-align:left;">
+0.013
+</td>
+<td style="text-align:left;">
+0.679
+</td>
+<td style="text-align:left;">
+0.154
+</td>
+<td style="text-align:left;">
+-0.677
+</td>
+<td style="text-align:left;">
+7.211
+</td>
+<td style="text-align:left;">
+7.297
+</td>
+<td style="text-align:left;">
+2.066
+</td>
+<td style="text-align:left;">
+-0.987
+</td>
+<td style="text-align:left;">
+2.979
+</td>
+<td style="text-align:left;">
+0.072
+</td>
+<td style="text-align:left;">
+-4.447
+</td>
+<td style="text-align:left;">
+0.498
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.039
+</td>
+<td style="text-align:left;">
+0.324
+</td>
+<td style="text-align:left;">
+0.003
+</td>
+<td style="text-align:left;">
+0.943
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+667.003
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+tag_137745_KLHDC2
+</td>
+<td style="text-align:left;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tag_197061_BMP7
+</td>
+<td style="text-align:left;">
+9.825
+</td>
+<td style="text-align:left;">
+1.043
+</td>
+<td style="text-align:left;">
+0.235
+</td>
+<td style="text-align:left;">
+4.442
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.321
+</td>
+<td style="text-align:left;">
+chr20
+</td>
+<td style="text-align:left;">
+55812238
+</td>
+<td style="text-align:left;">
+55812243
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+BMP7
+</td>
+<td style="text-align:left;">
+BMP7
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+intronic
+</td>
+<td style="text-align:left;">
+NoCpg
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+96
+</td>
+<td style="text-align:left;">
+10.961
+</td>
+<td style="text-align:left;">
+8.664
+</td>
+<td style="text-align:left;">
+9.825
+</td>
+<td style="text-align:left;">
+93.487
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.272
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+0.229
+</td>
+<td style="text-align:left;">
+0.264
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.264
+</td>
+<td style="text-align:left;">
+0.011
+</td>
+<td style="text-align:left;">
+2.921
+</td>
+<td style="text-align:left;">
+2.234
+</td>
+<td style="text-align:left;">
+-0.190
+</td>
+<td style="text-align:left;">
+-0.073
+</td>
+<td style="text-align:left;">
+-0.031
+</td>
+<td style="text-align:left;">
+0.077
+</td>
+<td style="text-align:left;">
+1.043
+</td>
+<td style="text-align:left;">
+0.065
+</td>
+<td style="text-align:left;">
+1.034
+</td>
+<td style="text-align:left;">
+1.069
+</td>
+<td style="text-align:left;">
+0.250
+</td>
+<td style="text-align:left;">
+0.229
+</td>
+<td style="text-align:left;">
+0.021
+</td>
+<td style="text-align:left;">
+1.102
+</td>
+<td style="text-align:left;">
+0.235
+</td>
+<td style="text-align:left;">
+0.165
+</td>
+<td style="text-align:left;">
+2.825
+</td>
+<td style="text-align:left;">
+2.091
+</td>
+<td style="text-align:left;">
+-0.761
+</td>
+<td style="text-align:left;">
+-0.318
+</td>
+<td style="text-align:left;">
+-1.521
+</td>
+<td style="text-align:left;">
+0.070
+</td>
+<td style="text-align:left;">
+4.442
+</td>
+<td style="text-align:left;">
+0.869
+</td>
+<td style="text-align:left;">
+0.005
+</td>
+<td style="text-align:left;">
+0.037
+</td>
+<td style="text-align:left;">
+0.447
+</td>
+<td style="text-align:left;">
+0.751
+</td>
+<td style="text-align:left;">
+0.128
+</td>
+<td style="text-align:left;">
+0.944
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+614.616
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+tag_197061_BMP7
+</td>
+<td style="text-align:left;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tag_68218_BEND3
+</td>
+<td style="text-align:left;">
+8.151
+</td>
+<td style="text-align:left;">
+-0.968
+</td>
+<td style="text-align:left;">
+0.226
+</td>
+<td style="text-align:left;">
+-4.280
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.479
+</td>
+<td style="text-align:left;">
+chr6
+</td>
+<td style="text-align:left;">
+107436782
+</td>
+<td style="text-align:left;">
+107436787
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+BEND3
+</td>
+<td style="text-align:left;">
+BEND3
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+upstream
+</td>
+<td style="text-align:left;">
+cpg
+</td>
+<td style="text-align:left;">
+E2F1//Pol2//HA-E2F1//AP-2gamma//Egr-1//E2F6_(H-50)//Pol2-4H8
+</td>
+<td style="text-align:left;">
+98
+</td>
+<td style="text-align:left;">
+9.745
+</td>
+<td style="text-align:left;">
+7.996
+</td>
+<td style="text-align:left;">
+8.151
+</td>
+<td style="text-align:left;">
+24.042
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.179
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+0.275
+</td>
+<td style="text-align:left;">
+0.195
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.195
+</td>
+<td style="text-align:left;">
+-0.060
+</td>
+<td style="text-align:left;">
+4.147
+</td>
+<td style="text-align:left;">
+4.160
+</td>
+<td style="text-align:left;">
+0.356
+</td>
+<td style="text-align:left;">
+0.056
+</td>
+<td style="text-align:left;">
+0.048
+</td>
+<td style="text-align:left;">
+-1.633
+</td>
+<td style="text-align:left;">
+-0.968
+</td>
+<td style="text-align:left;">
+0.060
+</td>
+<td style="text-align:left;">
+0.955
+</td>
+<td style="text-align:left;">
+0.987
+</td>
+<td style="text-align:left;">
+0.239
+</td>
+<td style="text-align:left;">
+0.214
+</td>
+<td style="text-align:left;">
+0.019
+</td>
+<td style="text-align:left;">
+0.943
+</td>
+<td style="text-align:left;">
+0.226
+</td>
+<td style="text-align:left;">
+-0.985
+</td>
+<td style="text-align:left;">
+4.342
+</td>
+<td style="text-align:left;">
+4.217
+</td>
+<td style="text-align:left;">
+1.494
+</td>
+<td style="text-align:left;">
+0.262
+</td>
+<td style="text-align:left;">
+2.480
+</td>
+<td style="text-align:left;">
+-1.733
+</td>
+<td style="text-align:left;">
+-4.280
+</td>
+<td style="text-align:left;">
+0.324
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.135
+</td>
+<td style="text-align:left;">
+0.793
+</td>
+<td style="text-align:left;">
+0.013
+</td>
+<td style="text-align:left;">
+0.083
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+563.376
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+tag_68218_BEND3
+</td>
+<td style="text-align:left;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tag_10516_C1orf52
+</td>
+<td style="text-align:left;">
+6.161
+</td>
+<td style="text-align:left;">
+-1.091
+</td>
+<td style="text-align:left;">
+0.255
+</td>
+<td style="text-align:left;">
+-4.278
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.479
+</td>
+<td style="text-align:left;">
+chr1
+</td>
+<td style="text-align:left;">
+85722202
+</td>
+<td style="text-align:left;">
+85722207
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+C1orf52
+</td>
+<td style="text-align:left;">
+C1orf52
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+intronic
+</td>
+<td style="text-align:left;">
+NoCpg
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+92
+</td>
+<td style="text-align:left;">
+7.520
+</td>
+<td style="text-align:left;">
+6.511
+</td>
+<td style="text-align:left;">
+6.161
+</td>
+<td style="text-align:left;">
+19.477
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.210
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+0.363
+</td>
+<td style="text-align:left;">
+0.239
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.239
+</td>
+<td style="text-align:left;">
+-0.088
+</td>
+<td style="text-align:left;">
+4.098
+</td>
+<td style="text-align:left;">
+4.510
+</td>
+<td style="text-align:left;">
+0.592
+</td>
+<td style="text-align:left;">
+-0.160
+</td>
+<td style="text-align:left;">
+0.064
+</td>
+<td style="text-align:left;">
+-0.449
+</td>
+<td style="text-align:left;">
+-1.091
+</td>
+<td style="text-align:left;">
+0.068
+</td>
+<td style="text-align:left;">
+1.071
+</td>
+<td style="text-align:left;">
+1.107
+</td>
+<td style="text-align:left;">
+0.263
+</td>
+<td style="text-align:left;">
+0.241
+</td>
+<td style="text-align:left;">
+0.021
+</td>
+<td style="text-align:left;">
+1.092
+</td>
+<td style="text-align:left;">
+0.255
+</td>
+<td style="text-align:left;">
+-1.299
+</td>
+<td style="text-align:left;">
+3.827
+</td>
+<td style="text-align:left;">
+4.075
+</td>
+<td style="text-align:left;">
+2.253
+</td>
+<td style="text-align:left;">
+-0.667
+</td>
+<td style="text-align:left;">
+3.001
+</td>
+<td style="text-align:left;">
+-0.411
+</td>
+<td style="text-align:left;">
+-4.278
+</td>
+<td style="text-align:left;">
+0.194
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.024
+</td>
+<td style="text-align:left;">
+0.505
+</td>
+<td style="text-align:left;">
+0.003
+</td>
+<td style="text-align:left;">
+0.681
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+529.701
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+tag_10516_C1orf52
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tag_15433_METTL13
+</td>
+<td style="text-align:left;">
+9.501
+</td>
+<td style="text-align:left;">
+-0.858
+</td>
+<td style="text-align:left;">
+0.202
+</td>
+<td style="text-align:left;">
+-4.251
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.479
+</td>
+<td style="text-align:left;">
+chr1
+</td>
+<td style="text-align:left;">
+171751562
+</td>
+<td style="text-align:left;">
+171751567
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+METTL13
+</td>
+<td style="text-align:left;">
+METTL13
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+intronic
+</td>
+<td style="text-align:left;">
+NoCpg
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+100
+</td>
+<td style="text-align:left;">
+11.255
+</td>
+<td style="text-align:left;">
+9.282
+</td>
+<td style="text-align:left;">
+9.501
+</td>
+<td style="text-align:left;">
+30.942
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.137
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+0.237
+</td>
+<td style="text-align:left;">
+0.154
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.154
+</td>
+<td style="text-align:left;">
+-0.019
+</td>
+<td style="text-align:left;">
+3.838
+</td>
+<td style="text-align:left;">
+3.822
+</td>
+<td style="text-align:left;">
+0.235
+</td>
+<td style="text-align:left;">
+0.085
+</td>
+<td style="text-align:left;">
+0.001
+</td>
+<td style="text-align:left;">
+-0.378
+</td>
+<td style="text-align:left;">
+-0.858
+</td>
+<td style="text-align:left;">
+0.054
+</td>
+<td style="text-align:left;">
+0.859
+</td>
+<td style="text-align:left;">
+0.888
+</td>
+<td style="text-align:left;">
+0.217
+</td>
+<td style="text-align:left;">
+0.194
+</td>
+<td style="text-align:left;">
+0.018
+</td>
+<td style="text-align:left;">
+0.901
+</td>
+<td style="text-align:left;">
+0.202
+</td>
+<td style="text-align:left;">
+-0.346
+</td>
+<td style="text-align:left;">
+4.471
+</td>
+<td style="text-align:left;">
+4.307
+</td>
+<td style="text-align:left;">
+1.084
+</td>
+<td style="text-align:left;">
+0.436
+</td>
+<td style="text-align:left;">
+0.046
+</td>
+<td style="text-align:left;">
+-0.420
+</td>
+<td style="text-align:left;">
+-4.251
+</td>
+<td style="text-align:left;">
+0.730
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+0.278
+</td>
+<td style="text-align:left;">
+0.663
+</td>
+<td style="text-align:left;">
+0.964
+</td>
+<td style="text-align:left;">
+0.674
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+575.449
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+tag_15433_METTL13
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tag_55541_ANKRD34B
+</td>
+<td style="text-align:left;">
+7.256
+</td>
+<td style="text-align:left;">
+1.048
+</td>
+<td style="text-align:left;">
+0.247
+</td>
+<td style="text-align:left;">
+4.240
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.479
+</td>
+<td style="text-align:left;">
+chr5
+</td>
+<td style="text-align:left;">
+79855772
+</td>
+<td style="text-align:left;">
+79855777
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+ANKRD34B
+</td>
+<td style="text-align:left;">
+ANKRD34B
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+exonic
+</td>
+<td style="text-align:left;">
+NoCpg
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+92
+</td>
+<td style="text-align:left;">
+8.422
+</td>
+<td style="text-align:left;">
+6.364
+</td>
+<td style="text-align:left;">
+7.256
+</td>
+<td style="text-align:left;">
+28.876
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.262
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+0.309
+</td>
+<td style="text-align:left;">
+0.271
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+0.271
+</td>
+<td style="text-align:left;">
+0.154
+</td>
+<td style="text-align:left;">
+0.071
+</td>
+<td style="text-align:left;">
+0.263
+</td>
+<td style="text-align:left;">
+-0.411
+</td>
+<td style="text-align:left;">
+0.037
+</td>
+<td style="text-align:left;">
+-0.076
+</td>
+<td style="text-align:left;">
+-2.467
+</td>
+<td style="text-align:left;">
+1.048
+</td>
+<td style="text-align:left;">
+0.069
+</td>
+<td style="text-align:left;">
+1.100
+</td>
+<td style="text-align:left;">
+1.136
+</td>
+<td style="text-align:left;">
+0.265
+</td>
+<td style="text-align:left;">
+0.239
+</td>
+<td style="text-align:left;">
+0.022
+</td>
+<td style="text-align:left;">
+1.105
+</td>
+<td style="text-align:left;">
+0.247
+</td>
+<td style="text-align:left;">
+2.223
+</td>
+<td style="text-align:left;">
+0.065
+</td>
+<td style="text-align:left;">
+0.232
+</td>
+<td style="text-align:left;">
+-1.551
+</td>
+<td style="text-align:left;">
+0.153
+</td>
+<td style="text-align:left;">
+-3.434
+</td>
+<td style="text-align:left;">
+-2.233
+</td>
+<td style="text-align:left;">
+4.240
+</td>
+<td style="text-align:left;">
+0.026
+</td>
+<td style="text-align:left;">
+0.948
+</td>
+<td style="text-align:left;">
+0.817
+</td>
+<td style="text-align:left;">
+0.121
+</td>
+<td style="text-align:left;">
+0.878
+</td>
+<td style="text-align:left;">
+0.001
+</td>
+<td style="text-align:left;">
+0.026
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+562.754
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+tag_55541_ANKRD34B
+</td>
+<td style="text-align:left;">
+5
+</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="r"><code>write.csv(res, file = paste0(Home,&quot;/output/LME_Results.csv&quot;), row.names = T)
+write.csv2(restop, file = paste0(Home,&quot;/output/LME_Results_Sig.csv&quot;), row.names = T)</code></pre>
+<pre class="r"><code>EnhancedVolcano(res,
+                lab = rownames(res),
+                x = &#39;log2FoldChange&#39;,
+                y = &#39;pvalue&#39;,
+                pCutoff = 10e-3,
+                FCcutoff = 1)</code></pre>
+<p><img src="figure/02_1_Main_LME.Rmd/enhanced_volcano-1.png" width="5000" style="display: block; margin: auto;" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.3 (2020-10-10)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 19042)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=German_Germany.1252  LC_CTYPE=German_Germany.1252   
+[3] LC_MONETARY=German_Germany.1252 LC_NUMERIC=C                   
+[5] LC_TIME=German_Germany.1252    
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] scales_1.1.1                compareGroups_4.4.6        
+ [3] kableExtra_1.3.1            qqman_0.1.4                
+ [5] EnhancedVolcano_1.8.0       ggrepel_0.9.1              
+ [7] RCircos_1.2.1               doParallel_1.0.16          
+ [9] iterators_1.0.13            foreach_1.5.1              
+[11] DESeq2_1.30.0               SummarizedExperiment_1.20.0
+[13] Biobase_2.50.0              MatrixGenerics_1.2.0       
+[15] matrixStats_0.57.0          GenomicRanges_1.42.0       
+[17] GenomeInfoDb_1.26.2         IRanges_2.24.1             
+[19] S4Vectors_0.28.1            BiocGenerics_0.36.0        
+[21] forcats_0.5.0               stringr_1.4.0              
+[23] dplyr_1.0.2                 purrr_0.3.4                
+[25] readr_1.4.0                 tidyr_1.1.2                
+[27] tibble_3.0.4                ggplot2_3.3.3              
+[29] tidyverse_1.3.0             RColorBrewer_1.1-2         
+[31] knitr_1.30                  workflowr_1.6.2            
+
+loaded via a namespace (and not attached):
+  [1] uuid_0.1-4             readxl_1.3.1           backports_1.2.0       
+  [4] systemfonts_0.3.2      splines_4.0.3          BiocParallel_1.24.1   
+  [7] digest_0.6.27          htmltools_0.5.1.1      fansi_0.4.1           
+ [10] magrittr_2.0.1         Rsolnp_1.16            memoise_2.0.0         
+ [13] annotate_1.68.0        modelr_0.1.8           extrafont_0.17        
+ [16] officer_0.3.16         extrafontdb_1.0        colorspace_2.0-0      
+ [19] blob_1.2.1             rvest_0.3.6            haven_2.3.1           
+ [22] xfun_0.20              crayon_1.3.4           RCurl_1.98-1.2        
+ [25] jsonlite_1.7.2         genefilter_1.72.0      survival_3.2-7        
+ [28] glue_1.4.2             gtable_0.3.0           zlibbioc_1.36.0       
+ [31] XVector_0.30.0         webshot_0.5.2          DelayedArray_0.16.0   
+ [34] proj4_1.0-10.1         Rttf2pt1_1.3.8         maps_3.3.0            
+ [37] DBI_1.1.1              Rcpp_1.0.5             viridisLite_0.3.0     
+ [40] xtable_1.8-4           bit_4.0.4              truncnorm_1.0-8       
+ [43] httr_1.4.2             calibrate_1.7.7        ellipsis_0.3.1        
+ [46] mice_3.12.0            farver_2.0.3           pkgconfig_2.0.3       
+ [49] XML_3.99-0.5           dbplyr_2.0.0           locfit_1.5-9.4        
+ [52] labeling_0.4.2         tidyselect_1.1.0       rlang_0.4.10          
+ [55] later_1.1.0.1          AnnotationDbi_1.52.0   munsell_0.5.0         
+ [58] cellranger_1.1.0       tools_4.0.3            cachem_1.0.1          
+ [61] cli_2.2.0              generics_0.1.0         RSQLite_2.2.2         
+ [64] broom_0.7.3            evaluate_0.14          fastmap_1.1.0         
+ [67] yaml_2.2.1             bit64_4.0.5            fs_1.5.0              
+ [70] zip_2.1.1              whisker_0.4            ash_1.0-15            
+ [73] ggrastr_0.2.1          xml2_1.3.2             compiler_4.0.3        
+ [76] rstudioapi_0.13        beeswarm_0.2.3         reprex_1.0.0          
+ [79] geneplotter_1.68.0     stringi_1.5.3          HardyWeinberg_1.7.1   
+ [82] highr_0.8              ps_1.5.0               ggalt_0.4.0           
+ [85] gdtools_0.2.3          lattice_0.20-41        Matrix_1.2-18         
+ [88] vctrs_0.3.6            pillar_1.4.7           lifecycle_0.2.0       
+ [91] data.table_1.13.6      flextable_0.6.2        bitops_1.0-6          
+ [94] httpuv_1.5.5           R6_2.5.0               promises_1.1.1        
+ [97] KernSmooth_2.23-18     vipor_0.4.5            writexl_1.3.1         
+[100] codetools_0.2-18       MASS_7.3-53            assertthat_0.2.1      
+[103] chron_2.3-56           rprojroot_2.0.2        withr_2.4.1           
+[106] GenomeInfoDbData_1.2.4 hms_1.0.0              grid_4.0.3            
+[109] rmarkdown_2.6          git2r_0.28.0           base64enc_0.1-3       
+[112] lubridate_1.7.9.2      ggbeeswarm_0.6.0      </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
