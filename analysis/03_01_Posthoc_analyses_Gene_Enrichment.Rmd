@@ -165,7 +165,7 @@ abline(0,1,col="red")
 legend("topleft", pch=1, col=c("black", "gray"), legend=c("original", parm))
 
 
-plot(collector$originall2FC[idx],collector[,paste0(parm,"l2FC")][idx], pch=16, 
+plot(collector$originall2FC[idx],collector[,paste0(parm,"l2FC")][idx], pch=16,
      main="log 2 foldchange", ylab=parm, xlab="original")
 
 ```
